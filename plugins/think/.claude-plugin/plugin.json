@@ -1,0 +1,12 @@
+{
+  "name": "think",
+  "description": "Adopt an expert persona and reason from their perspective. Ships the think-like skill, an editable persona library, and /think:like and /think:add commands.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mads Hylleberg Nielsen"
+  },
+  "homepage": "https://github.com/MalasataXD/cc-plugins",
+  "repository": "https://github.com/MalasataXD/cc-plugins",
+  "license": "MIT",
+  "keywords": ["personas", "expert", "reasoning", "mental-models", "review"]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "cc-plugins",
+  "owner": {
+    "name": "Mads Hylleberg Nielsen"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugin marketplace: think-like persona reasoning, commit, and review."
+  },
+  "plugins": [
+    {
+      "name": "think",
+      "source": "./plugins/think",
+      "description": "Adopt an expert persona (Software Architect, UX Designer, etc.) and reason through a problem from their perspective. Includes an editable persona library and /think:like and /think:add commands."
+    },
+    {
+      "name": "commit",
+      "source": "./plugins/commit",
+      "description": "Create git commits with imperative titles, detailed body paragraphs, bulleted Changes: sections, and closing impact statements."
+    },
+    {
+      "name": "review",
+      "source": "./plugins/review",
+      "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0-100 scoring rubric."
+    }
+  ]
+}

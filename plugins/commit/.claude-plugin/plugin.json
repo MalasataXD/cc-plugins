@@ -1,0 +1,12 @@
+{
+  "name": "commit",
+  "description": "Create git commits with imperative titles, detailed body paragraphs, bulleted Changes: sections, and closing impact statements.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mads Hylleberg Nielsen"
+  },
+  "homepage": "https://github.com/MalasataXD/cc-plugins",
+  "repository": "https://github.com/MalasataXD/cc-plugins",
+  "license": "MIT",
+  "keywords": ["git", "commit", "style", "conventions"]
+}

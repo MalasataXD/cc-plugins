@@ -21,6 +21,11 @@
       "name": "review",
       "source": "./plugins/review",
       "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0-100 scoring rubric."
+    },
+    {
+      "name": "gh",
+      "source": "./plugins/gh",
+      "description": "GitHub CLI workflows for issues and projects: view open work, generate period digests, prepare standups, move issue statuses on project boards, and draft well-formed issues with correct labels."
     }
   ]
 }

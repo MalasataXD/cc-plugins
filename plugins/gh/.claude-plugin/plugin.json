@@ -1,0 +1,12 @@
+{
+  "name": "gh",
+  "description": "GitHub CLI skill for issue workflows: view upcoming work, write well-formed issues, move project statuses, and generate period digests and standups.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mads Hylleberg Nielsen"
+  },
+  "homepage": "https://github.com/MalasataXD/cc-plugins",
+  "repository": "https://github.com/MalasataXD/cc-plugins",
+  "license": "MIT",
+  "keywords": ["github", "issues", "projects", "digest", "standup", "gh-cli"]
+}

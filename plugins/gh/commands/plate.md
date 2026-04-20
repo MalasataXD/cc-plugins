@@ -6,7 +6,7 @@ Invoke the `gh` skill shipped with this plugin (`${CLAUDE_PLUGIN_ROOT}/skills/gh
 Arguments: `$ARGUMENTS`
 
 Parsing rules:
-1. If an argument is provided in `owner/repo` format, restrict results to that repo using `--repo`.
-2. If an `owner` (no slash) is provided, restrict to that owner using `--owner`.
-3. If no argument is given, search across all repos the user has access to.
-4. Sort by last updated descending. Group by repo in the output.
+1. If an argument is provided in `owner/repo` format, pass it as `--repo`.
+2. If a bare owner (no slash) is provided, pass it as `--owner`.
+3. If no argument is given, or the user says "everywhere" / "all repos", add `--full`.
+4. Group output by repo, sorted by last updated descending.

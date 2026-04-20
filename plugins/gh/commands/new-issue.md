@@ -8,6 +8,5 @@ Arguments: `$ARGUMENTS`
 Parsing rules:
 1. If the last token matches `owner/repo` format, treat it as the target repo and the rest as the description.
 2. Otherwise the entire argument string is the description; infer the repo from CWD via `gh repo view --json nameWithOwner`. If that fails, ask the user.
-3. Read the repo's label taxonomy (`gh label list`) and available issue templates before drafting.
-4. Always show the full draft (title + labels + body) to the user and wait for approval before calling `gh issue create`.
-5. After creation, output the new issue URL.
+3. Run a `--json` preview first, show the draft to the user, wait for approval, then re-run with `--confirm` to create.
+4. After creation, output the new issue URL.

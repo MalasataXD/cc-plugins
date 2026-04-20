@@ -7,9 +7,9 @@ Arguments: `$ARGUMENTS`
 
 Parsing rules:
 1. The first token is the `<since>` window. Accept:
-   - Relative: `7d`, `2w`, `1m`, `last-monday`
+   - Relative: `7d`, `2w`, `1m`, `last monday`
    - ISO date: `2026-04-10`
-   - Omitted: use `config.digest_window_days` days as the default window.
-2. If a second token matches `owner/repo`, restrict both issue and PR searches to that repo.
-3. If a second token matches an owner (no slash), restrict to that owner.
-4. Group output by repo. Include totals at the end.
+   - Omitted: extension uses `digest_window_days` from its config.
+2. If a second token matches `owner/repo`, pass it as `--repo`.
+3. If a second token matches a bare owner (no slash), pass it as `--owner`.
+4. If no repo/owner is given, add `--full` for a cross-repo digest.

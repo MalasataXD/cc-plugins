@@ -7,6 +7,5 @@ Arguments: `$ARGUMENTS`
 
 Parsing rules:
 1. No arguments expected. Ignore any provided.
-2. "Yesterday" means the calendar day before today in the user's local timezone — use the ISO date of yesterday as the `--closed ">=<date>"` filter.
-3. Format output using `config.standup_format`. Leave the `{blockers}` section blank with a placeholder: _(fill in manually)_.
-4. Keep the list short: max 10 items per section.
+2. Add `--full` if the user asks for all repos or says "everywhere".
+3. Output format is controlled by `standup_format` in the extension's config.

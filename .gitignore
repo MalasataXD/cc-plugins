@@ -5,6 +5,6 @@ Thumbs.db
 .idea/
 node_modules/
 
-# gh plugin — local config and cache (user-specific, not committed)
-plugins/gh/skills/gh/config.json
-plugins/gh/skills/gh/cache.json
+# developer documentation
+/docs
+

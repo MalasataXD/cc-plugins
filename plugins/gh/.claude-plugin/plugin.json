@@ -1,7 +1,7 @@
 {
   "name": "gh",
   "description": "GitHub CLI skill for issue workflows: view upcoming work, write well-formed issues, move project statuses, and generate period digests and standups. Wraps the gh-supercharged CLI extension.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Mads Hylleberg Nielsen"
   },

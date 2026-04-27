@@ -7,7 +7,7 @@ description: >
   prep, drafting a new issue, tagging an issue, writing a well-formed issue,
   or anything phrased as "look at my issues", "what did we ship", "new issue",
   "move #<n> to <status>", "standup", "digest", "triage", or similar.
-  Requires the gh-supercharged CLI extension.
+  Requires the gh-supercharged CLI extension for plate/digest/standup/move.
 ---
 
 # gh — GitHub CLI Skill
@@ -132,28 +132,70 @@ On success: confirm with "Moved #<n> → **<status>**."
 
 ---
 
-### New Issue — draft then confirm
+### New Issue — draft then create
 
-**Step 1 — resolve repo:**
-- From the user's args (`owner/repo` as last token).
-- Fallback: `gh repo view --json nameWithOwner`.
-- If neither works, ask.
+Does **not** use `gh supercharged`. Uses plain `gh issue create`.
 
-**Step 2 — preview draft:**
+**Step 1 — resolve repo**
+- From the user's input (`owner/repo` as the last token).
+- Fallback: `gh repo view --json nameWithOwner -q .nameWithOwner`.
+- If neither works, ask the user.
+
+**Step 2 — discover repo conventions** (run in parallel, ignore 404)
 ```bash
-gh supercharged new-issue "<description>" --repo <owner/repo> --json
+gh label list --repo <owner/repo> --limit 100 --json name,description
+gh api repos/<owner>/<repo>/contents/.github/ISSUE_TEMPLATE
+```
+Use a matching repo template as the body skeleton if one exists; otherwise use the built-in skeleton for the inferred type.
+
+**Step 3 — classify the issue**
+
+| Signals | Type |
+|---|---|
+| "broken", "crash", "error", "regression", repro steps | **Bug** |
+| "add", "support", "feature", "enhancement" | **Feature** |
+| "refactor", "cleanup", "chore", "docs", "bump" | **Task** |
+| anything else | **Generic** |
+
+**Step 4 — built-in skeletons**
+
+Sections marked **(optional)** are included only when the user's description supplies real content — never emit an empty heading or a placeholder like "N/A".
+
+- **Bug** — Title: `[Bug] <symptom>` · Sections: `## Summary`, `## Steps to reproduce`, `## Expected`, `## Actual` (all required); `## Environment`, `## Notes` (optional) · Label: `bug`
+- **Feature** — Title: imperative verb + object · Sections: `## Problem`, `## Proposal` (required); `## Acceptance criteria` (optional, checklist preferred), `## Out of scope`, `## Open questions` (optional) · Label: `enhancement`
+- **Task** — Title: imperative verb + object · Sections: `## Goal`, `## Definition of done` (required, checklist); `## Scope`, `## Notes` (optional) · Label: `chore`
+- **Generic** — Sections: `## Context`, `## What we want` (required); `## Notes` (optional) · No labels
+
+Quality bar: title ≤ 80 chars, no trailing period, concrete over vague (name files/commands/errors), never invent facts (write `TODO:` instead).
+
+Label reconciliation: intersect suggested labels with the real set from Step 2. If none match, list the three closest real labels and let the user choose.
+
+**Step 5 — show draft and wait for approval**
+
+```
+**Repo:** <owner/repo>
+**Title:** <title>
+**Labels:** <labels, or "(none)">
+**Template:** <repo template path, or "built-in <type>">
+
+---
+<body>
+---
+Reply `ok` to create, or tell me what to change.
 ```
 
-**Step 3 — show draft and get approval:**
-Present the drafted title, labels, template, and body to the user. Say:
-"Here's the draft — reply `ok` to create it, or tell me what to change."
+Loop on edits until explicit approval. Do **not** run `gh issue create` before approval.
 
-**Step 4 — create:**
+**Step 6 — create**
 ```bash
-gh supercharged new-issue "<description>" --repo <owner/repo> --confirm
+gh issue create \
+  --repo <owner/repo> \
+  --title "<title>" \
+  --body-file <tempfile> \
+  [--label "<label>" ...]
 ```
 
-Confirm with the created issue URL.
+On success: print the issue URL. On failure: surface stderr and offer to retry without labels.
 
 ---
 

@@ -2,13 +2,15 @@
 
 Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
 
-Seven plugins, grouped by category:
+Nine plugins, grouped by category:
 
 | Category       | Plugin   | What you get                                                                                            |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
 | `reasoning`    | `think`  | `think-like` skill + editable persona library + `/think:like` and `/think:add` commands                 |
 | `reasoning`    | `grill`  | `grill-me` and `grill-with-docs` skills — interview-style plan stress-testing, optionally docs-aware     |
 | `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, with a 0–100 scoring rubric        |
+| `code-quality` | `zoom-out` | `zoom-out` skill + `/zoom-out` command — map the modules and callers around an unfamiliar area of code |
+| `code-quality` | `tdd`    | `tdd` skill + `/tdd` command — red-green-refactor, vertical slices, behavior-driven tests               |
 | `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
 | `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
 | `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
@@ -23,6 +25,8 @@ From any Claude Code session:
 /plugin install think@cc-plugins
 /plugin install grill@cc-plugins
 /plugin install review@cc-plugins
+/plugin install zoom-out@cc-plugins
+/plugin install tdd@cc-plugins
 /plugin install commit@cc-plugins
 /plugin install gh@cc-plugins
 /plugin install to-prd@cc-plugins
@@ -69,6 +73,32 @@ Two skills:
 ## `review`
 
 Invokes when you ask for a code review. Returns scored feedback across security, performance, quality, style, architecture, and documentation. Rubric and checklists in `plugins/code-quality/review/skills/review/references/`.
+
+## `zoom-out` — map an unfamiliar area
+
+When you don't know an area of code well, goes up a layer of abstraction and gives you a map of the relevant modules and callers, using the project's domain glossary vocabulary.
+
+The skill is **manually invoked only** (`disable-model-invocation`) — it won't auto-trigger, so reach for it through the slash command.
+
+**Slash command:**
+
+```shell
+/zoom-out [optional file, module, or area]
+```
+
+## `tdd` — test-driven development
+
+Guides feature work and bug fixes through the **red-green-refactor** loop. Tests verify behavior through public interfaces, not implementation details. Works in **vertical slices** (one test → one implementation → repeat) rather than writing all tests up front, and refactors only once green.
+
+**Auto-triggers** on phrasing like *"build this test-first"*, *"red-green-refactor"*, or *"let's TDD this"*.
+
+**Slash command:**
+
+```shell
+/tdd [optional feature, bug, or behavior]
+```
+
+Supporting references (tests, mocking, interface design, deep modules, refactoring) live in `plugins/code-quality/tdd/skills/tdd/references/`. Adapted from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd).
 
 ## `commit`
 
@@ -129,7 +159,9 @@ cc-plugins/
     │   ├── think/
     │   └── grill/
     ├── code-quality/
-    │   └── review/
+    │   ├── review/
+    │   ├── zoom-out/
+    │   └── tdd/
     ├── workflow/
     │   ├── commit/
     │   └── gh/
@@ -137,7 +169,3 @@ cc-plugins/
         ├── to-prd/
         └── to-issues/
 ```
-
-## License
-
-MIT.

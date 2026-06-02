@@ -4,7 +4,7 @@
     "name": "Mads Hylleberg Nielsen"
   },
   "metadata": {
-    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review), workflow (commit, gh), and planning (to-prd)."
+    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review, zoom-out, tdd), workflow (commit, gh), and planning (to-prd, to-issues)."
   },
   "plugins": [
     {
@@ -24,6 +24,18 @@
       "source": "./plugins/code-quality/review",
       "category": "code-quality",
       "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0-100 scoring rubric."
+    },
+    {
+      "name": "zoom-out",
+      "source": "./plugins/code-quality/zoom-out",
+      "category": "code-quality",
+      "description": "Go up a layer of abstraction and map the relevant modules and callers around an area of code, using the project's domain glossary vocabulary. Manually invoked via /zoom-out."
+    },
+    {
+      "name": "tdd",
+      "source": "./plugins/code-quality/tdd",
+      "category": "code-quality",
+      "description": "Test-driven development with the red-green-refactor loop: vertical slices over horizontal, behavior-driven tests through public interfaces, and refactoring only once green. Adapted from mattpocock/skills."
     },
     {
       "name": "gh",

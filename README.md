@@ -15,6 +15,7 @@ Nine plugins, grouped by category:
 | `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
 | `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
 | `planning`     | `to-issues` | `to-issues` skill — break a plan/spec/PRD into self-contained issues, written to local `ai/issues/` files |
+| `planning`     | `vet-issues` | `vet-issues` skill — pressure-test issues through an implementer's eyes; findings shown in-conversation, no files |
 
 ## Install
 
@@ -31,6 +32,7 @@ From any Claude Code session:
 /plugin install gh@cc-plugins
 /plugin install to-prd@cc-plugins
 /plugin install to-issues@cc-plugins
+/plugin install vet-issues@cc-plugins
 ```
 
 Pull updates later with `/plugin marketplace update cc-plugins`.
@@ -146,6 +148,18 @@ Each approved slice is written as a **local markdown file only** — never publi
 /to-issues:to-issues [plan, spec, PRD path, or free-form description]
 ```
 
+## `vet-issues` — pressure-test issues
+
+Reads a set of issues through the eyes of an implementer picking each one up **cold** — only the issue text and the codebase, none of the conversation that produced it — and reports the moment they'd stall: the first question they can't answer. It distinguishes a **genuine gap** (a decision nobody made that the implementer would have to guess) from **healthy exploration** (reading the code to find the right function), and only flags the former, so it doesn't push issues toward bloated over-specification. It also checks the set as a whole for dependency cycles, coverage holes, overlap, and granularity drift.
+
+It is **read-only**: each issue gets a verdict (Ready / Needs work / Blocked) and suggested fixes are framed as questions for the author to answer, never as decisions invented on their behalf. Findings are shown **directly in the conversation** — nothing is written to disk. A natural next step after `/to-issues`, before handing work off.
+
+**Slash command:**
+
+```shell
+/vet-issues:vet-issues [issue file, folder, or glob]
+```
+
 ## Layout
 
 Plugins are grouped into category folders. The `category` field in `marketplace.json` and the folder each plugin lives in are kept in sync.
@@ -167,5 +181,6 @@ cc-plugins/
     │   └── gh/
     └── planning/
         ├── to-prd/
-        └── to-issues/
+        ├── to-issues/
+        └── vet-issues/
 ```

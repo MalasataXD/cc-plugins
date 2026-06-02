@@ -1,7 +1,7 @@
 {
   "name": "review",
-  "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0–100 scoring rubric.",
-  "version": "0.1.0",
+  "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0–100 scoring rubric, written to a local markdown file under ai/reviews/.",
+  "version": "0.2.0",
   "author": {
     "name": "Mads Hylleberg Nielsen"
   },

@@ -8,7 +8,7 @@ Nine plugins, grouped by category:
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
 | `reasoning`    | `think`  | `think-like` skill + editable persona library + `/think:like` and `/think:add` commands                 |
 | `reasoning`    | `grill`  | `grill-me` and `grill-with-docs` skills — interview-style plan stress-testing, optionally docs-aware     |
-| `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, with a 0–100 scoring rubric        |
+| `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, scored 0–100, written to `ai/reviews/` |
 | `code-quality` | `zoom-out` | `zoom-out` skill + `/zoom-out` command — map the modules and callers around an unfamiliar area of code |
 | `code-quality` | `tdd`    | `tdd` skill + `/tdd` command — red-green-refactor, vertical slices, behavior-driven tests               |
 | `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
@@ -72,7 +72,7 @@ Two skills:
 
 ## `review`
 
-Invokes when you ask for a code review. Returns scored feedback across security, performance, quality, style, architecture, and documentation. Rubric and checklists in `plugins/code-quality/review/skills/review/references/`.
+Invokes when you ask for a code review. Produces scored feedback across security, performance, quality, style, architecture, and documentation, then writes it as a **local markdown file** under an `ai/reviews/` folder at the repo root (reused if present, created otherwise). Files are date-prefixed (e.g. `ai/reviews/2026-06-02-auth-service.md`) so re-reviewing the same target keeps a history. Rubric and checklists in `plugins/code-quality/review/skills/review/references/`.
 
 ## `zoom-out` — map an unfamiliar area
 

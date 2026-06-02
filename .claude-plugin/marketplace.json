@@ -23,7 +23,7 @@
       "name": "review",
       "source": "./plugins/code-quality/review",
       "category": "code-quality",
-      "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0-100 scoring rubric."
+      "description": "Conduct comprehensive code reviews analyzing security, performance, quality, style, architecture, and documentation, with a 0-100 scoring rubric, written to a local markdown file under ai/reviews/."
     },
     {
       "name": "zoom-out",

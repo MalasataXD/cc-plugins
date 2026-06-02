@@ -1,6 +1,6 @@
 ---
 name: review
-description: Use when the user asks for a code review, quality check, or improvement suggestions on a file, directory, or recent changes (e.g., "review my changes", "check this file for issues", "how can I improve this method"). Analyzes security, performance, quality, style, architecture, and documentation, and returns actionable feedback with a consistent 0–100 score.
+description: Use when the user asks for a code review, quality check, or improvement suggestions on a file, directory, or recent changes (e.g., "review my changes", "check this file for issues", "how can I improve this method"). Analyzes security, performance, quality, style, architecture, and documentation, and writes actionable feedback with a consistent 0–100 score to a local markdown file under ai/reviews/.
 ---
 
 # Code Review
@@ -136,9 +136,21 @@ Organize findings into a clear, actionable review:
    - Suggest how to fix it
    - Keep explanations short and concise
 
+### 6. Write the Review to a File
+
+Write the full review (using the [Output Format](#output-format) below) as a local markdown file (see [Output location](#output-location)). After writing, report the path to the user along with the overall score, so the result is both saved and visible at a glance.
+
+## Output location
+
+Reviews are written as local markdown files only — never published to an external tracker.
+
+1. Find the `ai/` folder. It lives at the repository root. If one already exists, reuse it. Otherwise create it.
+2. Inside `ai/`, reviews always go in `ai/reviews/`. Reuse the folder if it exists, otherwise create it.
+3. Name the file with the current date and a short kebab-case slug derived from what was reviewed, e.g. `ai/reviews/2026-06-02-auth-service.md`. The date prefix keeps a history when the same target is reviewed more than once. If a file with that exact name already exists, confirm with the user before overwriting.
+
 ## Output Format
 
-Present the code review using this structure:
+Write the code review to the file using this structure:
 
 ```markdown
 # Code Review: [File/Directory Name]

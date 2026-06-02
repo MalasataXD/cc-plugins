@@ -2,7 +2,7 @@
 
 Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
 
-Six plugins, grouped by category:
+Seven plugins, grouped by category:
 
 | Category       | Plugin   | What you get                                                                                            |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
@@ -12,6 +12,7 @@ Six plugins, grouped by category:
 | `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
 | `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
 | `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
+| `planning`     | `to-issues` | `to-issues` skill — break a plan/spec/PRD into self-contained issues, written to local `ai/issues/` files |
 
 ## Install
 
@@ -25,6 +26,7 @@ From any Claude Code session:
 /plugin install commit@cc-plugins
 /plugin install gh@cc-plugins
 /plugin install to-prd@cc-plugins
+/plugin install to-issues@cc-plugins
 ```
 
 Pull updates later with `/plugin marketplace update cc-plugins`.
@@ -102,6 +104,18 @@ The PRD is written as a **local markdown file only** — never published to an e
 /to-prd:to-prd [optional focus or feature name]
 ```
 
+## `to-issues` — plan to issues
+
+Breaks a plan, spec, or PRD into independently-grabbable issues using **tracer-bullet vertical slices** — thin paths that cut through every layer (schema, API, UI, tests) rather than horizontal slices of one layer. It prefers **self-contained tasks** with no blockers, declaring a "Blocked by" dependency only when a slice genuinely can't stand alone. It presents the numbered breakdown and iterates with you (granularity, HITL/AFK, dependencies) before writing anything.
+
+Each approved slice is written as a **local markdown file only** — never published to an external tracker — under an `ai/issues/` folder at the repo root, named with a zero-padded ordinal so dependency order is visible (e.g. `01-account-balance-endpoint.md`).
+
+**Slash command:**
+
+```shell
+/to-issues:to-issues [plan, spec, PRD path, or free-form description]
+```
+
 ## Layout
 
 Plugins are grouped into category folders. The `category` field in `marketplace.json` and the folder each plugin lives in are kept in sync.
@@ -120,7 +134,8 @@ cc-plugins/
     │   ├── commit/
     │   └── gh/
     └── planning/
-        └── to-prd/
+        ├── to-prd/
+        └── to-issues/
 ```
 
 ## License

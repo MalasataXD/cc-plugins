@@ -42,6 +42,12 @@
       "source": "./plugins/planning/to-prd",
       "category": "planning",
       "description": "Synthesize the current conversation and codebase understanding into a Product Requirements Document, written as a local markdown file under ai/prds/. No interview — just synthesis."
+    },
+    {
+      "name": "to-issues",
+      "source": "./plugins/planning/to-issues",
+      "category": "planning",
+      "description": "Break a plan, spec, or PRD into self-contained, independently-grabbable issues using tracer-bullet vertical slices, written as local markdown files under ai/issues/."
     }
   ]
 }

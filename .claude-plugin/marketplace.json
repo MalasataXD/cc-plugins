@@ -4,7 +4,7 @@
     "name": "Mads Hylleberg Nielsen"
   },
   "metadata": {
-    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review), and workflow (commit, gh)."
+    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review), workflow (commit, gh), and planning (to-prd)."
   },
   "plugins": [
     {
@@ -36,6 +36,12 @@
       "source": "./plugins/reasoning/grill",
       "category": "reasoning",
       "description": "Stress-test a plan or design through relentless one-at-a-time interviewing that resolves each branch of the decision tree. Includes a docs-aware variant that challenges terminology against the domain model and updates CONTEXT.md and ADRs inline."
+    },
+    {
+      "name": "to-prd",
+      "source": "./plugins/planning/to-prd",
+      "category": "planning",
+      "description": "Synthesize the current conversation and codebase understanding into a Product Requirements Document, written as a local markdown file under ai/prds/. No interview — just synthesis."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
 
-Five plugins, grouped by category:
+Six plugins, grouped by category:
 
 | Category       | Plugin   | What you get                                                                                            |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
@@ -11,6 +11,7 @@ Five plugins, grouped by category:
 | `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, with a 0–100 scoring rubric        |
 | `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
 | `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
+| `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
 
 ## Install
 
@@ -23,6 +24,7 @@ From any Claude Code session:
 /plugin install review@cc-plugins
 /plugin install commit@cc-plugins
 /plugin install gh@cc-plugins
+/plugin install to-prd@cc-plugins
 ```
 
 Pull updates later with `/plugin marketplace update cc-plugins`.
@@ -88,6 +90,18 @@ Invokes automatically when you ask Claude to commit changes. Full style guide at
 
 Requires `gh auth refresh -s project` for project board commands (`/gh:move`).
 
+## `to-prd` — context to PRD
+
+Synthesizes the current conversation and codebase understanding into a Product Requirements Document. It does **not** interview you — it works from what's already known, sketches the test seams (checking they match your expectations), then writes the PRD using a structured template (Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions, Out of Scope, Further Notes).
+
+The PRD is written as a **local markdown file only** — never published to an external tracker. It lands under an `ai/prds/` folder at the repo root (reused if present, created otherwise).
+
+**Slash command:**
+
+```shell
+/to-prd:to-prd [optional focus or feature name]
+```
+
 ## Layout
 
 Plugins are grouped into category folders. The `category` field in `marketplace.json` and the folder each plugin lives in are kept in sync.
@@ -99,48 +113,14 @@ cc-plugins/
 └── plugins/
     ├── reasoning/
     │   ├── think/
-    │   │   ├── .claude-plugin/plugin.json
-    │   │   ├── skills/think-like/
-    │   │   │   ├── SKILL.md
-    │   │   │   └── personas/*.md
-    │   │   └── commands/
-    │   │       ├── like.md
-    │   │       └── add.md
     │   └── grill/
-    │       ├── .claude-plugin/plugin.json
-    │       ├── skills/
-    │       │   ├── grill-me/SKILL.md
-    │       │   └── grill-with-docs/
-    │       │       ├── SKILL.md
-    │       │       ├── CONTEXT-FORMAT.md
-    │       │       └── ADR-FORMAT.md
-    │       └── commands/
-    │           ├── me.md
-    │           └── with-docs.md
     ├── code-quality/
     │   └── review/
-    │       ├── .claude-plugin/plugin.json
-    │       └── skills/review/
-    └── workflow/
-        ├── commit/
-        │   ├── .claude-plugin/plugin.json
-        │   └── skills/commit/
-        └── gh/
-            ├── .claude-plugin/plugin.json
-            ├── skills/gh/
-            │   ├── SKILL.md
-            │   ├── config.example.json   # committed — copy to config.json and fill in
-            │   ├── config.json           # gitignored — your personal settings
-            │   ├── cache.json            # gitignored — auto-managed project ID cache
-            │   └── references/
-            │       ├── gh-cheatsheet.md
-            │       └── project-ids.md
-            └── commands/
-                ├── plate.md
-                ├── digest.md
-                ├── standup.md
-                ├── move.md
-                └── new-issue.md
+    ├── workflow/
+    │   ├── commit/
+    │   └── gh/
+    └── planning/
+        └── to-prd/
 ```
 
 ## License

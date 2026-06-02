@@ -2,14 +2,15 @@
 
 Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
 
-Four plugins:
+Five plugins, grouped by category:
 
-| Plugin   | What you get                                                                                            |
-| -------- | ------------------------------------------------------------------------------------------------------- |
-| `think`  | `think-like` skill + editable persona library + `/think:like` and `/think:add` commands                 |
-| `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
-| `review` | `review` skill — security, performance, quality, architecture, docs, with a 0–100 scoring rubric        |
-| `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
+| Category       | Plugin   | What you get                                                                                            |
+| -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `reasoning`    | `think`  | `think-like` skill + editable persona library + `/think:like` and `/think:add` commands                 |
+| `reasoning`    | `grill`  | `grill-me` and `grill-with-docs` skills — interview-style plan stress-testing, optionally docs-aware     |
+| `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, with a 0–100 scoring rubric        |
+| `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
+| `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
 
 ## Install
 
@@ -18,8 +19,9 @@ From any Claude Code session:
 ```shell
 /plugin marketplace add MalasataXD/cc-plugins
 /plugin install think@cc-plugins
-/plugin install commit@cc-plugins
+/plugin install grill@cc-plugins
 /plugin install review@cc-plugins
+/plugin install commit@cc-plugins
 /plugin install gh@cc-plugins
 ```
 
@@ -38,17 +40,35 @@ Adopt a specific expert's lens to reason through a problem.
 /think:add  <archetype> <idea>
 ```
 
-Personas live as editable markdown files at `plugins/think/skills/think-like/personas/`. Eleven are bundled (software-architect, backend-engineer, frontend-engineer, devops-sre, security-engineer, tech-lead, dba, product-manager, ux-designer, technical-writer, production-designer). Edit or add your own — each file is the source of truth.
+Personas live as editable markdown files at `plugins/reasoning/think/skills/think-like/personas/`. Eleven are bundled (software-architect, backend-engineer, frontend-engineer, devops-sre, security-engineer, tech-lead, dba, product-manager, ux-designer, technical-writer, production-designer). Edit or add your own — each file is the source of truth.
 
 `/think:add` drafts a new persona interactively, shows you the spec, and only writes to disk after you approve. Commit the resulting file back to this repo to sync it across machines.
 
-## `commit`
+## `grill` — stress-test a plan
 
-Invokes automatically when you ask Claude to commit changes. Full style guide at `plugins/commit/skills/commit/references/commit-style.md`.
+Interviews you relentlessly about a plan or design, one question at a time, walking each branch of the decision tree until you reach shared understanding. For each question it offers its own recommended answer, and explores the codebase whenever a question can be answered from the code.
+
+**Auto-triggers** on phrasing like *"grill me"*, *"stress-test this plan"*, or *"get me grilled on this design"*.
+
+**Slash commands:**
+
+```shell
+/grill:me        [plan or topic]   # lean interview, no side effects
+/grill:with-docs [plan or topic]   # docs-aware: updates CONTEXT.md and offers ADRs
+```
+
+Two skills:
+
+- `grill-me` — the lean version: pure interview, no side effects.
+- `grill-with-docs` — challenges your plan against the project's domain language, sharpens fuzzy terminology, and captures decisions inline: it maintains a `CONTEXT.md` glossary and offers ADRs sparingly (only for hard-to-reverse, surprising, genuine trade-offs). Formats live in `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` beside the skill.
 
 ## `review`
 
-Invokes when you ask for a code review. Returns scored feedback across security, performance, quality, style, architecture, and documentation. Rubric and checklists in `plugins/review/skills/review/references/`.
+Invokes when you ask for a code review. Returns scored feedback across security, performance, quality, style, architecture, and documentation. Rubric and checklists in `plugins/code-quality/review/skills/review/references/`.
+
+## `commit`
+
+Invokes automatically when you ask Claude to commit changes. Full style guide at `plugins/workflow/commit/skills/commit/references/commit-style.md`.
 
 ## `gh` — GitHub CLI workflows
 
@@ -64,47 +84,63 @@ Invokes when you ask for a code review. Returns scored feedback across security,
 /gh:new-issue <description> [repo]   # draft and create a well-formed issue with correct labels
 ```
 
-**First-time setup:** after installing, copy `plugins/gh/skills/gh/config.example.json` to `config.json` in the same folder and set `github_handle` to your GitHub username. The skill will prompt you if the file is missing.
+**First-time setup:** after installing, copy `plugins/workflow/gh/skills/gh/config.example.json` to `config.json` in the same folder and set `github_handle` to your GitHub username. The skill will prompt you if the file is missing.
 
 Requires `gh auth refresh -s project` for project board commands (`/gh:move`).
 
 ## Layout
+
+Plugins are grouped into category folders. The `category` field in `marketplace.json` and the folder each plugin lives in are kept in sync.
 
 ```
 cc-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json
 └── plugins/
-    ├── think/
-    │   ├── .claude-plugin/plugin.json
-    │   ├── skills/think-like/
-    │   │   ├── SKILL.md
-    │   │   └── personas/*.md
-    │   └── commands/
-    │       ├── like.md
-    │       └── add.md
-    ├── commit/
-    │   ├── .claude-plugin/plugin.json
-    │   └── skills/commit/
-    ├── review/
-    │   ├── .claude-plugin/plugin.json
-    │   └── skills/review/
-    └── gh/
-        ├── .claude-plugin/plugin.json
-        ├── skills/gh/
-        │   ├── SKILL.md
-        │   ├── config.example.json   # committed — copy to config.json and fill in
-        │   ├── config.json           # gitignored — your personal settings
-        │   ├── cache.json            # gitignored — auto-managed project ID cache
-        │   └── references/
-        │       ├── gh-cheatsheet.md
-        │       └── project-ids.md
-        └── commands/
-            ├── plate.md
-            ├── digest.md
-            ├── standup.md
-            ├── move.md
-            └── new-issue.md
+    ├── reasoning/
+    │   ├── think/
+    │   │   ├── .claude-plugin/plugin.json
+    │   │   ├── skills/think-like/
+    │   │   │   ├── SKILL.md
+    │   │   │   └── personas/*.md
+    │   │   └── commands/
+    │   │       ├── like.md
+    │   │       └── add.md
+    │   └── grill/
+    │       ├── .claude-plugin/plugin.json
+    │       ├── skills/
+    │       │   ├── grill-me/SKILL.md
+    │       │   └── grill-with-docs/
+    │       │       ├── SKILL.md
+    │       │       ├── CONTEXT-FORMAT.md
+    │       │       └── ADR-FORMAT.md
+    │       └── commands/
+    │           ├── me.md
+    │           └── with-docs.md
+    ├── code-quality/
+    │   └── review/
+    │       ├── .claude-plugin/plugin.json
+    │       └── skills/review/
+    └── workflow/
+        ├── commit/
+        │   ├── .claude-plugin/plugin.json
+        │   └── skills/commit/
+        └── gh/
+            ├── .claude-plugin/plugin.json
+            ├── skills/gh/
+            │   ├── SKILL.md
+            │   ├── config.example.json   # committed — copy to config.json and fill in
+            │   ├── config.json           # gitignored — your personal settings
+            │   ├── cache.json            # gitignored — auto-managed project ID cache
+            │   └── references/
+            │       ├── gh-cheatsheet.md
+            │       └── project-ids.md
+            └── commands/
+                ├── plate.md
+                ├── digest.md
+                ├── standup.md
+                ├── move.md
+                └── new-issue.md
 ```
 
 ## License

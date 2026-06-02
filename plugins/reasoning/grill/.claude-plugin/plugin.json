@@ -1,0 +1,12 @@
+{
+  "name": "grill",
+  "description": "Stress-test a plan or design through relentless one-at-a-time interviewing, resolving each branch of the decision tree. Includes a docs-aware variant that sharpens terminology and updates CONTEXT.md and ADRs inline.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mads Hylleberg Nielsen"
+  },
+  "homepage": "https://github.com/MalasataXD/cc-plugins",
+  "repository": "https://github.com/MalasataXD/cc-plugins",
+  "license": "MIT",
+  "keywords": ["planning", "design", "interview", "adr", "documentation"]
+}

@@ -43,5 +43,5 @@ Workflow:
 
 6. **Confirm** by telling the user:
    - The exact path of the new file.
-   - **Caveat:** the plugin cache at that path is refreshed when the marketplace updates. For a persona you want to keep permanently, also commit the new file to your cc-plugins repo under `plugins/think/skills/think-like/personas/`.
+   - **Caveat:** the plugin cache at that path is refreshed when the marketplace updates. For a persona you want to keep permanently, also commit the new file to your cc-plugins repo under `plugins/reasoning/think/skills/think-like/personas/`.
    - How to invoke it: `/think:like <alias> <prompt>` — or naturally, e.g. *"think like a <alias>…"*.

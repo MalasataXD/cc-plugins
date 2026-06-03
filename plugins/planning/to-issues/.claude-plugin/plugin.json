@@ -1,7 +1,7 @@
 {
   "name": "to-issues",
   "description": "Break a plan, spec, or PRD into self-contained, independently-grabbable issues using vertical slices (tracer bullets), written as local markdown files under ai/issues/.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Mads Hylleberg Nielsen"
   },

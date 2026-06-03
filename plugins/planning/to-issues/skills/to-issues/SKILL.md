@@ -66,6 +66,19 @@ Report the list of written file paths to the user once done.
 
 A reference to the parent plan, spec, or PRD this slice came from (e.g. `ai/prds/<name>.md`). Omit this section if there is no parent source.
 
+## Type
+
+One of:
+
+- **AFK** — implementable and mergeable with no human interaction during the work; a human only reviews it afterward.
+- **HITL** — a human is required *during* implementation (an architectural decision, a design review, a credential).
+
+## Status
+
+`Not started`
+
+One of `Not started` | `In progress` | `Completed`. New issues are always written as `Not started`; downstream skills advance this as the work moves.
+
 ## What to build
 
 A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.

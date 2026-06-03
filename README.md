@@ -2,7 +2,7 @@
 
 Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
 
-Nine plugins, grouped by category:
+Eleven plugins, grouped by category:
 
 | Category       | Plugin   | What you get                                                                                            |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
@@ -16,6 +16,8 @@ Nine plugins, grouped by category:
 | `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
 | `planning`     | `to-issues` | `to-issues` skill — break a plan/spec/PRD into self-contained issues, written to local `ai/issues/` files |
 | `planning`     | `vet-issues` | `vet-issues` skill — pressure-test issues through an implementer's eyes; findings shown in-conversation, no files |
+| `planning`     | `next-issue` | `next-issue` skill + `/next-issue` command — pick up the next open issue, read it, and plan it before any code |
+| `planning`     | `complete-issue` | `complete-issue` skill + `/complete-issue` command — verify an issue's acceptance criteria against the real changes |
 
 ## Install
 
@@ -33,6 +35,8 @@ From any Claude Code session:
 /plugin install to-prd@cc-plugins
 /plugin install to-issues@cc-plugins
 /plugin install vet-issues@cc-plugins
+/plugin install next-issue@cc-plugins
+/plugin install complete-issue@cc-plugins
 ```
 
 Pull updates later with `/plugin marketplace update cc-plugins`.
@@ -142,6 +146,8 @@ Breaks a plan, spec, or PRD into independently-grabbable issues using **tracer-b
 
 Each approved slice is written as a **local markdown file only** — never published to an external tracker — under an `ai/issues/` folder at the repo root, named with a zero-padded ordinal so dependency order is visible (e.g. `01-account-balance-endpoint.md`).
 
+Each issue carries a **`Type`** (`AFK` — no human needed during the work, review only; or `HITL` — a human is needed during implementation) and a **`Status`** (`Not started` → `In progress` → `Completed`). New issues start at `Not started`; `next-issue` and `complete-issue` advance the status as work moves through the loop.
+
 **Slash command:**
 
 ```shell
@@ -158,6 +164,28 @@ It is **read-only**: each issue gets a verdict (Ready / Needs work / Blocked) an
 
 ```shell
 /vet-issues:vet-issues [issue file, folder, or glob]
+```
+
+## `next-issue` — pick up the next open issue
+
+Selects the next open issue from `ai/issues/`, reads it in full, explores the codebase, and presents an implementation plan — then **stops and waits for approval** before touching any code. It prefers finishing an `In progress` issue over starting a new one, and otherwise picks the lowest-ordinal `Not started` issue whose blockers are all `Completed`, so it never starts work that depends on unfinished slices. For `HITL` issues it calls out exactly where it will need you during implementation. On approval, it offers to flip the issue's `Status` to `In progress`.
+
+**Slash command:**
+
+```shell
+/next-issue:next-issue [issue file or folder]
+```
+
+## `complete-issue` — verify an issue is done
+
+Checks whether the work actually finishes the issue. It surveys the real changes (`git diff`, the files, the tests) and judges **each acceptance criterion** as Met / Partial / Not met / Unverifiable, backed by concrete evidence — then reports a clear verdict plus what's left and any scope drift or loose ends.
+
+It is **read-only by default**: it assesses and reports first. Only after you confirm does it offer to tick the verified `- [ ]` criteria and advance `Status` to `Completed` (or tick only the proven boxes and leave it `In progress` if work remains).
+
+**Slash command:**
+
+```shell
+/complete-issue:complete-issue [issue file]
 ```
 
 ## Layout
@@ -182,5 +210,7 @@ cc-plugins/
     └── planning/
         ├── to-prd/
         ├── to-issues/
-        └── vet-issues/
+        ├── vet-issues/
+        ├── next-issue/
+        └── complete-issue/
 ```

@@ -4,7 +4,7 @@
     "name": "Mads Hylleberg Nielsen"
   },
   "metadata": {
-    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review, zoom-out, tdd), workflow (commit, gh), and planning (to-prd, to-issues, vet-issues)."
+    "description": "Personal Claude Code plugin marketplace organized by category: reasoning (think, grill), code-quality (review, zoom-out, tdd), workflow (commit, gh), and planning (to-prd, to-issues, vet-issues, next-issue, complete-issue)."
   },
   "plugins": [
     {
@@ -66,6 +66,18 @@
       "source": "./plugins/planning/vet-issues",
       "category": "planning",
       "description": "Pressure-test issues by reading each one through the eyes of an implementer picking it up cold, surfacing the gaps that would block them. Read-only — findings are shown directly in the conversation, never written to a file."
+    },
+    {
+      "name": "next-issue",
+      "source": "./plugins/planning/next-issue",
+      "category": "planning",
+      "description": "Find the next open issue under ai/issues/ (respecting status and Blocked-by order), read it in full, explore the codebase, and present an implementation plan for approval before any code is written."
+    },
+    {
+      "name": "complete-issue",
+      "source": "./plugins/planning/complete-issue",
+      "category": "planning",
+      "description": "Review the changes made for an issue against its acceptance criteria and report what is done and what is left. Read-only — offers to tick verified criteria and advance the issue's status only after you confirm."
     }
   ]
 }

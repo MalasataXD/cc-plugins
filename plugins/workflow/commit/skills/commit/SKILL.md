@@ -60,6 +60,8 @@ Construct the commit message following the style guide in `references/commit-sty
 
 ### 4. Stage and Commit
 
+Never stack multiple `-m` flags. Pass the entire message as a single block — a HEREDOC in bash, or a `@"..."@` here-string in PowerShell.
+
 Stage relevant files and create the commit:
 
 ```bash

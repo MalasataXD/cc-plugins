@@ -1,7 +1,7 @@
 {
   "name": "commit",
   "description": "Create git commits with imperative titles, detailed body paragraphs, bulleted Changes: sections, and closing impact statements.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Mads Hylleberg Nielsen"
   },

@@ -4,7 +4,7 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code)
 and [Codex](https://skills.sh) — installed with bare names (no plugin prefix) via
 the [`skills`](https://skills.sh) CLI.
 
-Twelve skills, grouped by category:
+Thirteen skills, grouped by category:
 
 | Category       | Skill              | What you get                                                                                                |
 | -------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
@@ -14,6 +14,7 @@ Twelve skills, grouped by category:
 | `code-quality` | `review`           | Security, performance, quality, architecture, docs — scored 0–100, written to `ai/reviews/`                  |
 | `code-quality` | `zoom-out`         | Map the modules and callers around an unfamiliar area of code                                                |
 | `code-quality` | `tdd`              | Red-green-refactor, vertical slices, behavior-driven tests                                                   |
+| `code-quality` | `simplify`         | Simplify recently changed code for clarity and consistency, preserving exact functionality                   |
 | `workflow`     | `commit`           | Imperative-title commits with structured bodies                                                              |
 | `planning`     | `to-prd`           | Synthesize the current context into a PRD under `ai/prds/`                                                    |
 | `planning`     | `to-issues`        | Break a plan/spec/PRD into self-contained issues under `ai/issues/`                                           |
@@ -98,6 +99,19 @@ or *"let's TDD this"*. Supporting references (tests, mocking, interface design,
 deep modules, refactoring) live in `skills/code-quality/tdd/references/`. Adapted
 from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd).
 
+## `simplify`
+
+Refines recently modified code for clarity, consistency, and maintainability
+**without changing what it does**. Defers to the project's `AGENTS.md` or
+`CLAUDE.md` and surrounding idioms, prefers explicit readable code over clever or
+compact code
+(no nested ternaries), and stops short of over-simplifying. Scoped to recent
+changes by default; applies edits directly, pausing only when a change would risk
+behavior or the scope is ambiguous.
+
+**Auto-triggers** on phrasing like *"simplify this"*, *"clean up what I just
+wrote"*, or *"tidy up these changes"*.
+
 ## `commit`
 
 Invokes automatically when you ask to commit changes. Full style guide at
@@ -170,7 +184,8 @@ cc-plugins/
 │   ├── code-quality/
 │   │   ├── review/
 │   │   ├── zoom-out/
-│   │   └── tdd/
+│   │   ├── tdd/
+│   │   └── simplify/
 │   ├── workflow/
 │   │   └── commit/
 │   └── planning/

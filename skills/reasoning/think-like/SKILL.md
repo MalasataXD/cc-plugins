@@ -18,10 +18,11 @@ of truth.
 
 ## Resolving a Persona
 
-1. Check if input matches a filename in `personas/` (without `.md`)
+1. Check if input matches a filename in `./personas/` (without `.md`)
 2. Check if input matches an `**Alias:**` value inside a persona file
 3. If partial match, pick best fit and state which persona was selected
-4. If no match, list the available personas and suggest `/think-add <alias> <idea>`
+4. If no match, list the available personas and offer to author a new one — to
+   author it, follow `./references/adding-a-persona.md`
 
 Read **only the one matching persona file** — never load all of them.
 

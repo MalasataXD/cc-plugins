@@ -1,216 +1,190 @@
 # cc-plugins
 
-Personal [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace.
+Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code)
+and [Codex](https://skills.sh) — installed with bare names (no plugin prefix) via
+the [`skills`](https://skills.sh) CLI.
 
-Eleven plugins, grouped by category:
+Twelve skills, grouped by category:
 
-| Category       | Plugin   | What you get                                                                                            |
-| -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| `reasoning`    | `think`  | `think-like` skill + editable persona library + `/think:like` and `/think:add` commands                 |
-| `reasoning`    | `grill`  | `grill-me` and `grill-with-docs` skills — interview-style plan stress-testing, optionally docs-aware     |
-| `code-quality` | `review` | `review` skill — security, performance, quality, architecture, docs, scored 0–100, written to `ai/reviews/` |
-| `code-quality` | `zoom-out` | `zoom-out` skill + `/zoom-out` command — map the modules and callers around an unfamiliar area of code |
-| `code-quality` | `tdd`    | `tdd` skill + `/tdd` command — red-green-refactor, vertical slices, behavior-driven tests               |
-| `workflow`     | `commit` | `commit` skill — imperative-title commits with structured bodies                                        |
-| `workflow`     | `gh`     | GitHub CLI workflows — plate, digest, standup, project status moves, and well-formed issue drafting     |
-| `planning`     | `to-prd` | `to-prd` skill — synthesize the current context into a PRD, written to a local `ai/prds/` markdown file  |
-| `planning`     | `to-issues` | `to-issues` skill — break a plan/spec/PRD into self-contained issues, written to local `ai/issues/` files |
-| `planning`     | `vet-issues` | `vet-issues` skill — pressure-test issues through an implementer's eyes; findings shown in-conversation, no files |
-| `planning`     | `next-issue` | `next-issue` skill + `/next-issue` command — pick up the next open issue, read it, and plan it before any code |
-| `planning`     | `complete-issue` | `complete-issue` skill + `/complete-issue` command — verify an issue's acceptance criteria against the real changes |
+| Category       | Skill              | What you get                                                                                                |
+| -------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `reasoning`    | `think-like`       | Adopt an expert persona to reason through a problem; editable persona library; authoring workflow built in   |
+| `reasoning`    | `grill-me`         | Lean interview-style plan stress-testing, one question at a time, no side effects                            |
+| `reasoning`    | `grill-with-docs`  | Docs-aware grilling — challenges terminology against the domain model, updates `CONTEXT.md` and offers ADRs   |
+| `code-quality` | `review`           | Security, performance, quality, architecture, docs — scored 0–100, written to `ai/reviews/`                  |
+| `code-quality` | `zoom-out`         | Map the modules and callers around an unfamiliar area of code                                                |
+| `code-quality` | `tdd`              | Red-green-refactor, vertical slices, behavior-driven tests                                                   |
+| `workflow`     | `commit`           | Imperative-title commits with structured bodies                                                              |
+| `planning`     | `to-prd`           | Synthesize the current context into a PRD under `ai/prds/`                                                    |
+| `planning`     | `to-issues`        | Break a plan/spec/PRD into self-contained issues under `ai/issues/`                                           |
+| `planning`     | `vet-issues`       | Pressure-test issues through an implementer's eyes; findings shown in-conversation, no files                 |
+| `planning`     | `next-issue`       | Pick up the next open issue, read it, and plan it before any code                                            |
+| `planning`     | `complete-issue`   | Verify an issue's acceptance criteria against the real changes                                               |
 
 ## Install
 
-From any Claude Code session:
+These install as **bare-named skills** into both Claude Code (`~/.claude/skills/`)
+and Codex (`~/.codex/skills/`) — invoked as `next-issue`, not `plugin:next-issue`.
 
 ```shell
-/plugin marketplace add MalasataXD/cc-plugins
-/plugin install think@cc-plugins
-/plugin install grill@cc-plugins
-/plugin install review@cc-plugins
-/plugin install zoom-out@cc-plugins
-/plugin install tdd@cc-plugins
-/plugin install commit@cc-plugins
-/plugin install gh@cc-plugins
-/plugin install to-prd@cc-plugins
-/plugin install to-issues@cc-plugins
-/plugin install vet-issues@cc-plugins
-/plugin install next-issue@cc-plugins
-/plugin install complete-issue@cc-plugins
+npx skills add MalasataXD/cc-plugins
 ```
 
-Pull updates later with `/plugin marketplace update cc-plugins`.
+The installer prompts you to pick which skills and which agents to install into.
+Re-run the same command to pull updates.
 
-## `think` — expert persona reasoning
+> Skills auto-trigger on natural phrasing (e.g. *"think like a security
+> engineer…"*, *"grill me on this plan"*, *"what's the next issue"*) and can also
+> be invoked directly by name where your agent supports it.
 
-Adopt a specific expert's lens to reason through a problem.
+## `think-like` — expert persona reasoning
 
-**Auto-triggers** on natural phrasing: *"think like a software architect…"*, *"as a UX designer, what…"*, *"from the perspective of a security engineer…"*.
+Adopt a specific expert's lens to reason through a problem, using that role's
+mental models and experience-shaped instincts.
 
-**Slash commands:**
+**Auto-triggers** on natural phrasing: *"think like a software architect…"*, *"as
+a UX designer, what…"*, *"from the perspective of a security engineer…"*.
 
-```shell
-/think:like <archetype> <prompt>
-/think:add  <archetype> <idea>
-```
+Eleven personas are bundled (software-architect, backend-engineer,
+frontend-engineer, devops-sre, security-engineer, tech-lead, dba, product-manager,
+ux-designer, technical-writer, production-designer), living as editable markdown
+files in `skills/reasoning/think-like/personas/` — each file is the source of
+truth. To **add** a persona, the skill drafts a spec interactively, shows it to
+you, and only writes after you approve (workflow in
+`references/adding-a-persona.md`). Commit new personas back to this repo and
+re-run `npx skills add` to sync them across machines.
 
-Personas live as editable markdown files at `plugins/reasoning/think/skills/think-like/personas/`. Eleven are bundled (software-architect, backend-engineer, frontend-engineer, devops-sre, security-engineer, tech-lead, dba, product-manager, ux-designer, technical-writer, production-designer). Edit or add your own — each file is the source of truth.
+## `grill-me` / `grill-with-docs` — stress-test a plan
 
-`/think:add` drafts a new persona interactively, shows you the spec, and only writes to disk after you approve. Commit the resulting file back to this repo to sync it across machines.
+Interview you relentlessly about a plan or design, one question at a time, walking
+each branch of the decision tree until you reach shared understanding. For each
+question they offer a recommended answer, and explore the codebase whenever a
+question can be answered from the code.
 
-## `grill` — stress-test a plan
-
-Interviews you relentlessly about a plan or design, one question at a time, walking each branch of the decision tree until you reach shared understanding. For each question it offers its own recommended answer, and explores the codebase whenever a question can be answered from the code.
-
-**Auto-triggers** on phrasing like *"grill me"*, *"stress-test this plan"*, or *"get me grilled on this design"*.
-
-**Slash commands:**
-
-```shell
-/grill:me        [plan or topic]   # lean interview, no side effects
-/grill:with-docs [plan or topic]   # docs-aware: updates CONTEXT.md and offers ADRs
-```
-
-Two skills:
+**Auto-triggers** on phrasing like *"grill me"*, *"stress-test this plan"*, or
+*"get me grilled on this design"*.
 
 - `grill-me` — the lean version: pure interview, no side effects.
-- `grill-with-docs` — challenges your plan against the project's domain language, sharpens fuzzy terminology, and captures decisions inline: it maintains a `CONTEXT.md` glossary and offers ADRs sparingly (only for hard-to-reverse, surprising, genuine trade-offs). Formats live in `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` beside the skill.
+- `grill-with-docs` — challenges your plan against the project's domain language,
+  sharpens fuzzy terminology, and captures decisions inline: maintains a
+  `CONTEXT.md` glossary and offers ADRs sparingly (only for hard-to-reverse,
+  surprising, genuine trade-offs). Formats live in `references/CONTEXT-FORMAT.md`
+  and `references/ADR-FORMAT.md` beside the skill.
 
 ## `review`
 
-Invokes when you ask for a code review. Produces scored feedback across security, performance, quality, style, architecture, and documentation, then writes it as a **local markdown file** under an `ai/reviews/` folder at the repo root (reused if present, created otherwise). Files are date-prefixed (e.g. `ai/reviews/2026-06-02-auth-service.md`) so re-reviewing the same target keeps a history. Rubric and checklists in `plugins/code-quality/review/skills/review/references/`.
+Invokes when you ask for a code review. Produces scored feedback across security,
+performance, quality, style, architecture, and documentation, then writes it as a
+**local markdown file** under `ai/reviews/` at the repo root (reused if present,
+created otherwise). Files are date-prefixed (e.g.
+`ai/reviews/2026-06-02-auth-service.md`) so re-reviewing keeps a history. Rubric
+and checklists in `skills/code-quality/review/references/`.
 
 ## `zoom-out` — map an unfamiliar area
 
-When you don't know an area of code well, goes up a layer of abstraction and gives you a map of the relevant modules and callers, using the project's domain glossary vocabulary.
-
-The skill is **manually invoked only** (`disable-model-invocation`) — it won't auto-trigger, so reach for it through the slash command.
-
-**Slash command:**
-
-```shell
-/zoom-out [optional file, module, or area]
-```
+When you don't know an area of code well, goes up a layer of abstraction and gives
+you a map of the relevant modules and callers, using the project's domain glossary
+vocabulary. **Manually invoked only** — it won't auto-trigger.
 
 ## `tdd` — test-driven development
 
-Guides feature work and bug fixes through the **red-green-refactor** loop. Tests verify behavior through public interfaces, not implementation details. Works in **vertical slices** (one test → one implementation → repeat) rather than writing all tests up front, and refactors only once green.
+Guides feature work and bug fixes through the **red-green-refactor** loop. Tests
+verify behavior through public interfaces, not implementation details. Works in
+**vertical slices** (one test → one implementation → repeat) rather than writing
+all tests up front, and refactors only once green.
 
-**Auto-triggers** on phrasing like *"build this test-first"*, *"red-green-refactor"*, or *"let's TDD this"*.
-
-**Slash command:**
-
-```shell
-/tdd [optional feature, bug, or behavior]
-```
-
-Supporting references (tests, mocking, interface design, deep modules, refactoring) live in `plugins/code-quality/tdd/skills/tdd/references/`. Adapted from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd).
+**Auto-triggers** on phrasing like *"build this test-first"*, *"red-green-refactor"*,
+or *"let's TDD this"*. Supporting references (tests, mocking, interface design,
+deep modules, refactoring) live in `skills/code-quality/tdd/references/`. Adapted
+from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd).
 
 ## `commit`
 
-Invokes automatically when you ask Claude to commit changes. Full style guide at `plugins/workflow/commit/skills/commit/references/commit-style.md`.
-
-## `gh` — GitHub CLI workflows
-
-**Auto-triggers** when you ask about issues, project statuses, weekly summaries, or drafting a new issue.
-
-**Slash commands:**
-
-```shell
-/gh:plate [owner/repo]               # open issues assigned to you, grouped by repo
-/gh:digest [<since>] [owner/repo]    # closed issues + merged PRs for a period
-/gh:standup                          # yesterday's closes + today's plate, formatted for standup
-/gh:move <issue-url> <status>        # move an issue to a new project board status
-/gh:new-issue <description> [repo]   # draft and create a well-formed issue with correct labels
-```
-
-**First-time setup:** after installing, copy `plugins/workflow/gh/skills/gh/config.example.json` to `config.json` in the same folder and set `github_handle` to your GitHub username. The skill will prompt you if the file is missing.
-
-Requires `gh auth refresh -s project` for project board commands (`/gh:move`).
+Invokes automatically when you ask to commit changes. Full style guide at
+`skills/workflow/commit/references/commit-style.md`.
 
 ## `to-prd` — context to PRD
 
-Synthesizes the current conversation and codebase understanding into a Product Requirements Document. It does **not** interview you — it works from what's already known, sketches the test seams (checking they match your expectations), then writes the PRD using a structured template (Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions, Out of Scope, Further Notes).
-
-The PRD is written as a **local markdown file only** — never published to an external tracker. It lands under an `ai/prds/` folder at the repo root (reused if present, created otherwise).
-
-**Slash command:**
-
-```shell
-/to-prd:to-prd [optional focus or feature name]
-```
+Synthesizes the current conversation and codebase understanding into a Product
+Requirements Document. It does **not** interview you — it works from what's already
+known, sketches the test seams, then writes the PRD using a structured template
+(Problem Statement, Solution, User Stories, Implementation Decisions, Testing
+Decisions, Out of Scope, Further Notes). Written as a **local markdown file only**
+under `ai/prds/` at the repo root.
 
 ## `to-issues` — plan to issues
 
-Breaks a plan, spec, or PRD into independently-grabbable issues using **tracer-bullet vertical slices** — thin paths that cut through every layer (schema, API, UI, tests) rather than horizontal slices of one layer. It prefers **self-contained tasks** with no blockers, declaring a "Blocked by" dependency only when a slice genuinely can't stand alone. It presents the numbered breakdown and iterates with you (granularity, HITL/AFK, dependencies) before writing anything.
+Breaks a plan, spec, or PRD into independently-grabbable issues using
+**tracer-bullet vertical slices** — thin paths that cut through every layer rather
+than horizontal slices of one layer. Prefers **self-contained tasks**, declaring a
+"Blocked by" dependency only when a slice genuinely can't stand alone. Presents the
+numbered breakdown and iterates with you before writing anything.
 
-Each approved slice is written as a **local markdown file only** — never published to an external tracker — under an `ai/issues/` folder at the repo root, named with a zero-padded ordinal so dependency order is visible (e.g. `01-account-balance-endpoint.md`).
-
-Each issue carries a **`Type`** (`AFK` — no human needed during the work, review only; or `HITL` — a human is needed during implementation) and a **`Status`** (`Not started` → `In progress` → `Completed`). New issues start at `Not started`; `next-issue` and `complete-issue` advance the status as work moves through the loop.
-
-**Slash command:**
-
-```shell
-/to-issues:to-issues [plan, spec, PRD path, or free-form description]
-```
+Each approved slice is a **local markdown file only** under `ai/issues/`, named
+with a zero-padded ordinal (e.g. `01-account-balance-endpoint.md`). Each issue
+carries a **`Type`** (`AFK` — review only; or `HITL` — human needed during work)
+and a **`Status`** (`Not started` → `In progress` → `Completed`).
 
 ## `vet-issues` — pressure-test issues
 
-Reads a set of issues through the eyes of an implementer picking each one up **cold** — only the issue text and the codebase, none of the conversation that produced it — and reports the moment they'd stall: the first question they can't answer. It distinguishes a **genuine gap** (a decision nobody made that the implementer would have to guess) from **healthy exploration** (reading the code to find the right function), and only flags the former, so it doesn't push issues toward bloated over-specification. It also checks the set as a whole for dependency cycles, coverage holes, overlap, and granularity drift.
+Reads a set of issues through the eyes of an implementer picking each one up
+**cold** and reports the first question they can't answer. It distinguishes a
+**genuine gap** (a decision nobody made) from **healthy exploration** (reading the
+code), flagging only the former, and checks the set for dependency cycles, coverage
+holes, overlap, and granularity drift.
 
-It is **read-only**: each issue gets a verdict (Ready / Needs work / Blocked) and suggested fixes are framed as questions for the author to answer, never as decisions invented on their behalf. Findings are shown **directly in the conversation** — nothing is written to disk. A natural next step after `/to-issues`, before handing work off.
-
-**Slash command:**
-
-```shell
-/vet-issues:vet-issues [issue file, folder, or glob]
-```
+**Read-only**: each issue gets a verdict (Ready / Needs work / Blocked) and fixes
+are framed as questions for the author. Findings are shown **in the conversation**
+— nothing is written to disk.
 
 ## `next-issue` — pick up the next open issue
 
-Selects the next open issue from `ai/issues/`, reads it in full, explores the codebase, and presents an implementation plan — then **stops and waits for approval** before touching any code. It prefers finishing an `In progress` issue over starting a new one, and otherwise picks the lowest-ordinal `Not started` issue whose blockers are all `Completed`, so it never starts work that depends on unfinished slices. For `HITL` issues it calls out exactly where it will need you during implementation. On approval, it offers to flip the issue's `Status` to `In progress`.
-
-**Slash command:**
-
-```shell
-/next-issue:next-issue [issue file or folder]
-```
+Selects the next open issue from `ai/issues/`, reads it in full, explores the
+codebase, and presents an implementation plan — then **stops and waits for
+approval** before touching any code. Prefers finishing an `In progress` issue over
+starting a new one, otherwise picks the lowest-ordinal `Not started` issue whose
+blockers are all `Completed`. On approval, offers to flip `Status` to `In progress`.
 
 ## `complete-issue` — verify an issue is done
 
-Checks whether the work actually finishes the issue. It surveys the real changes (`git diff`, the files, the tests) and judges **each acceptance criterion** as Met / Partial / Not met / Unverifiable, backed by concrete evidence — then reports a clear verdict plus what's left and any scope drift or loose ends.
+Surveys the real changes (`git diff`, the files, the tests) and judges **each
+acceptance criterion** as Met / Partial / Not met / Unverifiable, backed by
+concrete evidence, then reports a verdict plus what's left and any scope drift.
 
-It is **read-only by default**: it assesses and reports first. Only after you confirm does it offer to tick the verified `- [ ]` criteria and advance `Status` to `Completed` (or tick only the proven boxes and leave it `In progress` if work remains).
-
-**Slash command:**
-
-```shell
-/complete-issue:complete-issue [issue file]
-```
+**Read-only by default**: only after you confirm does it offer to tick the verified
+criteria and advance `Status` to `Completed`.
 
 ## Layout
 
-Plugins are grouped into category folders. The `category` field in `marketplace.json` and the folder each plugin lives in are kept in sync.
+Skills use the `skills/<category>/<name>/` catalog layout the `skills` CLI
+installs from. Category folders are for organization only — skills install with
+bare names regardless.
 
 ```
 cc-plugins/
-├── .claude-plugin/
-│   └── marketplace.json
-└── plugins/
-    ├── reasoning/
-    │   ├── think/
-    │   └── grill/
-    ├── code-quality/
-    │   ├── review/
-    │   ├── zoom-out/
-    │   └── tdd/
-    ├── workflow/
-    │   ├── commit/
-    │   └── gh/
-    └── planning/
-        ├── to-prd/
-        ├── to-issues/
-        ├── vet-issues/
-        ├── next-issue/
-        └── complete-issue/
+├── skills/
+│   ├── reasoning/
+│   │   ├── think-like/
+│   │   ├── grill-me/
+│   │   └── grill-with-docs/
+│   ├── code-quality/
+│   │   ├── review/
+│   │   ├── zoom-out/
+│   │   └── tdd/
+│   ├── workflow/
+│   │   └── commit/
+│   └── planning/
+│       ├── to-prd/
+│       ├── to-issues/
+│       ├── vet-issues/
+│       ├── next-issue/
+│       └── complete-issue/
+└── archive/
+    └── gh/          # GitHub CLI workflows — archived, not installed
 ```
+
+## Archived
+
+- **`gh`** — GitHub CLI workflows (plate, digest, standup, project status moves,
+  issue drafting). Kept under `archive/` for reference; not installed by the
+  `skills` CLI.

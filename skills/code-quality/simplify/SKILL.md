@@ -54,6 +54,10 @@ language default override an explicit project convention.
   conditions
 - Choose clarity over brevity — explicit beats dense one-liners
 
+For structural changes — extracting duplication, deepening a shallow module,
+moving logic to the data it uses — see
+[refactor-candidates.md](references/refactor-candidates.md).
+
 ## Maintain balance — don't over-simplify
 
 Stop short of changes that would:

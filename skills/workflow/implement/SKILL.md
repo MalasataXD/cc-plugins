@@ -9,6 +9,17 @@ Build the approved work. This skill is the chain — each stage belongs to anoth
 
 It starts from work that is already understood and agreed: an issue with a plan the user approved, or a plan from the conversation. Selecting what to work on is `next-issue`'s job; judging whether it is finished is `complete-issue`'s.
 
+## When the plan runs out
+
+Plans are approved with gaps in them, and the gaps surface at every stage below — while grounding the work, mid-slice, mid-tidy. Whenever one does, sort it into one of two kinds:
+
+- **A fact** — how the existing code behaves, what an interface accepts, which pattern the project already uses. Finding it is your job: read the code, run the tests, check the docs, then carry on.
+- **A decision** — anything with more than one defensible answer that the plan did not settle. That one is the user's.
+
+On a decision, stop before writing code that assumes an answer, and put it to them: what you hit, the options, and your recommendation. One decision is a question; several tangled ones are a `grilling` session. Resume from where you stopped once it is settled.
+
+Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-issue` rather than quietly absorbed.
+
 ## The chain
 
 ### 1. Ground the work
@@ -36,17 +47,6 @@ Run the `review` skill over the changes. Act on what it raises, or say plainly w
 ### 5. Commit
 
 Run the `commit` skill on the current branch.
-
-## When the plan runs out
-
-Plans are approved with gaps in them, and the gaps surface mid-build. Sort what you hit into one of two kinds:
-
-- **A fact** — how the existing code behaves, what an interface accepts, which pattern the project already uses. Finding it is your job: read the code, run the tests, check the docs, then carry on.
-- **A decision** — anything with more than one defensible answer that the plan did not settle. That one is the user's.
-
-On a decision, stop before writing code that assumes an answer, and put it to them: what you hit, the options, and your recommendation. One decision is a question; several tangled ones are a `grilling` session. Resume from where you stopped once it is settled.
-
-Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-issue` rather than quietly absorbed.
 
 ## Done
 

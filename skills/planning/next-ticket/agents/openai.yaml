@@ -1,0 +1,3 @@
+interface:
+  display_name: "Next Ticket"
+  short_description: "Pick up and plan the next open ticket"

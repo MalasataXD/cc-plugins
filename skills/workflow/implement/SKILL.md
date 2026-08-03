@@ -1,0 +1,53 @@
+---
+name: implement
+description: Build an approved ticket or plan end to end, chaining tdd, simplify, review and commit. Use when the user approves a plan and wants it built, or asks to implement a ticket.
+---
+
+# Implement
+
+Build the approved work. This skill is the chain — each stage belongs to another skill, and this one runs them in order and keeps the suite honest between them.
+
+It starts from work that is already understood and agreed: a ticket with a plan the user approved, or a plan from the conversation. Selecting what to work on is `next-ticket`'s job; judging whether it is finished is `complete-ticket`'s.
+
+## When the plan runs out
+
+Plans are approved with gaps in them, and the gaps surface at every stage below — while grounding the work, mid-slice, mid-tidy. Whenever one does, sort it into one of two kinds:
+
+- **A fact** — how the existing code behaves, what an interface accepts, which pattern the project already uses. Finding it is your job: read the code, run the tests, check the docs, then carry on.
+- **A decision** — anything with more than one defensible answer that the plan did not settle. That one is the user's.
+
+On a decision, stop before writing code that assumes an answer, and put it to them: what you hit, the options, and your recommendation. One decision is a question; several tangled ones are a `grilling` session. Resume from where you stopped once it is settled.
+
+Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-ticket` rather than quietly absorbed.
+
+## The chain
+
+### 1. Ground the work
+
+Read the ticket in full — `What to build`, `Acceptance criteria`, `Type`, and any `Parent` spec — plus the approved plan. Read `CONTEXT.md` and the ADRs covering the area, so names match the project's language (see `domain-modeling`).
+
+For a `RFH` ticket, bring the user in at the points the plan identified. For `RFA`, drive it through.
+
+### 2. Build it with `tdd`
+
+Run the `tdd` skill. Confirm the seams before the first test, then work one vertical slice at a time: red → green, minimal code per test.
+
+Run the affected test file after every slice, and the type checker as you go. Stay on red → green here — the tidying comes next.
+
+### 3. Tidy it with `simplify`
+
+Once the last slice is green, run the `simplify` skill over the code written in this session. This is the refactor step that `tdd` deliberately leaves out.
+
+Re-run the tests and the type checker afterwards. Green again before moving on.
+
+### 4. Check it with `review`
+
+Run the `review` skill over the changes. Act on what it raises, or say plainly why a finding is being left — then run the full suite, not just the affected files.
+
+### 5. Commit
+
+Run the `commit` skill on the current branch.
+
+## Done
+
+The chain is complete when every stage has run, the full suite passes, and the work is committed. Hand off to `complete-ticket` to judge the acceptance criteria against what was actually built — leave the criteria unticked and the status alone here.

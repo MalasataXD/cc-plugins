@@ -1,0 +1,3 @@
+interface:
+  display_name: "Vet Tickets"
+  short_description: "Pressure-test tickets before handing them off"

@@ -1,31 +1,31 @@
 ---
-name: to-prd
-description: Turn the current conversation context into a PRD and save it as a local markdown file under ai/prds/. Use when the user wants to create a PRD from the current context.
+name: to-spec
+description: Turn the current conversation context into a spec and save it as a local markdown file under ai/specs/. Use when the user wants to create a spec from the current context.
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a PRD as a local markdown file. Do NOT interview the user — just synthesize what you already know.
+This skill takes the current conversation context and codebase understanding and produces a spec as a local markdown file. Do NOT interview the user — just synthesize what you already know.
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Name things the way `CONTEXT.md` names them throughout the PRD, and respect any ADRs in the area you're touching — see the `domain-modeling` skill.
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Name things the way `CONTEXT.md` names them throughout the spec, and respect any ADRs in the area you're touching — see the `domain-modeling` skill.
 
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can.
 
    Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then save it as a local markdown file (see [Output location](#output-location)). Confirm the path to the user once written.
+3. Write the spec using the template below, then save it as a local markdown file (see [Output location](#output-location)). Confirm the path to the user once written.
 
 ## Output location
 
-PRDs are written as local markdown files only — never published to an external issue tracker.
+Specs are written as local markdown files only — never published to an external tracker.
 
 1. Find the `ai/` folder. It lives at the repository root. If one already exists, reuse it. Otherwise create it.
-2. Inside `ai/`, PRDs always go in `ai/prds/`. Reuse the folder if it exists, otherwise create it.
-3. Name the file with a short kebab-case slug derived from the feature, e.g. `ai/prds/account-balance-display.md`. If a file with that name already exists, confirm with the user before overwriting.
+2. Inside `ai/`, specs always go in `ai/specs/`. Reuse the folder if it exists, otherwise create it.
+3. Name the file with a short kebab-case slug derived from the feature, e.g. `ai/specs/account-balance-display.md`. If a file with that name already exists, confirm with the user before overwriting.
 
-## PRD template
+## Spec template
 
-<prd-template>
+<spec-template>
 
 ## Problem Statement
 
@@ -73,10 +73,10 @@ A list of testing decisions that were made. Include:
 
 ## Out of Scope
 
-A description of the things that are out of scope for this PRD.
+A description of the things that are out of scope for this spec.
 
 ## Further Notes
 
 Any further notes about the feature.
 
-</prd-template>
+</spec-template>

@@ -1,13 +1,13 @@
 ---
 name: implement
-description: Build an approved issue or plan end to end, chaining tdd, simplify, review and commit. Use when the user approves a plan and wants it built, or asks to implement an issue.
+description: Build an approved ticket or plan end to end, chaining tdd, simplify, review and commit. Use when the user approves a plan and wants it built, or asks to implement a ticket.
 ---
 
 # Implement
 
 Build the approved work. This skill is the chain — each stage belongs to another skill, and this one runs them in order and keeps the suite honest between them.
 
-It starts from work that is already understood and agreed: an issue with a plan the user approved, or a plan from the conversation. Selecting what to work on is `next-issue`'s job; judging whether it is finished is `complete-issue`'s.
+It starts from work that is already understood and agreed: a ticket with a plan the user approved, or a plan from the conversation. Selecting what to work on is `next-ticket`'s job; judging whether it is finished is `complete-ticket`'s.
 
 ## When the plan runs out
 
@@ -18,15 +18,15 @@ Plans are approved with gaps in them, and the gaps surface at every stage below 
 
 On a decision, stop before writing code that assumes an answer, and put it to them: what you hit, the options, and your recommendation. One decision is a question; several tangled ones are a `grilling` session. Resume from where you stopped once it is settled.
 
-Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-issue` rather than quietly absorbed.
+Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-ticket` rather than quietly absorbed.
 
 ## The chain
 
 ### 1. Ground the work
 
-Read the issue in full — `What to build`, `Acceptance criteria`, `Type`, and any `Parent` spec — plus the approved plan. Read `CONTEXT.md` and the ADRs covering the area, so names match the project's language (see `domain-modeling`).
+Read the ticket in full — `What to build`, `Acceptance criteria`, `Type`, and any `Parent` spec — plus the approved plan. Read `CONTEXT.md` and the ADRs covering the area, so names match the project's language (see `domain-modeling`).
 
-For a `HITL` issue, bring the user in at the points the plan identified. For `AFK`, drive it through.
+For a `RFH` ticket, bring the user in at the points the plan identified. For `RFA`, drive it through.
 
 ### 2. Build it with `tdd`
 
@@ -50,4 +50,4 @@ Run the `commit` skill on the current branch.
 
 ## Done
 
-The chain is complete when every stage has run, the full suite passes, and the work is committed. Hand off to `complete-issue` to judge the acceptance criteria against what was actually built — leave the criteria unticked and the status alone here.
+The chain is complete when every stage has run, the full suite passes, and the work is committed. Hand off to `complete-ticket` to judge the acceptance criteria against what was actually built — leave the criteria unticked and the status alone here.

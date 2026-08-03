@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Me"
+  short_description: "Grilling, one question at a time"
+policy:
+  allow_implicit_invocation: false

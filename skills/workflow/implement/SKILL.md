@@ -37,6 +37,17 @@ Run the `review` skill over the changes. Act on what it raises, or say plainly w
 
 Run the `commit` skill on the current branch.
 
+## When the plan runs out
+
+Plans are approved with gaps in them, and the gaps surface mid-build. Sort what you hit into one of two kinds:
+
+- **A fact** — how the existing code behaves, what an interface accepts, which pattern the project already uses. Finding it is your job: read the code, run the tests, check the docs, then carry on.
+- **A decision** — anything with more than one defensible answer that the plan did not settle. That one is the user's.
+
+On a decision, stop before writing code that assumes an answer, and put it to them: what you hit, the options, and your recommendation. One decision is a question; several tangled ones are a `grilling` session. Resume from where you stopped once it is settled.
+
+Capture what comes back where it belongs: a resolved term or a hard-to-reverse choice goes to `domain-modeling`, and anything that moves the acceptance criteria gets flagged for `complete-issue` rather than quietly absorbed.
+
 ## Done
 
 The chain is complete when every stage has run, the full suite passes, and the work is committed. Hand off to `complete-issue` to judge the acceptance criteria against what was actually built — leave the criteria unticked and the status alone here.

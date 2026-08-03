@@ -208,10 +208,11 @@ Invokes automatically when you ask to commit changes. Full style guide at
 ## `handoff` — pass the conversation on
 
 Compacts the current session into a document a fresh agent can start from, written
-to the OS temp directory rather than the workspace — a handoff is session-scoped,
-not project knowledge. It references existing artifacts (specs, tickets, ADRs,
-commits) by path instead of duplicating them, redacts secrets, and names the skills
-the next agent should reach for and where in the pipeline the work sits.
+to **`ai/handoff.md`** and overwritten every time — one known path to read, rather
+than a folder of stale snapshots to search. It references existing artifacts
+(specs, tickets, ADRs, commits) by path instead of duplicating them, redacts
+secrets, and names the skills the next agent should reach for and where in the
+pipeline the work sits.
 
 **Manually invoked only.** Pass what the next session will focus on as an argument.
 For "is this ticket actually done?", use `complete-ticket` instead — that judges a

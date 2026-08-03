@@ -30,6 +30,18 @@ Every slice is either **RFA** (ready-for-agent) or **RFH** (ready-for-human). RF
 - Prefer **self-contained** tasks that carry no blockers. Only introduce a "Blocked by" dependency when a slice genuinely cannot be started or verified without another slice landing first
 </vertical-slice-rules>
 
+<expand-contract-exception>
+Some work resists thin slicing: a mechanical change with a wide blast radius — renaming a concept used in two hundred places, swapping a library, changing a shared signature. There is no narrow path through it, because touching one layer breaks every caller at once.
+
+Sequence those as **expand → migrate → contract**:
+
+1. **Expand** — add the new form alongside the old one. Nothing breaks; nothing has moved yet.
+2. **Migrate** — move call sites over in batches, keeping CI green after each batch. Large migrations split into several tickets here.
+3. **Contract** — delete the old form once nothing references it.
+
+Each phase is its own ticket, and the migrate tickets block the contract ticket. Reach for this only when the blast radius genuinely forces it — a feature that can be sliced vertically still should be.
+</expand-contract-exception>
+
 ### 4. Quiz the user
 
 Present the proposed breakdown as a numbered list. For each slice, show:
@@ -59,6 +71,18 @@ Tickets are written as local markdown files only — never published to an exter
 4. Write files in dependency order (blockers first) so the "Blocked by" field can reference the real filename of the blocking ticket.
 
 Report the list of written file paths to the user once done.
+
+### 6. Vet the written tickets
+
+The files are what an implementer actually picks up, so vet the files rather than the breakdown you just presented. Read them back cold, through sub-agents — they carry none of the context that produced the tickets, which is exactly the reading that matters.
+
+Dispatch them over the `vet-tickets` skill:
+
+- **Batch contiguously by ordinal**, about five tickets per sub-agent, so a ticket and its blocker land in the same window.
+- **One further sub-agent over the whole set** for the cross-cutting checks: dependency cycles, coverage holes, overlap, granularity drift.
+- **Under five tickets**, one sub-agent covers everything and the cross-cutting pass is redundant — skip it.
+
+Aggregate the verdicts and present them with the file paths. Findings stay findings: surface each gap as a question for the author, and leave the ticket files as they are unless the user asks for an edit.
 
 <ticket-template>
 

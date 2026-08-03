@@ -49,7 +49,6 @@ language default override an explicit project convention.
 - Eliminate redundant code and abstractions
 - Improve names so intent is obvious
 - Consolidate related logic
-- Remove comments that merely restate what the code already says
 - **Avoid nested ternaries** — prefer `switch` or `if`/`else` chains for multiple
   conditions
 - Choose clarity over brevity — explicit beats dense one-liners
@@ -57,6 +56,17 @@ language default override an explicit project convention.
 For structural changes — extracting duplication, deepening a shallow module,
 moving logic to the data it uses — see
 [refactor-candidates.md](references/refactor-candidates.md).
+
+## Comments — a verdict on the code
+
+Treat an inline comment as evidence about the code beneath it, and sort it by what it explains:
+
+- **How the code works**, or why this shape is a good solution — the comment is standing in for code that isn't clear enough. Rewrite the code until the explanation is unnecessary, then delete the comment. Needing to justify a solution in prose means it hasn't earned its place yet.
+- **Why a non-obvious external constraint exists** — an upstream bug being worked around, a regulatory rule, a measured reason for an odd shape. This knowledge lives nowhere in the code and no refactor can recover it. Keep it, and sharpen it if it's vague.
+
+A genuinely architectural "why" — hard to reverse, surprising, a real trade-off — outgrows a comment and belongs in an ADR; see the `domain-modeling` skill.
+
+Documentation comments (JSDoc/TSDoc, docstrings) sit outside this: they describe what a public interface does for its callers, and stay.
 
 ## Maintain balance — don't over-simplify
 
@@ -74,7 +84,9 @@ Stop short of changes that would:
 1. Identify the recently modified sections in scope.
 2. Analyze for clarity, consistency, and standards opportunities.
 3. Apply project standards and the refinements above.
-4. Verify functionality is unchanged (signatures, outputs, side effects).
+4. Verify functionality is unchanged (signatures, outputs, side effects). Where the
+   project has a test suite and a type checker, run them — green before and after is
+   the evidence that the refinement was behavior-preserving.
 5. Confirm the result is genuinely simpler and more maintainable — not just
    shorter.
 6. Apply the edits directly rather than only describing them, then briefly note

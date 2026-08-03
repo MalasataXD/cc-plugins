@@ -15,7 +15,7 @@ Work from whatever is already in the conversation context. If the user passes a 
 
 ### 2. Explore the codebase (optional)
 
-If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
+If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should name things the way `CONTEXT.md` names them, and respect ADRs in the area you're touching — see the `domain-modeling` skill.
 
 ### 3. Draft vertical slices
 

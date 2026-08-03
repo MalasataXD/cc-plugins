@@ -26,7 +26,7 @@ Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give
 7. **Property / fuzz loop.** If the bug is "sometimes wrong output", run 1000 random inputs and look for the failure mode.
 8. **Bisection harness.** If the bug appeared between two known states (commit, dataset, version), automate "boot at state X, check, repeat" so you can `git bisect run` it.
 9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
-10. **HITL bash script.** Last resort. If a human must click, drive _them_ with [`scripts/hitl-loop.template.sh`](scripts/hitl-loop.template.sh) so the loop is still structured. Captured output feeds back to you.
+10. **Human in the loop.** Last resort, when a human must click. Keep it structured anyway: one instruction per step, one question per answer you need, and their responses reported back in a form you can parse. A scripted prompt sequence beats a vague "try it and tell me what happens".
 
 Build the right feedback loop, and the bug is 90% fixed.
 
@@ -55,7 +55,7 @@ Phase 1 is done when the loop is **tight** and **red-capable**: you can name **o
 - [ ] **Red-capable** — it drives the actual bug code path and asserts the **user's exact symptom**, so it can go red on this bug and green once fixed. Not "runs without erroring" — it must be able to _catch this specific bug_.
 - [ ] **Deterministic** — same verdict every run (flaky bugs: a pinned, high reproduction rate, per above).
 - [ ] **Fast** — seconds, not minutes.
-- [ ] **Agent-runnable** — you can run it unattended; a human in the loop only via [`scripts/hitl-loop.template.sh`](scripts/hitl-loop.template.sh).
+- [ ] **Agent-runnable** — you can run it unattended; a human in the loop only as the structured last resort above.
 
 If you catch yourself reading code to build a theory before this command exists, **stop — jumping straight to a hypothesis is the exact failure this skill prevents.** No red-capable command, no Phase 2.
 
@@ -107,7 +107,7 @@ Tool preference:
 
 ## Phase 5 — Fix + regression test
 
-Write the regression test **before the fix** — but only if there is a **correct seam** for it.
+Write the regression test **before the fix** — but only if there is a **correct seam** for it. Seams are `tdd`'s concept and its rules hold here: name the seam and confirm it with the user before writing the test.
 
 A correct seam is one where the test exercises the **real bug pattern** as it occurs at the call site. If the only available seam is too shallow (single-caller test when the bug needs multiple callers, unit test that can't replicate the chain that triggered the bug), a regression test there gives false confidence.
 
@@ -131,4 +131,11 @@ Required before declaring done:
 - [ ] Throwaway prototypes deleted (or moved to a clearly-marked debug location)
 - [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
 
-**Then ask: what would have prevented this bug?** If the answer involves architectural change (no good test seam, tangled callers, hidden coupling) report it with the specifics. Make the recommendation **after** the fix is in, not before — you have more information now than when you started.
+**Then ask: what would have prevented this bug?** Make the recommendation **after** the fix is in, not before — you have more information now than when you started. Where it lands depends on what the answer is:
+
+- **A structural problem** — no good test seam, tangled callers, hidden coupling. Report it against the `code-smells` baseline, or run `review` over the area if it is worth a full pass.
+- **A decision worth recording** — the fix encodes a real trade-off a future reader would question. Offer an ADR through `domain-modeling`.
+
+## After the fix
+
+A bug fix is code like any other. Tidy it with `simplify`, check it with `review`, and commit it with `commit` — the back half of `implement`'s chain. This skill ends at a diagnosed and fixed bug, not at a merged one.

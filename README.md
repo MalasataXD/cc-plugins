@@ -4,7 +4,7 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code)
 and [Codex](https://skills.sh) — installed with bare names (no plugin prefix) via
 the [`skills`](https://skills.sh) CLI.
 
-Seventeen skills, grouped by category:
+Nineteen skills, grouped by category:
 
 | Category       | Skill              | What you get                                                                                                 |
 | -------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
@@ -17,9 +17,11 @@ Seventeen skills, grouped by category:
 | `code-quality` | `code-smells`      | The shared structural baseline `simplify` fixes and `review` flags                                            |
 | `code-quality` | `tdd`              | Red → green at pre-agreed seams, vertical slices, behavior-driven tests                                       |
 | `code-quality` | `simplify`         | Refine recently changed code for clarity, preserving exact functionality                                      |
+| `code-quality` | `diagnosing-bugs`  | A feedback loop first, then reproduce, hypothesise, instrument, fix                                           |
 | `code-quality` | `zoom-out`         | Map the modules and callers around an unfamiliar area of code                                                 |
 | `workflow`     | `implement`        | Build approved work by chaining `tdd` → `simplify` → `review` → `commit`                                      |
 | `workflow`     | `commit`           | Imperative-title commits with structured bodies                                                               |
+| `workflow`     | `handoff`          | Compact the conversation so another agent can pick it up                                                      |
 | `planning`     | `to-spec`          | Synthesize the current context into a spec under `ai/specs/`                                                  |
 | `planning`     | `to-tickets`       | Break a plan or spec into vertical-slice tickets under `ai/tickets/`, then vet them                           |
 | `planning`     | `vet-tickets`      | Pressure-test tickets through an implementer's eyes; findings in-conversation, no files                       |
@@ -162,6 +164,24 @@ rewrite it and delete the comment. One recording *why* a non-obvious external
 constraint exists stays, because no refactor can recover that knowledge.
 Doc comments (JSDoc/TSDoc, docstrings) sit outside the rule.
 
+## `diagnosing-bugs` — a discipline for hard bugs
+
+Where `tdd` builds a feature, this chases a symptom. Its whole premise is that
+**the feedback loop is the skill**: before any theorising, you must name one
+command you have already run that goes **red on this specific bug** — red-capable,
+deterministic, fast, and runnable unattended. No red-capable command, no next
+phase. Reading code to build a theory first is the exact failure it prevents.
+
+Then: reproduce and **minimise** until every remaining element is load-bearing;
+generate **3–5 ranked falsifiable hypotheses** before testing any of them (single
+hypotheses anchor on the first plausible idea); instrument one variable at a time
+with tagged `[DEBUG-…]` logs that grep clean; fix behind a regression test at a
+seam you've confirmed; then clean up and ask what would have prevented it.
+
+Findings route onward — structural ones to `code-smells` or `review`, real
+trade-offs to an ADR via `domain-modeling`. The fix itself continues through
+`simplify` → `review` → `commit`.
+
 ## `zoom-out` — map an unfamiliar area
 
 When you don't know an area of code well, goes up a layer of abstraction and gives
@@ -184,6 +204,18 @@ answer, and escalates several tangled ones to a `grilling` session.
 
 Invokes automatically when you ask to commit changes. Full style guide at
 `skills/workflow/commit/references/commit-style.md`.
+
+## `handoff` — pass the conversation on
+
+Compacts the current session into a document a fresh agent can start from, written
+to the OS temp directory rather than the workspace — a handoff is session-scoped,
+not project knowledge. It references existing artifacts (specs, tickets, ADRs,
+commits) by path instead of duplicating them, redacts secrets, and names the skills
+the next agent should reach for and where in the pipeline the work sits.
+
+**Manually invoked only.** Pass what the next session will focus on as an argument.
+For "is this ticket actually done?", use `complete-ticket` instead — that judges a
+ticket, this transfers a conversation.
 
 ## `to-spec` — context to spec
 
@@ -262,10 +294,12 @@ cc-plugins/
 │   │   ├── code-smells/
 │   │   ├── tdd/
 │   │   ├── simplify/
+│   │   ├── diagnosing-bugs/
 │   │   └── zoom-out/
 │   ├── workflow/
 │   │   ├── implement/
-│   │   └── commit/
+│   │   ├── commit/
+│   │   └── handoff/
 │   └── planning/
 │       ├── to-spec/
 │       ├── to-tickets/
@@ -290,8 +324,9 @@ installed by the `skills` CLI.
 
 ## Credits
 
+`diagnosing-bugs` and `handoff` are taken from
+[mattpocock/skills](https://github.com/mattpocock/skills) (MIT) close to upstream.
 `tdd`, `grilling`, `batch-grill-me`, `domain-modeling`, `implement`, `to-spec`,
-`to-tickets`, and parts of `review` are adapted from
-[mattpocock/skills](https://github.com/mattpocock/skills) (MIT). The composition —
+`to-tickets`, and parts of `review` are adapted from it. The composition —
 local-file-only outputs, scored reviews, the RFA/RFH split, and the
 `next-ticket` → `implement` → `complete-ticket` pipeline — is this repo's own.

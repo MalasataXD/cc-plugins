@@ -7,6 +7,8 @@ description: Review the changes made for a ticket against its acceptance criteri
 
 Check whether the work done for a ticket actually satisfies it. Walk each acceptance criterion against the real changes, and report — honestly — what is done, what is partial, and what is still missing. The goal is a trustworthy answer to "is this ticket finished?", not a rubber stamp.
 
+This judges a **ticket** against its criteria; `handoff` transfers a **conversation** to another agent. Reach for that one instead when the work is unfinished and someone else is picking it up.
+
 This is **read-only by default**. Assess and report first. Do NOT edit the ticket, tick criteria, or change its status as part of the assessment. Only after presenting the state and getting the user's confirmation may you record completion (see step 5). Never invent evidence: if you cannot see that a criterion is met, it is not met.
 
 ## Process

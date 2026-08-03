@@ -84,9 +84,7 @@ Stop short of changes that would:
 1. Identify the recently modified sections in scope.
 2. Analyze for clarity, consistency, and standards opportunities.
 3. Apply project standards and the refinements above.
-4. Verify functionality is unchanged (signatures, outputs, side effects). Where the
-   project has a test suite and a type checker, run them — green before and after is
-   the evidence that the refinement was behavior-preserving.
+4. Verify functionality is unchanged (signatures, outputs, side effects).
 5. Confirm the result is genuinely simpler and more maintainable — not just
    shorter.
 6. Apply the edits directly rather than only describing them, then briefly note

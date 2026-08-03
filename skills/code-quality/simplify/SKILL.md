@@ -54,8 +54,9 @@ language default override an explicit project convention.
 - Choose clarity over brevity — explicit beats dense one-liners
 
 For structural changes — extracting duplication, deepening a shallow module,
-moving logic to the data it uses — see
-[refactor-candidates.md](references/refactor-candidates.md).
+moving logic to the data it uses — work from the `code-smells` skill. It is the
+same baseline `review` judges against, so fixing them here is what keeps the
+review from reopening them.
 
 ## Comments — a verdict on the code
 

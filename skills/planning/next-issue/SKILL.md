@@ -43,7 +43,7 @@ Note the `## Type`:
 
 ### 4. Explore the codebase
 
-Ground the plan in the actual code. Find the relevant modules, seams, and existing patterns so the plan names real integration points rather than guesses. Use the project's domain glossary vocabulary and respect ADRs in the area you're touching. This is the homework that makes the plan trustworthy.
+Ground the plan in the actual code. Find the relevant modules, seams, and existing patterns so the plan names real integration points rather than guesses. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. This is the homework that makes the plan trustworthy.
 
 ### 5. Present the plan and wait
 
@@ -75,6 +75,6 @@ Wait for the user to approve, adjust, or redirect. Do not start editing until th
 
 ### 6. On approval
 
-Once the user approves, you may offer to set the issue's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then begin implementing the approved plan.
+Once the user approves, you may offer to set the issue's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then hand the approved plan to the `implement` skill, which builds it.
 
 Do NOT modify any issue file before approval, and never mark acceptance criteria complete here — that is `complete-issue`'s job.

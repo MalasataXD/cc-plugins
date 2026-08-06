@@ -4,15 +4,18 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code)
 and [Codex](https://skills.sh) — installed with bare names (no plugin prefix) via
 the [`skills`](https://skills.sh) CLI.
 
-Nineteen skills, grouped by category:
+Twenty-five skills, grouped by category:
 
 | Category       | Skill              | What you get                                                                                                 |
 | -------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `reasoning`    | `think-like`       | Adopt an expert persona to reason through a problem; editable persona library; authoring workflow built in    |
 | `reasoning`    | `grilling`         | The interview primitive — a design tree walked to its frontier, in serial or batch cadence                    |
 | `reasoning`    | `grill-me`         | Grilling, one question at a time                                                                              |
-| `reasoning`    | `batch-grill-me`   | Grilling, the whole frontier per round                                                                        |
+| `reasoning`    | `batch-grill-me`   | Grilling, in rounds of 3–5 numbered questions                                                                 |
 | `reasoning`    | `domain-modeling`  | Sharpen the project's language; maintain a `CONTEXT.md` glossary and ADRs                                     |
+| `reasoning`    | `to-questionnaire` | Turn a decision someone else holds into a questionnaire under `ai/questionnaires/`                            |
+| `reasoning`    | `research`         | Background agent reads primary sources, leaves a cited file under `ai/research/`                              |
+| `reasoning`    | `prototype`        | Throwaway code that answers a design question — a logic demo or radical UI variants                           |
 | `code-quality` | `review`           | Two axes — standards (scored 0–100) and spec compliance — reviewed by parallel sub-agents, saved to `ai/reviews/` |
 | `code-quality` | `code-smells`      | The shared structural baseline `simplify` fixes and `review` flags                                            |
 | `code-quality` | `tdd`              | Red → green at pre-agreed seams, vertical slices, behavior-driven tests                                       |
@@ -22,6 +25,9 @@ Nineteen skills, grouped by category:
 | `workflow`     | `implement`        | Build approved work by chaining `tdd` → `simplify` → `review` → `commit`                                      |
 | `workflow`     | `commit`           | Imperative-title commits with structured bodies                                                               |
 | `workflow`     | `handoff`          | Compact the conversation so another agent can pick it up                                                      |
+| `workflow`     | `wait-what`        | The verbosity fire extinguisher — re-pitch the last message, simply                                           |
+| `workflow`     | `wizard`           | Generate an interactive bash walkthrough for steps only a human can do                                        |
+| `planning`     | `wayfinder`        | Chart work too big for one session as decision tickets under `ai/wayfinder/`                                  |
 | `planning`     | `to-spec`          | Synthesize the current context into a spec under `ai/specs/`                                                  |
 | `planning`     | `to-tickets`       | Break a plan or spec into vertical-slice tickets under `ai/tickets/`, then vet them                           |
 | `planning`     | `vet-tickets`      | Pressure-test tickets through an implementer's eyes; findings in-conversation, no files                       |
@@ -66,6 +72,16 @@ Each stage stops where the next begins. `next-ticket` selects and plans, then
 **stops for approval**; `implement` builds; `complete-ticket` judges the result
 **cold**. Nothing ever grades its own work.
 
+Two extensions sit around the spine. When the idea is **too big for one grilling
+session**, `wayfinder` charts it as decision tickets first and hands the cleared
+route to `to-spec`. And every ticket carries a **Category** — **Build** (the
+default), **Research**, **Decision**, or **Prototype**. The last three are open
+questions split out of the slices that wait on them, resolved by the `research`,
+`grilling`, and `prototype` skills instead of `implement`; a spec seeds Research
+tickets through its **Required Research** section. The same category vocabulary
+runs through `wayfinder`'s maps, so a question keeps its name whether it surfaces
+while charting or while slicing.
+
 ## `think-like` — expert persona reasoning
 
 Adopt a specific expert's lens to reason through a problem, using that role's
@@ -93,8 +109,10 @@ reached shared understanding. Facts are its job to find; decisions stay yours.
 Two cadences over the same tree, exposed as thin wrappers:
 
 - `grill-me` — **serial**: one question at a time, deepest resolution per question.
-- `batch-grill-me` — **batch**: the whole frontier in one numbered round, with
-  sub-agents dispatched for fact-finding so a lookup never blocks the round.
+- `batch-grill-me` — **batch**: numbered rounds of **3–5 questions** — a round has
+  to fit in your head, so a wider frontier waits for later rounds — each question
+  in a pinned `❓ question / ➡️ recommended answer` format, with sub-agents
+  dispatched for fact-finding so a lookup never blocks the round.
 
 **Auto-triggers** on phrasing like *"grill me"*, *"stress-test this plan"*, or
 *"get me grilled on this design"*. When a `CONTEXT.md` exists it reads it, holds
@@ -111,6 +129,34 @@ only, never implementation detail), and ADRs offered **sparingly**: only when a
 decision is hard to reverse, surprising without context, *and* the result of a real
 trade-off. Formats in `references/CONTEXT-FORMAT.md` and `references/ADR-FORMAT.md`.
 Supports both single-context repos and `CONTEXT-MAP.md` layouts.
+
+## `to-questionnaire` — questions for someone else
+
+The inverse of `grill-me`: mine a person who isn't in the room. When a decision
+hangs on knowledge a colleague or stakeholder holds, it interviews you about the
+**send** — who it goes to, what you need back — never the subject (which is
+exactly what you can't answer), then writes a discovery questionnaire to
+`ai/questionnaires/<slug>.md` for them to fill in async or in a meeting.
+
+## `research` — delegated reading legwork
+
+Spins up a **background agent** to investigate a question against **primary
+sources** — official docs, source code, specs, first-party APIs — and leave a
+single cited Markdown file under `ai/research/`. You keep working while it reads.
+Also the resolver for `Research`-category pipeline tickets and `wayfinder`
+research tickets.
+
+## `prototype` — throwaway code that answers a question
+
+Two branches, chosen by the question. *"Does this logic / state model feel
+right?"* builds a **single shareable HTML file** — a pure, liftable logic module
+behind a page of free-play buttons and guided walkthroughs a non-developer can
+drive. *"What should this look like?"* generates **radically different UI
+variants** on one route, switchable via `?variant=` and a floating bottom bar.
+Either way: no tests, no persistence, no polish — and when the question is
+answered, the validated decision folds into the real code while the prototype is
+captured on a throwaway `prototype/<name>` branch, pointed at from the ticket it
+answered. The resolver for `Prototype`-category tickets in both pipelines.
 
 ## `review` — two-axis code review
 
@@ -218,6 +264,35 @@ pipeline the work sits.
 For "is this ticket actually done?", use `complete-ticket` instead — that judges a
 ticket, this transfers a conversation.
 
+## `wait-what` — the verbosity fire extinguisher
+
+When the agent's last message didn't land, `/wait-what` makes it re-pitch: a
+little context, ASD-STE100 Simplified Technical English, and the ubiquitous
+language from `CONTEXT.md` when one exists. **Manually invoked only.**
+
+## `wizard` — walkthroughs for human-only steps
+
+Generates an interactive bash script that walks a *human* through a manual
+procedure — provisioning, credentials, CI secrets, an unfamiliar dashboard, a
+one-off migration. It opens each URL, says what to click, captures values with
+hidden entry for secrets, and writes them to `.env` / `gh secret`. The bundled
+`template.sh` carries the UX (progress, confirmation gates, idempotent upserts);
+the skill only authors the stages, confirmed with you before a line is written.
+Model-invoked: it also fires when an **RFH ticket**'s human-only steps are this
+kind of procedure, instead of dumping instructions into the chat.
+
+## `wayfinder` — plan what one session can't hold
+
+The layer **above** `to-spec`, for a loose idea wrapped in fog. It charts the
+route as a map (`ai/wayfinder/map.md`) of **decision tickets**
+(`ai/wayfinder/tickets/`) — categorised `research`, `prototype`, `decision`, or
+`task`, each **HITL** or **AFK** — and resolves them one per session until nothing is
+left to decide, then hands off to `to-spec`. The map is an index, not a store;
+unspecifiable work stays in a **Not yet specified** fog section rather than being
+pre-sliced, and out-of-scope work is ruled out explicitly, never silently
+dropped. Charting fires `research` sub-agents in parallel; if grilling surfaces
+no fog at all, it stops — the journey fits one session and needs no map.
+
 ## `to-spec` — context to spec
 
 Synthesizes the current conversation and codebase understanding into a spec. It does
@@ -238,8 +313,10 @@ contract** instead, one ticket per phase.
 Presents the breakdown and iterates with you before writing anything. Each approved
 slice becomes a **local markdown file** under `ai/tickets/`, zero-padded by ordinal
 (e.g. `01-account-balance-endpoint.md`), carrying a **`Type`** (**RFA**
-ready-for-agent, or **RFH** ready-for-human) and a **`Status`** (`Not started` →
-`In progress` → `Completed`).
+ready-for-agent, or **RFH** ready-for-human), a **`Category`** (**Build**, or an
+open question split out as **Research** / **Decision** / **Prototype** — resolved
+by the `research`, `grilling`, and `prototype` skills, never by writing slice
+code) and a **`Status`** (`Not started` → `In progress` → `Completed`).
 
 Once written, it **vets its own output**: sub-agents read the files cold — batched
 about five at a time, contiguous by ordinal so a ticket and its blocker land
@@ -289,7 +366,10 @@ cc-plugins/
 │   │   ├── grilling/
 │   │   ├── grill-me/
 │   │   ├── batch-grill-me/
-│   │   └── domain-modeling/
+│   │   ├── domain-modeling/
+│   │   ├── to-questionnaire/
+│   │   ├── research/
+│   │   └── prototype/
 │   ├── code-quality/
 │   │   ├── review/
 │   │   ├── code-smells/
@@ -300,8 +380,11 @@ cc-plugins/
 │   ├── workflow/
 │   │   ├── implement/
 │   │   ├── commit/
-│   │   └── handoff/
+│   │   ├── handoff/
+│   │   ├── wait-what/
+│   │   └── wizard/
 │   └── planning/
+│       ├── wayfinder/
 │       ├── to-spec/
 │       ├── to-tickets/
 │       ├── vet-tickets/
@@ -325,9 +408,11 @@ installed by the `skills` CLI.
 
 ## Credits
 
-`diagnosing-bugs` and `handoff` are taken from
+`diagnosing-bugs`, `handoff`, `wait-what`, and `wizard` are taken from
 [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) close to upstream.
 `tdd`, `grilling`, `batch-grill-me`, `domain-modeling`, `implement`, `to-spec`,
-`to-tickets`, and parts of `review` are adapted from it. The composition —
-local-file-only outputs, scored reviews, the RFA/RFH split, and the
-`next-ticket` → `implement` → `complete-ticket` pipeline — is this repo's own.
+`to-tickets`, `to-questionnaire`, `research`, `prototype`, `wayfinder`, and parts
+of `review` are adapted from it. The composition — local-file-only outputs,
+scored reviews, the RFA/RFH split, the shared Build/Research/Decision/Prototype
+category axis, and the `next-ticket` → `implement` → `complete-ticket` pipeline —
+is this repo's own.

@@ -34,10 +34,20 @@ blockers() {
   ' "$1" | grep -oE '[0-9]+-[A-Za-z0-9_-]+\.md' | sort -u || true
 }
 
-files=$(ls "$dir" 2>/dev/null | grep -E '^[0-9]+-.*\.md$' | sort) || true
+# Tickets anywhere under the folder, as paths relative to it, ordered
+# globally by basename so the zero-padded ordinal decides across subfolders.
+files=$(cd "$dir" && find . -type f -name '*.md' | sed 's|^\./||' \
+  | grep -E '(^|/)[0-9]+-[^/]*\.md$' \
+  | awk -F/ '{print $NF "|" $0}' | sort | cut -d'|' -f2) || true
 if [ -z "$files" ]; then
   echo "No tickets found in: $dir" >&2
   exit 1
+fi
+
+# Blockers are referenced by basename, so duplicates would be ambiguous.
+dups=$(printf '%s\n' $files | awk -F/ '{print $NF}' | sort | uniq -d)
+if [ -n "$dups" ]; then
+  echo "warning: duplicate ticket filenames across subfolders: $dups" >&2
 fi
 
 index=""
@@ -49,7 +59,7 @@ for f in $files; do
   category=$(section "$path" "Category"); category=${category%% *}; [ -n "$category" ] || category="Build"
   b=$(blockers "$path" | paste -sd ',' -); [ -n "$b" ] || b="None"
   printf '%-45s %-6s %-10s %-12s %s\n' "$f" "$type" "$category" "$status" "$b"
-  index="$index$f|$status
+  index="$index${f##*/}|$status
 "
 done
 
@@ -59,14 +69,14 @@ status_of() {
 
 echo
 for f in $files; do
-  if [ "$(status_of "$f")" = "In progress" ]; then
+  if [ "$(status_of "${f##*/}")" = "In progress" ]; then
     echo "NEXT: $dir/$f (In progress — prefer finishing it)"
     exit 0
   fi
 done
 
 for f in $files; do
-  [ "$(status_of "$f")" = "Not started" ] || continue
+  [ "$(status_of "${f##*/}")" = "Not started" ] || continue
   ok=1
   for b in $(blockers "$dir/$f"); do
     if [ "$(status_of "$b")" != "Completed" ]; then

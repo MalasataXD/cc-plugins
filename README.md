@@ -14,8 +14,9 @@ npx skills add MalasataXD/cc-plugins -g -y -s grilling grill-me batch-grill-me
 npx skills update -g -y
 ```
 
-The CLI selects by skill name only — the category folders organize this repo,
-not the picker. Skills trigger on natural phrasing
+The interactive picker groups skills by category (driven by
+`.claude-plugin/marketplace.json`), and a category heading toggles its whole
+group. Skills trigger on natural phrasing
 (*"grill me on this plan"*, *"what's the next ticket"*) or by name. Each skill's
 `SKILL.md` is its full documentation — this README is just the map.
 

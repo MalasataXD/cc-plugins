@@ -1,0 +1,65 @@
+{
+  "name": "cc-plugins",
+  "owner": {
+    "name": "Mads Hylleberg Nielsen",
+    "url": "https://github.com/MalasataXD"
+  },
+  "metadata": {
+    "description": "Personal skill set: an interview-driven planning-to-commit pipeline with reasoning, planning, code-quality and workflow skills."
+  },
+  "plugins": [
+    {
+      "name": "reasoning",
+      "source": "./",
+      "description": "Resolve uncertainty — interviews, personas, domain language, research, prototypes.",
+      "skills": [
+        "./skills/reasoning/grilling",
+        "./skills/reasoning/grill-me",
+        "./skills/reasoning/batch-grill-me",
+        "./skills/reasoning/think-like",
+        "./skills/reasoning/domain-modeling",
+        "./skills/reasoning/research",
+        "./skills/reasoning/prototype",
+        "./skills/reasoning/zoom-out"
+      ]
+    },
+    {
+      "name": "planning",
+      "source": "./",
+      "description": "Produce the breakdown — maps, specs, tickets, questionnaires.",
+      "skills": [
+        "./skills/planning/wayfinder",
+        "./skills/planning/to-spec",
+        "./skills/planning/to-tickets",
+        "./skills/planning/vet-tickets",
+        "./skills/planning/to-questionnaire"
+      ]
+    },
+    {
+      "name": "code-quality",
+      "source": "./",
+      "description": "Judge and refine code — review, smells, TDD, simplify, bug diagnosis.",
+      "skills": [
+        "./skills/code-quality/review",
+        "./skills/code-quality/code-smells",
+        "./skills/code-quality/tdd",
+        "./skills/code-quality/simplify",
+        "./skills/code-quality/diagnosing-bugs"
+      ]
+    },
+    {
+      "name": "workflow",
+      "source": "./",
+      "description": "Move the work — pick tickets, build, verify, commit, hand off.",
+      "skills": [
+        "./skills/workflow/next-ticket",
+        "./skills/workflow/implement",
+        "./skills/workflow/complete-ticket",
+        "./skills/workflow/commit",
+        "./skills/workflow/handoff",
+        "./skills/workflow/wait-what",
+        "./skills/workflow/wizard"
+      ]
+    }
+  ]
+}

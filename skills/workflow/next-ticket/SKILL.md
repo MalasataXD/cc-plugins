@@ -22,9 +22,15 @@ Work out where the tickets live:
 
 ### 2. Select the next open ticket
 
-Read the `## Status` of every ticket in scope. A ticket is **open** when its status is `Not started` or `In progress`; `Completed` is closed.
+Run the bundled selector instead of reading every file for its fields:
 
-Choose the next one to work on:
+```bash
+bash <path-to-this-skill>/scripts/next-ticket.sh [tickets-dir]
+```
+
+It prints every ticket's Type, Category, Status, and blockers in one table, plus a `NEXT:` line computed by the same rules below. Trust the survey, but sanity-check the pick — and fall back to reading the files yourself if bash is unavailable or the tickets deviate from the template.
+
+A ticket is **open** when its status is `Not started` or `In progress`; `Completed` is closed. The selection rules:
 
 1. Prefer an `In progress` ticket if one exists — finishing started work beats starting new work. Surface it and confirm the user wants to continue it rather than start something fresh.
 2. Otherwise pick the **lowest-ordinal** `Not started` ticket whose blockers are all `Completed`. Read each candidate's `## Blocked by`; skip any ticket whose blocking ticket is not yet `Completed`.
@@ -34,7 +40,7 @@ State which ticket you picked and why (ordinal order, blockers satisfied) so the
 
 ### 3. Read the ticket in full
 
-Read the entire selected ticket — `Type`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent` reference. If a parent spec or spec is linked, skim it for context the ticket assumes.
+Read the entire selected ticket — `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent` reference. If a parent spec or spec is linked, skim it for context the ticket assumes.
 
 Note the `## Type`:
 

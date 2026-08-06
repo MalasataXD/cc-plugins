@@ -69,6 +69,10 @@ Categories are folders only — skills install with bare names regardless.
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
 
+| `learning` — learn beyond the codebase | |
+| --- | --- |
+| `teach` | Stateful tutor: mission, HTML lessons, learning records, glossary — the invocation directory is the workspace |
+
 | `utility` — maintain the toolset | |
 | --- | --- |
 | `writing-for-agents` | Reference for writing any document an agent consumes — skills, `CLAUDE.md`, pointed-at docs |

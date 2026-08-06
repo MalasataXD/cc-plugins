@@ -48,6 +48,12 @@
       ]
     },
     {
+      "name": "learning",
+      "source": "./",
+      "description": "Learn beyond the codebase — a stateful tutor with missions, lessons and learning records.",
+      "skills": ["./skills/learning/teach"]
+    },
+    {
       "name": "utility",
       "source": "./",
       "description": "Maintain the toolset itself — writing skills and other documents agents consume.",

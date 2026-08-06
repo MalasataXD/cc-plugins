@@ -69,6 +69,10 @@ Categories are folders only — skills install with bare names regardless.
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
 
+| `utility` — maintain the toolset | |
+| --- | --- |
+| `writing-for-agents` | Reference for writing any document an agent consumes — skills, `CLAUDE.md`, pointed-at docs |
+
 | `workflow` — move the work | |
 | --- | --- |
 | `next-ticket` | Pick and plan the next open ticket, then wait for approval |

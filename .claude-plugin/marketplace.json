@@ -48,6 +48,12 @@
       ]
     },
     {
+      "name": "utility",
+      "source": "./",
+      "description": "Maintain the toolset itself — writing skills and other documents agents consume.",
+      "skills": ["./skills/utility/writing-for-agents"]
+    },
+    {
       "name": "workflow",
       "source": "./",
       "description": "Move the work — pick tickets, build, verify, commit, hand off.",

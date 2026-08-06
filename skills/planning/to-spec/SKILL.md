@@ -71,6 +71,10 @@ A list of testing decisions that were made. Include:
 - Which modules will be tested
 - Prior art for the tests (i.e. similar types of tests in the codebase)
 
+## Required Research
+
+Questions that must be answered from primary sources — official docs, third-party APIs, specs — before dependent work can be built. One bullet per question, each naming the decision that waits on its answer. When the spec is broken down, `to-tickets` turns each into a **Research**-category ticket resolved by the `research` skill. Omit this section when there is none.
+
 ## Out of Scope
 
 A description of the things that are out of scope for this spec.

@@ -22,9 +22,15 @@ Work out where the tickets live:
 
 ### 2. Select the next open ticket
 
-Read the `## Status` of every ticket in scope. A ticket is **open** when its status is `Not started` or `In progress`; `Completed` is closed.
+Run the bundled selector instead of reading every file for its fields:
 
-Choose the next one to work on:
+```bash
+bash <path-to-this-skill>/scripts/next-ticket.sh [tickets-dir]
+```
+
+It prints every ticket's Type, Category, Status, and blockers in one table, plus a `NEXT:` line computed by the same rules below. Trust the survey, but sanity-check the pick — and fall back to reading the files yourself if bash is unavailable or the tickets deviate from the template.
+
+A ticket is **open** when its status is `Not started` or `In progress`; `Completed` is closed. The selection rules:
 
 1. Prefer an `In progress` ticket if one exists — finishing started work beats starting new work. Surface it and confirm the user wants to continue it rather than start something fresh.
 2. Otherwise pick the **lowest-ordinal** `Not started` ticket whose blockers are all `Completed`. Read each candidate's `## Blocked by`; skip any ticket whose blocking ticket is not yet `Completed`.
@@ -34,12 +40,19 @@ State which ticket you picked and why (ordinal order, blockers satisfied) so the
 
 ### 3. Read the ticket in full
 
-Read the entire selected ticket — `Type`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent` reference. If a parent spec or spec is linked, skim it for context the ticket assumes.
+Read the entire selected ticket — `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent` reference. If a parent spec or spec is linked, skim it for context the ticket assumes.
 
 Note the `## Type`:
 
 - **RFA** (ready-for-agent) — implementable and mergeable with no human interaction during the work; the human only reviews afterward. Plan to drive it end-to-end.
-- **RFH** (ready-for-human) — a human is needed *during* implementation (an architectural call, a design review, a credential). Identify in your plan exactly where you will need the user, so they know what they're signing up for.
+- **RFH** (ready-for-human) — a human is needed *during* implementation (an architectural call, a design review, a credential). Identify in your plan exactly where you will need the user, so they know what they're signing up for. When the human-only steps are a manual procedure (credentials, dashboards, provisioning), plan to generate them a walkthrough via the `wizard` skill.
+
+And the `## Category` (tickets without one are **Build**):
+
+- **Build** — a vertical slice; the plan below is an implementation plan.
+- **Research** — no code will be written. The plan is the question, the primary sources to check, and what the findings must settle; on approval it goes to the `research` skill, not `implement`.
+- **Decision** — no code will be written. The plan is the question, the realistic options, and your recommended answer; on approval it becomes a `grilling` session, the outcome recorded in the ticket (an ADR via `domain-modeling` if hard to reverse).
+- **Prototype** — throwaway code only. The plan is the question and which prototype branch fits (logic demo or UI variations); on approval it goes to the `prototype` skill, and the ticket completes when the verdict and prototype pointer are recorded.
 
 ### 4. Explore the codebase
 
@@ -52,7 +65,7 @@ Present the plan directly in the conversation using the format below. Be concret
 <output-format>
 ## Next ticket: <filename> — <title>
 
-**Status:** Not started → (proposing to start) · **Type:** RFA / RFH
+**Status:** Not started → (proposing to start) · **Type:** RFA / RFH · **Category:** Build / Research
 
 **Goal:** one sentence on what "done" looks like, drawn from the acceptance criteria.
 
@@ -75,6 +88,6 @@ Wait for the user to approve, adjust, or redirect. Do not start editing until th
 
 ### 6. On approval
 
-Once the user approves, you may offer to set the ticket's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then hand the approved plan to the `implement` skill, which builds it.
+Once the user approves, you may offer to set the ticket's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then hand the approved plan to the skill its Category names: **Build** goes to `implement`; **Research** to the `research` skill (done when the findings file exists under `ai/research/` and is linked from the ticket); **Decision** to a `grilling` session (done when the outcome is recorded in the ticket); **Prototype** to the `prototype` skill (done when the verdict and prototype pointer are recorded).
 
 Do NOT modify any ticket file before approval, and never mark acceptance criteria complete here — that is `complete-ticket`'s job.

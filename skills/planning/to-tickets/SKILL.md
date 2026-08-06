@@ -23,6 +23,14 @@ Break the plan into **tracer bullet** tickets. Each ticket is a thin vertical sl
 
 Every slice is either **RFA** (ready-for-agent) or **RFH** (ready-for-human). RFH slices need a human during the work — an architectural decision, a design review. RFA slices can be implemented and merged without one. Prefer RFA where possible.
 
+Orthogonal to Type, every ticket has a **Category** — what kind of work resolves it. **Build** is the default: a vertical slice of the plan. The other three are not slices at all; they are questions that must be resolved before dependent slices can be built, and any slice waiting on one lists it in its "Blocked by":
+
+- **Research** — a fact answered from primary sources. Resolved by the `research` skill; almost always Type RFA. If the spec carries a `## Required Research` section, emit one Research ticket per question.
+- **Decision** — a choice nobody has made yet that the plan can't proceed without. Resolved through a `grilling` session with the user; Type RFH by nature — the human makes the call.
+- **Prototype** — a design question best answered by reacting to throwaway code. Resolved by the `prototype` skill; Type RFH — the human reacts to the artifact.
+
+Never bury one of these inside a Build slice as a silent assumption — split it out so the breakdown shows what is still open.
+
 <vertical-slice-rules>
 - Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
 - A completed slice is demoable or verifiable on its own
@@ -47,7 +55,8 @@ Each phase is its own ticket, and the migrate tickets block the contract ticket.
 Present the proposed breakdown as a numbered list. For each slice, show:
 
 - **Title**: short descriptive name
-- **Type**: RFH / RFA
+- **Type**: RFA / RFH
+- **Category**: Build / Research / Decision / Prototype
 - **Blocked by**: which other slices (if any) must complete first — aim for "None"
 - **User stories covered**: which user stories this addresses (if the source material has them)
 
@@ -57,7 +66,7 @@ Ask the user:
 - Are the slices as self-contained as they can be? Can any blocker be designed away?
 - Are the remaining dependency relationships correct?
 - Should any slices be merged or split further?
-- Are the correct slices marked as RFH and RFA?
+- Are the correct slices marked as RFH and RFA, and every open question split out as a Research, Decision, or Prototype ticket rather than buried in a slice?
 
 Iterate until the user approves the breakdown.
 
@@ -96,6 +105,15 @@ One of:
 
 - **RFA** (ready-for-agent) — implementable and mergeable with no human interaction during the work; a human only reviews it afterward.
 - **RFH** (ready-for-human) — a human is required *during* implementation (an architectural decision, a design review, a credential).
+
+## Category
+
+One of:
+
+- **Build** — a vertical slice of the plan; the default.
+- **Research** — a question answered from primary sources, not a slice of the build. Resolved by the `research` skill writing its findings to `ai/research/`; the acceptance criteria name what the findings must settle.
+- **Decision** — a choice nobody has made yet. Resolved through a `grilling` session; the acceptance criteria name what must be decided. The outcome is recorded in the ticket, and a hard-to-reverse decision earns an ADR via `domain-modeling`.
+- **Prototype** — a design question answered with throwaway code via the `prototype` skill. The acceptance criteria name the question the prototype must settle; the verdict and a pointer to the captured prototype are recorded in the ticket.
 
 ## Status
 

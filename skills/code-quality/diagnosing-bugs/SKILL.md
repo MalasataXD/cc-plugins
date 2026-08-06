@@ -138,4 +138,4 @@ Required before declaring done:
 
 ## After the fix
 
-A bug fix is code like any other. Tidy it with `simplify`, check it with `review`, and commit it with `commit` — the back half of `implement`'s chain. This skill ends at a diagnosed and fixed bug, not at a merged one.
+A bug fix is code like any other. Tidy it with `simplify`, check it with `review`, and commit it with `commit` — or, when the fix belongs to a ticket, let `complete-ticket` judge it and gate the commit. This skill ends at a diagnosed and fixed bug, not at a merged one.

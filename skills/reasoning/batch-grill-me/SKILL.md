@@ -1,6 +1,6 @@
 ---
 name: batch-grill-me
-description: A relentless interview that asks the whole frontier of questions at once, round by round.
+description: A relentless interview in rounds of 3-5 numbered questions, each with a recommended answer.
 disable-model-invocation: true
 ---
 

@@ -42,7 +42,7 @@ For each ticket, walk the checklist below. The goal is to find the moment an imp
 <signal-vs-noise>
 Distinguish a **genuine gap** from **healthy exploration**:
 
-- A genuine gap is a decision nobody made that the implementer must invent to proceed (e.g. "what happens when the balance is negative?" with no answer anywhere). Flag these.
+- A genuine gap is a decision nobody made that the implementer must invent to proceed (e.g. "what happens when the balance is negative?" with no answer anywhere). Flag these — unless a Research, Decision, or Prototype-category ticket in the set already owns that question and the slice blocks on it; then the breakdown has handled it, and the finding would be noise.
 - Healthy exploration is work the implementer is *supposed* to do — reading the code to find the right function, choosing a variable name, picking an obvious idiom. Do NOT flag these. Tickets that avoid file paths and code snippets are following the `to-tickets` design on purpose; needing to read the code is not a defect.
 
 When in doubt, ask: *would a competent implementer have to guess at something the author actually knew?* If yes, it's a gap. If they'd just have to look, it's fine.

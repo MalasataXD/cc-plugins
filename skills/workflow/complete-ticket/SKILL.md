@@ -21,7 +21,7 @@ Work out which ticket is being verified:
 2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `ai/tickets/`.
 3. If it is still ambiguous — several open tickets, no clear signal — ask which one to check rather than guessing.
 
-Read the full ticket: `Type`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`.
+Read the full ticket: `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `ai/research/`; a Decision ticket's is the recorded outcome (and ADR, if one was warranted); a Prototype ticket's is the verdict and the captured prototype pointer.
 
 ### 2. Survey the actual changes
 
@@ -46,7 +46,7 @@ Present the assessment in the conversation using the format below. Lead with a c
 ## Ticket check: <filename> — <title>
 
 **Verdict:** Complete / Almost there / Not done — one line.
-**Type:** RFA / RFH · **Current status:** In progress
+**Type:** RFA / RFH · **Category:** Build / Research / Decision / Prototype · **Current status:** In progress
 
 ### Acceptance criteria
 | Criterion | State | Evidence / what's missing |
@@ -71,3 +71,7 @@ After presenting the state, offer to update the ticket file — and do it only i
 - If little is done, record nothing — just report.
 
 Apply only the edits the user approves: tick the agreed boxes and set the agreed status. Make no other changes to the ticket, and never modify the parent source.
+
+### 6. Offer to commit
+
+When every criterion is **Met** and the working tree still holds uncommitted changes from the ticket, offer to finish with the `commit` skill — a separate confirmation from recording completion, never bundled into it. Skip the offer when the verdict is anything short of complete, or the tree is already clean.

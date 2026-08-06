@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Build an approved ticket or plan end to end, chaining tdd, simplify, review and commit. Use when the user approves a plan and wants it built, or asks to implement a ticket.
+description: Build an approved ticket or plan end to end, chaining tdd, simplify and review. Use when the user approves a plan and wants it built, or asks to implement a ticket.
 ---
 
 # Implement
@@ -44,10 +44,6 @@ Re-run the tests and the type checker afterwards. Green again before moving on.
 
 Run the `review` skill over the changes. Act on what it raises, or say plainly why a finding is being left — then run the full suite, not just the affected files.
 
-### 5. Commit
-
-Run the `commit` skill on the current branch.
-
 ## Done
 
-The chain is complete when every stage has run, the full suite passes, and the work is committed. Hand off to `complete-ticket` to judge the acceptance criteria against what was actually built — leave the criteria unticked and the status alone here.
+The chain is complete when every stage has run and the full suite passes. Do **not** commit here — the work has not been judged yet. Hand off to `complete-ticket`, which verifies the acceptance criteria against what was actually built and offers the `commit` once they hold. Leave the criteria unticked and the status alone here.

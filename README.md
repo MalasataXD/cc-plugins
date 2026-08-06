@@ -4,10 +4,18 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 [Codex](https://skills.sh), installed with bare names via the `skills` CLI.
 
 ```shell
-npx skills add MalasataXD/cc-plugins
+# install everything, no prompts
+npx skills add MalasataXD/cc-plugins --all -g -y
+
+# or one category, by passing its skills (see the tables below)
+npx skills add MalasataXD/cc-plugins -g -y -s grilling grill-me batch-grill-me
+
+# refresh everything already installed
+npx skills update -g -y
 ```
 
-Re-run the same command to pull updates. Skills trigger on natural phrasing
+The CLI selects by skill name only — the category folders organize this repo,
+not the picker. Skills trigger on natural phrasing
 (*"grill me on this plan"*, *"what's the next ticket"*) or by name. Each skill's
 `SKILL.md` is its full documentation — this README is just the map.
 

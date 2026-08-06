@@ -18,7 +18,19 @@ The session is done when the frontier is empty: every branch visited, nothing le
 Two ways to walk the tree. **Serial** is the default; use **batch** when the caller asks for it.
 
 - **Serial** — one question at a time, waiting for the answer before the next. Deepest resolution per question, and the user can redirect at any point.
-- **Batch** — the whole frontier in one round: number each question, give each a recommended answer, then wait for the round's answers before recomputing the frontier. Fewer turns over a wide tree. A question that depends on another still open in this round belongs to a *later* round.
+- **Batch** — a numbered round of questions at once, each with a recommended answer; wait for the round's answers before recomputing the frontier. Fewer turns over a wide tree. A question that depends on another still open in this round belongs to a *later* round.
+
+### Batch rounds
+
+Cap each round at **3–5 questions** — a round has to fit in the user's head, not exhaust the tree. When the frontier is wider than that, ask the 3–5 questions that unblock the most downstream decisions and hold the rest for later rounds; they are not lost, the frontier is recomputed every round.
+
+Format every question in the round like so:
+
+```
+❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+
+➡️ <your recommended answer>
+```
 
 ## Facts are yours, decisions are theirs
 

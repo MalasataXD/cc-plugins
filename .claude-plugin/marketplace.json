@@ -42,6 +42,8 @@
       "skills": [
         "./skills/code-quality/review",
         "./skills/code-quality/code-smells",
+        "./skills/code-quality/codebase-design",
+        "./skills/code-quality/improve-codebase-architecture",
         "./skills/code-quality/tdd",
         "./skills/code-quality/simplify",
         "./skills/code-quality/diagnosing-bugs"

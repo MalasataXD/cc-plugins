@@ -65,6 +65,8 @@ Categories are folders only — skills install with bare names regardless.
 | --- | --- |
 | `review` | Two-axis review, scored 0–100 → `ai/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
+| `codebase-design` | Deep-module vocabulary — interfaces, seams, adapters, depth |
+| `improve-codebase-architecture` | Find deepening candidates → HTML report → `ai/architecture/` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |

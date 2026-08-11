@@ -28,7 +28,7 @@ scope for both skills.
 
 - **Duplicated code** — the same logic in more than one place. Extract it once the third instance appears, or sooner if the copies must change together.
 - **Long method** — a function doing several things at several levels of abstraction. Break it up, keeping tests on the public interface.
-- **Shallow module** — an interface nearly as wide as the implementation behind it, so callers carry the complexity. Deepen it or fold it into its caller.
+- **Shallow module** — an interface nearly as wide as the implementation behind it, so callers carry the complexity. Deepen it or fold it into its caller — the `codebase-design` skill has the vocabulary and the deepening moves.
 - **Feature envy** — a method reaching repeatedly into another object's data. Move it to the data.
 - **Middle man** — a class that only delegates. Let callers talk to the real thing.
 - **Message chains** — `a.getB().getC().getD()`. Ask the first object for what you actually want.

@@ -56,7 +56,7 @@ And the `## Category` (tickets without one are **Build**):
 
 ### 4. Explore the codebase
 
-Ground the plan in the actual code. Find the relevant modules, seams, and existing patterns so the plan names real integration points rather than guesses. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. This is the homework that makes the plan trustworthy.
+Ground the plan in the actual code. Find the relevant modules, seams, and existing patterns so the plan names real integration points rather than guesses. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. Run anything the plan adds — a new module, dependency, or special case — through the ledger in the `complexity` skill. This is the homework that makes the plan trustworthy.
 
 ### 5. Present the plan and wait
 

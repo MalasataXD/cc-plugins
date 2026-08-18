@@ -52,6 +52,7 @@ Categories are folders only — skills install with bare names regardless.
 | `research` | Background agent reads primary sources → `ai/research/` |
 | `prototype` | Throwaway code that answers a design question |
 | `zoom-out` | Map the modules and callers around unfamiliar code |
+| `complexity` | Ousterhout's complexity model — the ledger plans answer to |
 
 | `planning` — produce the breakdown | |
 | --- | --- |

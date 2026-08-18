@@ -22,7 +22,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Secure cryptographic practices
 - Proper error handling without information leakage
 
-### 2. Performance (Weight: 20%)
+### 2. Performance (Weight: 15%)
 
 **Score Range:**
 - **90-100**: Optimal time/space complexity. Efficient algorithms and data structures.
@@ -59,7 +59,25 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Cyclomatic complexity
 - Magic numbers and hardcoded values
 
-### 4. Style & Standards Compliance (Weight: 15%)
+### 4. Complexity (Weight: 10%)
+
+**Score Range:**
+- **90-100**: Deep interfaces; nothing a cold reader must know is left unstated.
+- **75-89**: Minor obscurity (an unstated invariant, an unexplained unit) with local impact.
+- **60-74**: A change here forces edits in several places, or callers carry knowledge the implementation should absorb.
+- **40-59**: High cognitive load — correct use requires knowledge the code does not surface.
+- **20-39**: Unknown unknowns likely: it is not evident which code must change or what must be known to change it safely.
+- **0-19**: Pervasive tactical shortcuts; every future change is amplified and unsafe.
+
+**Key Factors:**
+- Change amplification: one conceptual change, how many edit sites
+- Cognitive load: what a developer must hold in their head to use this correctly
+- Unknown unknowns: invariants or coupling nothing in the code reveals
+- Dependencies: fewer, simpler, more obvious
+- Obscurity: names, units, and invariants evident from the code itself
+- Complexity pulled downwards: hard parts absorbed by the implementation, not exported to callers
+
+### 5. Style & Standards Compliance (Weight: 10%)
 
 **Score Range:**
 - **90-100**: Perfectly follows style guide and coding standards.
@@ -77,7 +95,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Consistency with existing codebase patterns
 - Use of modern language features appropriately
 
-### 5. Architecture & Design Patterns (Weight: 10%)
+### 6. Architecture & Design Patterns (Weight: 10%)
 
 **Score Range:**
 - **90-100**: Excellent architecture. Appropriate design patterns used correctly.
@@ -95,7 +113,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Consistency with existing codebase architecture
 - Interface design and contracts
 
-### 6. Documentation Quality (Weight: 10%)
+### 7. Documentation Quality (Weight: 10%)
 
 **Score Range:**
 - **90-100**: Comprehensive, clear documentation for all public interfaces.
@@ -117,8 +135,9 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 ## Overall Score Calculation
 
 ```
-Overall Score = (Security × 0.25) + (Performance × 0.20) + (Quality × 0.20) +
-                (Style × 0.15) + (Architecture × 0.10) + (Documentation × 0.10)
+Overall Score = (Security × 0.25) + (Performance × 0.15) + (Quality × 0.20) +
+                (Complexity × 0.10) + (Style × 0.10) + (Architecture × 0.10) +
+                (Documentation × 0.10)
 ```
 
 ## Score Interpretation
@@ -141,9 +160,10 @@ When presenting the score, use this format:
 
 ### Category Breakdown:
 - Security: X/100 (Weight: 25%)
-- Performance: X/100 (Weight: 20%)
+- Performance: X/100 (Weight: 15%)
 - Code Quality: X/100 (Weight: 20%)
-- Style & Standards: X/100 (Weight: 15%)
+- Complexity: X/100 (Weight: 10%)
+- Style & Standards: X/100 (Weight: 10%)
 - Architecture: X/100 (Weight: 10%)
 - Documentation: X/100 (Weight: 10%)
 

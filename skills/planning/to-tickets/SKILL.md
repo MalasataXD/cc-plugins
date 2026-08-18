@@ -15,7 +15,7 @@ Work from whatever is already in the conversation context. If the user passes a 
 
 ### 2. Explore the codebase (optional)
 
-If you have not already explored the codebase, do so to understand the current state of the code. Ticket titles and descriptions should name things the way `CONTEXT.md` names them, and respect ADRs in the area you're touching — see the `domain-modeling` skill.
+If you have not already explored the codebase, do so to understand the current state of the code. Ticket titles and descriptions should name things the way `CONTEXT.md` names them, and respect ADRs in the area you're touching — see the `domain-modeling` skill. If a slice introduces a new module, dependency, or special case the plan didn't already account for, run it through the ledger in the `complexity` skill before writing the ticket.
 
 ### 3. Draft vertical slices
 

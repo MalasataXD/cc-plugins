@@ -20,7 +20,8 @@
         "./skills/reasoning/domain-modeling",
         "./skills/reasoning/research",
         "./skills/reasoning/prototype",
-        "./skills/reasoning/zoom-out"
+        "./skills/reasoning/zoom-out",
+        "./skills/reasoning/complexity"
       ]
     },
     {

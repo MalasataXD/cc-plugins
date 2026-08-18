@@ -46,4 +46,4 @@ Run the `review` skill over the changes. Act on what it raises, or say plainly w
 
 ## Done
 
-The chain is complete when every stage has run and the full suite passes. Do **not** commit here — the work has not been judged yet. Hand off to `complete-ticket`, which verifies the acceptance criteria against what was actually built and offers the `commit` once they hold. Leave the criteria unticked and the status alone here.
+The chain is complete when every stage has run and the full suite passes. Continue straight into `complete-ticket` — the approval that started this chain covers the whole run through it, and the only stops along the way are the decisions described in [When the plan runs out](#when-the-plan-runs-out). Do **not** commit here — the work has not been judged yet. `complete-ticket` verifies the acceptance criteria against what was actually built and offers the `commit` once they hold. Leave the criteria unticked and the status alone here.

@@ -1,6 +1,6 @@
 ---
 name: review
-description: Review code across security, performance, quality, style, architecture and documentation, scored out of 100 and written to ai/reviews/. Use when the user asks for a code review, a quality check, or how a file or change could be improved.
+description: Review code across security, performance, quality, complexity, style, architecture and documentation, scored out of 100 and written to ai/reviews/. Use when the user asks for a code review, a quality check, or how a file or change could be improved.
 ---
 
 # Code Review
@@ -18,7 +18,7 @@ State the pinned scope in the report so the review can be repeated against the s
 Standards apply in layers, highest precedence first:
 
 1. **The project's own** — `AGENTS.md` / `CLAUDE.md`, `CONTRIBUTING.md`, style guides, and the ADRs covering the area. Documented project standards **override** everything below.
-2. **The baseline** — the `code-smells` skill for structure, [security-checklist.md](references/security-checklist.md) for vulnerabilities.
+2. **The baseline** — the `code-smells` skill for structure, the `complexity` skill for the symptoms-and-causes lens, [security-checklist.md](references/security-checklist.md) for vulnerabilities.
 3. **Language and community idioms**, plus the conventions of the surrounding code.
 
 Skip anything a tool already enforces. A finding the formatter, linter, or type checker would fix is noise in a review — it belongs in the pipeline, not the report.
@@ -31,6 +31,7 @@ Dispatch sub-agents over **disjoint** dimensions, so one lens cannot colour anot
 
 - **Security and performance** — the `security-checklist.md` sweep, algorithmic cost, resource handling, N+1s, caching that is missing or wrong.
 - **Quality, style, architecture and documentation** — the `code-smells` baseline, naming, project conventions, separation of concerns, dependency direction, and whether public interfaces are documented.
+- **Complexity** — the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
 - **Spec compliance** — only when a spec or ticket exists for this change (`ai/tickets/`, `ai/specs/`, a commit message naming one). Does the change do what was specified, no less and no more?
 
 Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered.
@@ -41,7 +42,7 @@ Each sub-agent returns findings with concrete evidence — file, line, and what 
 
 Apply [scoring-rubric.md](references/scoring-rubric.md): score each category 0–100, weight them, round to a whole number.
 
-Security 25% · Performance 20% · Quality & Maintainability 20% · Style & Standards 15% · Architecture & Design 10% · Documentation 10%
+Security 25% · Performance 15% · Quality & Maintainability 20% · Complexity 10% · Style & Standards 10% · Architecture & Design 10% · Documentation 10%
 
 The spec axis stays out of the score. It reports its own verdict — **Met**, **Partial**, or **Not met** — because a change can be immaculate and still build the wrong thing.
 
@@ -65,9 +66,10 @@ Report the path and the overall score to the user, so the result is both saved a
 | Category | Score | Weight |
 | --- | --- | --- |
 | Security | X | 25% |
-| Performance | X | 20% |
+| Performance | X | 15% |
 | Quality & Maintainability | X | 20% |
-| Style & Standards | X | 15% |
+| Complexity | X | 10% |
+| Style & Standards | X | 10% |
 | Architecture & Design | X | 10% |
 | Documentation | X | 10% |
 

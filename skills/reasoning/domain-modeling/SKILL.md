@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: Sharpen the project's domain language and capture the decisions behind it, maintaining a CONTEXT.md glossary and ADRs. Use when terminology is fuzzy, overloaded, or conflicts with the existing glossary, when a hard-to-reverse decision needs recording, or when another skill needs the project's domain vocabulary.
+description: Sharpen the project's domain language and capture the decisions behind it, maintaining a CONTEXT.md glossary and ADRs. Use when terminology is fuzzy, overloaded, or conflicts with the existing glossary, when writing or editing a CONTEXT.md or ADR, when a hard-to-reverse decision needs recording, or when another skill needs the project's domain vocabulary.
 ---
 
 # Domain Modeling

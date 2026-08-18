@@ -1,5 +1,5 @@
 interface:
   display_name: "Wayfinder"
-  short_description: "Map a large effort as decision tickets"
+  short_description: "Plan a huge chunk of work — more than one grilling session can hold — as a local map of decision tickets under ai/wayfinder/, and resolve them one at a time until the way to the destination is clear."
 policy:
   allow_implicit_invocation: false

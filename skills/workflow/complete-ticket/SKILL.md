@@ -23,24 +23,26 @@ Work out which ticket is being verified:
 
 Read the full ticket: `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `ai/research/`; a Decision ticket's is the recorded outcome (and ADR, if one was warranted); a Prototype ticket's is the verdict and the captured prototype pointer.
 
-### 2. Survey the actual changes
+### 2. Dispatch a cold read
 
-Look at what was really done, not what was intended. Inspect the working tree and diff (`git status`, `git diff`, and the relevant files) to see the changes in scope. Run the tests or the app where that is the only way to confirm a behavioral criterion — but stay within verification; do not fix or extend the implementation here.
+The judgment itself goes to a sub-agent, not this conversation. This session often *wrote* the changes being judged — the `implement` chain ends here — and an author checking its own work against the criteria reads the ticket through the lens of what it built, not what was asked. The sub-agent gets exactly two things: the ticket file and the scope of the changes (the ref, branch, or list of touched paths). No conversation history, no plan, no explanation of intent.
+
+The sub-agent surveys what was really done, not what was intended: the working tree and diff (`git status`, `git diff`, and the relevant files). It runs the tests or the app where that is the only way to confirm a behavioral criterion — but stays within verification; it does not fix or extend the implementation.
 
 ### 3. Judge each acceptance criterion
 
-For every criterion in the ticket, assign one state and back it with concrete evidence:
+The sub-agent assigns every criterion in the ticket one state, backed with concrete evidence:
 
 - **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it.
 - **Partial** — started but incomplete, or met only for the happy path. Say exactly what is missing.
 - **Not met** — no evidence it was addressed.
 - **Unverifiable** — you cannot confirm it from here (needs a manual step, an environment you lack, a human judgment). Say what would verify it.
 
-Also sanity-check beyond the checklist: does the change match `What to build`? Did it stay inside the slice's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship?
+It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the slice's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship?
 
 ### 4. Report the state directly
 
-Present the assessment in the conversation using the format below. Lead with a clear verdict so the answer to "is it done?" is visible immediately.
+Present the sub-agent's assessment in the conversation using the format below, without softening its verdicts — the cold read is the point. Lead with a clear verdict so the answer to "is it done?" is visible immediately.
 
 <output-format>
 ## Ticket check: <filename> — <title>

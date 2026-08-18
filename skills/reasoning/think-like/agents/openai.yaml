@@ -1,3 +1,3 @@
 interface:
   display_name: "Think Like"
-  short_description: "Reason through a problem as a named expert"
+  short_description: "Adopt an expert persona and reason through a problem from their perspective. Triggers automatically when the user says \"think like a...\", \"reason as a...\", \"what would a senior X think\", \"expert perspective on...\", \"from the perspective of a...\", \"as a [role]\", \"put on your [role] hat\", or any phrasing asking Claude to adopt a specific expert role for analysis, review, architecture, debugging, writing, or decision-making."

@@ -1,3 +1,3 @@
 interface:
   display_name: "Complexity"
-  short_description: "Ousterhout's complexity model for planning"
+  short_description: "Use when planning or specing a new solution, when weighing two approaches against each other, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary."

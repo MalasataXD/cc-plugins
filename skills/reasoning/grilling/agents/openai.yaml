@@ -1,3 +1,3 @@
 interface:
   display_name: "Grilling"
-  short_description: "Interview a plan down to its frontier"
+  short_description: "Interview the user relentlessly about a plan, decision, or design until you reach shared understanding. Use when the user wants to stress-test their thinking, or uses any \"grill\" trigger phrase."

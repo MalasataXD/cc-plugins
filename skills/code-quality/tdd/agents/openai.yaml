@@ -1,3 +1,3 @@
 interface:
   display_name: "TDD"
-  short_description: "Red to green at pre-agreed seams"
+  short_description: "Test-driven development — the red → green loop, and the rules that make its tests worth keeping. Use when the user wants to build a feature or fix a bug test-first, or mentions TDD or red-green."

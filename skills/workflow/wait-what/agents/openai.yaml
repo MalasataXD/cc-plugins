@@ -1,5 +1,5 @@
 interface:
   display_name: "Wait What"
-  short_description: "Re-pitch that — simpler, with the context I'm missing"
+  short_description: "Stop. That last message did not land — re-pitch it."
 policy:
   allow_implicit_invocation: false

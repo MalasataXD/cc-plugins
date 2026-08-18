@@ -1,5 +1,5 @@
 interface:
   display_name: "Grill Me"
-  short_description: "Grilling, one question at a time"
+  short_description: "A relentless interview to sharpen a plan or design, one question at a time."
 policy:
   allow_implicit_invocation: false

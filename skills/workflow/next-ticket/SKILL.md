@@ -22,13 +22,7 @@ Work out where the tickets live:
 
 ### 2. Select the next open ticket
 
-Run the bundled selector instead of reading every file for its fields:
-
-```bash
-bash <path-to-this-skill>/scripts/next-ticket.sh [tickets-dir]
-```
-
-It prints every ticket's Type, Category, Status, and blockers in one table, plus a `NEXT:` line computed by the same rules below. Trust the survey, but sanity-check the pick — and fall back to reading the files yourself if bash is unavailable or the tickets deviate from the template.
+Survey every ticket in the folder — read each file's `Type`, `Category`, `Status`, and `## Blocked by` fields (the headers near the top are enough at this stage; the full read comes in step 3).
 
 A ticket is **open** when its status is `Not started` or `In progress`; `Completed` is closed. The selection rules:
 

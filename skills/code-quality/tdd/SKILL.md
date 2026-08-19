@@ -36,3 +36,9 @@ Prefer existing seams to new ones, and take the highest seam that still observes
 - **Red before green.** Write the failing test first, then only enough code to pass it. Build for the test in front of you.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** Once green, refactoring belongs to the `simplify` skill and review to the `review` skill — the `implement` skill chains all three. Inside the loop, stay on red → green.
+
+## Evidence
+
+Report each cycle with its real output: quote the failing run before the implementation and the passing run after. "Tests pass" without the output is a claim, not evidence — on the `prove-it` ladder, quoted output is what **Ran it** means.
+
+**When a test is impractical.** A substitute is allowed only when no seam can reach the behavior without scaffolding that is out of the ticket's scope. The substitute must still be executable — a script, a command, an invocation with captured output — and the report must say why a test was impractical. "It was faster" never qualifies.

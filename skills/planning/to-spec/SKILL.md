@@ -15,7 +15,7 @@ This skill takes the current conversation context and codebase understanding and
 
 3. Run each implementation decision through the ledger in the `complexity` skill — every new module, dependency, config option, and special case must name what pays for it before it goes in the spec.
 
-4. Write the spec using the template below, then save it as a local markdown file (see [Output location](#output-location)). Confirm the path to the user once written.
+4. Write the spec using the template below and pass its prose through the `unslop` skill, then save it as a local markdown file (see [Output location](#output-location)). Confirm the path to the user once written.
 
 ## Output location
 

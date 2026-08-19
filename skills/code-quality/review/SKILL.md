@@ -40,6 +40,8 @@ Dispatch the three dimension agents in parallel. When spec compliance applies, d
 
 **Aggregate verbatim.** Present each sub-agent's findings under its own heading without reranking or merging them. Cross-contamination is the thing the split exists to prevent.
 
+**Tag, don't rerank.** After aggregating, give each finding one verdict: **Act on** (fix before this ships), **Consider** (worth doing, can wait), or **Noted** (an observation, no action expected). A finding a reviewer raised that turns out wrong or out of scope is **Dismissed** — kept as a one-line entry so the reader sees what was thrown out, never silently dropped. The verdict is a tag on the finding where it stands; findings keep their dimension and their reviewer's wording.
+
 ## 4. Score the standards axis
 
 Apply [scoring-rubric.md](references/scoring-rubric.md): score each category 0–100, weight them, round to a whole number.
@@ -77,6 +79,10 @@ Report the path and the overall score to the user, so the result is both saved a
 
 **Spec compliance:** Met / Partial / Not met — one line, or "No spec found for this change."
 
+## Act on first
+
+- Pointers to the findings tagged **Act on**, e.g. "Priority issue 1 — <title>" — no restating, just the skim list.
+
 ## Strengths
 
 - What the code does well, specifically.
@@ -85,7 +91,7 @@ Report the path and the overall score to the user, so the result is both saved a
 
 ### 1. <title>
 
-**Category:** … · **Where:** `path/file.ts:42`
+**Verdict:** Act on / Consider / Noted · **Category:** … · **Where:** `path/file.ts:42`
 
 Why it matters, then the current shape and the suggested one — code snippets only where prose is less precise.
 
@@ -93,7 +99,11 @@ Why it matters, then the current shape and the suggested one — code snippets o
 
 ## Remaining findings
 
-Grouped under the dimension that raised them, verbatim from each reviewer.
+Grouped under the dimension that raised them, verbatim from each reviewer, each carrying its verdict tag.
+
+## Dismissed
+
+- One line per dismissed finding: what was raised, and why it doesn't apply — or omit the section when nothing was dismissed.
 
 ## Summary
 

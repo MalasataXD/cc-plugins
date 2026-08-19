@@ -66,6 +66,7 @@ Categories are folders only — skills install with bare names regardless.
 | --- | --- |
 | `review` | Two-axis review, scored 0–100 → `ai/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
+| `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
 | `codebase-design` | Deep-module vocabulary — interfaces, seams, adapters, depth |
 | `improve-codebase-architecture` | Find deepening candidates → HTML report → `ai/architecture/` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
@@ -79,6 +80,7 @@ Categories are folders only — skills install with bare names regardless.
 | `utility` — maintain the toolset | |
 | --- | --- |
 | `writing-for-agents` | Reference for writing any document an agent consumes — skills, `CLAUDE.md`, pointed-at docs |
+| `unslop` | Final prose pass for anything a human reads — specs, reviews, research findings |
 
 | `workflow` — move the work | |
 | --- | --- |

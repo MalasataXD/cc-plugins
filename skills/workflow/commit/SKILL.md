@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Use when the user asks to create a commit, make a commit, or commit changes. Produces git commits with imperative-mood titles, a context paragraph, a bulleted "Changes:" section, and a closing impact statement. Never adds "Generated with" or "Co-Authored-By" trailers.
+description: Git commits in the house style. Use when the user asks to commit changes.
 ---
 
 # Commit Style

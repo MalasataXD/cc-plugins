@@ -1,6 +1,6 @@
 ---
 name: complexity
-description: Use when planning or specing a new solution, when weighing two approaches against each other, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary.
+description: A ledger for weighing complexity against value. Use when planning or specing a new solution, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary.
 ---
 
 # Complexity

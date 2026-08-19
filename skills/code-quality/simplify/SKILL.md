@@ -1,11 +1,6 @@
 ---
 name: simplify
-description: >
-  Simplify and refine code for clarity, consistency, and maintainability while
-  preserving exact functionality. Triggers when the user asks to simplify, clean
-  up, tidy, refine, or improve the readability of code, or to apply project
-  standards to recent changes. Focuses on recently modified code unless told
-  otherwise. Prefers explicit, readable code over clever or overly compact code.
+description: Refine code for clarity and consistency without changing what it does. Use when the user asks to simplify or clean up code, or to apply project standards to recent changes.
 ---
 
 # Simplify

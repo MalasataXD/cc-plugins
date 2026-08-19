@@ -1,6 +1,6 @@
 ---
 name: teach
-description: Multi-session tutor for any topic — invoke from your dedicated learning workspace; mission, lessons and learning records accumulate there.
+description: Multi-session tutor for any topic; invoke from your dedicated learning workspace.
 disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 ---

@@ -52,7 +52,7 @@ The spec axis stays out of the score. It reports its own verdict — **Met**, **
 
 ## 5. Write the review
 
-Write the report to a local markdown file — never to an external tracker.
+Write the report to a local markdown file — never to an external tracker. Pass its prose through the `unslop` skill before saving; findings keep their reviewer's wording, the connective prose around them gets the pass.
 
 1. Find `ai/` at the repository root; reuse it or create it.
 2. Reviews go in `ai/reviews/`; reuse or create.

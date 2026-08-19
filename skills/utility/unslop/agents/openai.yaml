@@ -1,0 +1,3 @@
+interface:
+  display_name: "Unslop"
+  short_description: "Final prose pass for human-facing output — lead with the conclusion, cut filler, full sentences. Use before saving a spec, review, research file, or any document a human will read, or when asked to make text readable."

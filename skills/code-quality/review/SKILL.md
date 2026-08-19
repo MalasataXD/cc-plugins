@@ -34,7 +34,7 @@ Dispatch sub-agents over **disjoint** dimensions, so one lens cannot colour anot
 - **Architecture and complexity** — the design-level lens: separation of concerns, dependency direction, and the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
 - **Spec compliance** — only when a spec or plan exists for this change (`ai/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
 
-Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered.
+Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one.
 
 Dispatch the three dimension agents in parallel. When spec compliance applies, dispatch it as soon as a slot frees if the environment caps concurrent sub-agents — it is the lightest of the four and never blocks the review.
 

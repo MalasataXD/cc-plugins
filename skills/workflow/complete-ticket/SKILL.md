@@ -31,14 +31,14 @@ The sub-agent surveys what was really done, not what was intended: the working t
 
 ### 3. Judge each acceptance criterion
 
-The sub-agent assigns every criterion in the ticket one state, backed with concrete evidence:
+The sub-agent assigns every criterion in the ticket one state, backed with concrete evidence. Evidence is graded on the `prove-it` ladder, and the rung is stated in the report:
 
-- **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it.
+- **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it. A behavioral criterion is Met only at **Ran it** or higher — cited or walked-through evidence for behavior grades as Partial (the proof is missing, not the work) or Unverifiable.
 - **Partial** — started but incomplete, or met only for the happy path. Say exactly what is missing.
 - **Not met** — no evidence it was addressed.
 - **Unverifiable** — you cannot confirm it from here (needs a manual step, an environment you lack, a human judgment). Say what would verify it.
 
-It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the slice's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship?
+It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the slice's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship? For anything risky the criteria don't cover, name the safety fact from `prove-it` — the one fact the change is safe because of — and the rung it reached.
 
 ### 4. Report the state directly
 
@@ -53,7 +53,7 @@ Present the sub-agent's assessment in the conversation using the format below, w
 ### Acceptance criteria
 | Criterion | State | Evidence / what's missing |
 | --- | --- | --- |
-| Criterion 1 | Met | `path/thing.ts` does X; covered by `thing.test.ts` |
+| Criterion 1 | Met | `path/thing.ts` does X; covered by `thing.test.ts` (Ran it) |
 | Criterion 2 | Partial | happy path done; error case in <area> not handled |
 | Criterion 3 | Not met | no change addresses this |
 

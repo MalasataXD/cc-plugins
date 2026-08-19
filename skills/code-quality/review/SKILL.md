@@ -1,6 +1,6 @@
 ---
 name: review
-description: Review code across security, performance, quality, complexity, style, architecture and documentation, scored out of 100 and written to ai/reviews/. Use when the user asks for a code review, a quality check, or how a file or change could be improved.
+description: Multi-dimension code review written to ai/reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved.
 ---
 
 # Code Review

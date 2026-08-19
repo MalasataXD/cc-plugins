@@ -1,6 +1,6 @@
 ---
 name: vet-tickets
-description: Pressure-test tickets by reading each one through the eyes of an implementer picking it up cold, then report what would block them. Use when the user wants to sanity-check tickets before handing them off, find gaps in a breakdown, or ask "would this make sense to whoever grabs it". Read-only — findings are shown directly in the conversation, never written to a file.
+description: Pressure-test tickets by reading each one as an implementer picking it up cold, and report what would block them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown.
 ---
 
 # Vet Tickets

@@ -1,6 +1,6 @@
 ---
 name: complete-ticket
-description: Review the changes made for a ticket against its acceptance criteria and report what is done and what is left before it can be called finished. Use when the user has finished (or thinks they have finished) work on a ticket and wants to confirm it is actually complete. Read-only by default — offers to update the ticket's status and tick verified criteria only after the user confirms.
+description: Check a ticket's changes against its acceptance criteria and report what remains. Use when the user thinks a ticket is finished and wants to confirm it is actually complete.
 ---
 
 # Complete Ticket

@@ -1,6 +1,6 @@
 ---
 name: wayfinder
-description: Plan a huge chunk of work — more than one grilling session can hold — as a local map of decision tickets under ai/wayfinder/, and resolve them one at a time until the way to the destination is clear.
+description: Plan work too big for one grilling session as a map of decision tickets under ai/wayfinder/, resolved one at a time.
 disable-model-invocation: true
 ---
 

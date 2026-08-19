@@ -1,6 +1,6 @@
 ---
 name: next-ticket
-description: Find the next open ticket under ai/tickets/, read it in full, and present an implementation plan for approval before writing any code. Use when the user wants to pick up the next piece of work, asks "what's next", or wants to start the next ticket in a breakdown.
+description: Pick the next open ticket under ai/tickets/ and present an implementation plan for approval. Use when the user wants to pick up the next piece of work or asks "what's next".
 ---
 
 # Next Ticket

@@ -43,6 +43,7 @@
       "skills": [
         "./skills/code-quality/review",
         "./skills/code-quality/code-smells",
+        "./skills/code-quality/prove-it",
         "./skills/code-quality/codebase-design",
         "./skills/code-quality/improve-codebase-architecture",
         "./skills/code-quality/tdd",
@@ -59,8 +60,11 @@
     {
       "name": "utility",
       "source": "./",
-      "description": "Maintain the toolset itself — writing skills and other documents agents consume.",
-      "skills": ["./skills/utility/writing-for-agents"]
+      "description": "Maintain the toolset itself — writing for agents, prose polish for humans.",
+      "skills": [
+        "./skills/utility/writing-for-agents",
+        "./skills/utility/unslop"
+      ]
     },
     {
       "name": "workflow",

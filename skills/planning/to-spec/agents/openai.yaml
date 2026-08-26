@@ -1,3 +1,3 @@
 interface:
   display_name: "To Spec"
-  short_description: "Turn the current conversation context into a spec and save it as a local markdown file under ai/specs/. Use when the user wants to create a spec from the current context."
+  short_description: "Turn the current conversation context into a spec and save it as a local markdown file under .ai/specs/. Use when the user wants to create a spec from the current context."

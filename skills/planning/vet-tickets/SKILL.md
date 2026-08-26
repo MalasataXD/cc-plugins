@@ -16,7 +16,7 @@ This is **read-only**. Do NOT edit, annotate, or rewrite the tickets. Do NOT wri
 Work out which tickets to vet:
 
 1. If the user passes a path or glob (a single ticket file, a folder, or a pattern), use that.
-2. Otherwise default to `ai/tickets/` at the repository root.
+2. Otherwise default to `.ai/tickets/` at the repository root.
 3. If no tickets are found, say so and stop — there is nothing to vet.
 
 Read the full body of every ticket in scope before judging any of them. The cross-ticket checks in step 4 need the whole set in view.
@@ -68,7 +68,7 @@ After the per-ticket pass, look across all tickets:
 Present everything in the conversation using the format below. Be specific: quote the ticket, name the exact question an implementer would ask, and suggest concretely how the author could resolve it — **as a question to answer or a sentence to add, never as a decision you invent for them.** Lead with the verdict so the state of the breakdown is clear at a glance.
 
 <output-format>
-## Ticket vet: <scope, e.g. ai/tickets/ (5 tickets)>
+## Ticket vet: <scope, e.g. .ai/tickets/ (5 tickets)>
 
 | Ticket | Verdict |
 | --- | --- |

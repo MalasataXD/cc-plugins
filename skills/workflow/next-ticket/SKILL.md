@@ -1,6 +1,6 @@
 ---
 name: next-ticket
-description: Pick the next open ticket under ai/tickets/ and present an implementation plan for approval. Use when the user wants to pick up the next piece of work or asks "what's next".
+description: Pick the next open ticket under .ai/tickets/ and present an implementation plan for approval. Use when the user wants to pick up the next piece of work or asks "what's next".
 ---
 
 # Next Ticket
@@ -17,7 +17,7 @@ Work out where the tickets live:
 
 1. If the user passes a specific ticket file, use it directly and skip to step 3.
 2. If the user passes a folder or glob, search there.
-3. Otherwise default to `ai/tickets/` at the repository root.
+3. Otherwise default to `.ai/tickets/` at the repository root.
 4. If the folder is missing or empty, say so and stop — there is nothing to pick up.
 
 ### 2. Select the next open ticket
@@ -82,6 +82,6 @@ Wait for the user to approve, adjust, or redirect. Do not start editing until th
 
 ### 6. On approval
 
-Once the user approves, you may offer to set the ticket's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then hand the approved plan to the skill its Category names: **Build** goes to `implement`; **Research** to the `research` skill (done when the findings file exists under `ai/research/` and is linked from the ticket); **Decision** to a `grilling` session (done when the outcome is recorded in the ticket); **Prototype** to the `prototype` skill (done when the verdict and prototype pointer are recorded).
+Once the user approves, you may offer to set the ticket's `## Status` to `In progress` so the breakdown reflects that the work has started — a one-line edit, only after they confirm. Then hand the approved plan to the skill its Category names: **Build** goes to `implement`; **Research** to the `research` skill (done when the findings file exists under `.ai/research/` and is linked from the ticket); **Decision** to a `grilling` session (done when the outcome is recorded in the ticket); **Prototype** to the `prototype` skill (done when the verdict and prototype pointer are recorded).
 
 Do NOT modify any ticket file before approval, and never mark acceptance criteria complete here — that is `complete-ticket`'s job.

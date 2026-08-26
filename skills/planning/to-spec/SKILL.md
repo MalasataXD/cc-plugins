@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Turn the current conversation context into a spec and save it as a local markdown file under ai/specs/. Use when the user wants to create a spec from the current context.
+description: Turn the current conversation context into a spec and save it as a local markdown file under .ai/specs/. Use when the user wants to create a spec from the current context.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec as a local markdown file. Do NOT interview the user — just synthesize what you already know.
@@ -21,9 +21,9 @@ This skill takes the current conversation context and codebase understanding and
 
 Specs are written as local markdown files only — never published to an external tracker.
 
-1. Find the `ai/` folder. It lives at the repository root. If one already exists, reuse it. Otherwise create it.
-2. Inside `ai/`, specs always go in `ai/specs/`. Reuse the folder if it exists, otherwise create it.
-3. Name the file with a short kebab-case slug derived from the feature, e.g. `ai/specs/account-balance-display.md`. If a file with that name already exists, confirm with the user before overwriting.
+1. Find the `.ai/` folder. It lives at the repository root. If one already exists, reuse it. Otherwise create it.
+2. Inside `.ai/`, specs always go in `.ai/specs/`. Reuse the folder if it exists, otherwise create it.
+3. Name the file with a short kebab-case slug derived from the feature, e.g. `.ai/specs/account-balance-display.md`. If a file with that name already exists, confirm with the user before overwriting.
 
 ## Spec template
 

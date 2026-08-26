@@ -49,26 +49,26 @@ Categories are folders only — skills install with bare names regardless.
 | `batch-grill-me` | Grilling, rounds of 3–5 questions |
 | `think-like` | Reason as an expert persona, from an editable library |
 | `domain-modeling` | One term, one meaning — `CONTEXT.md` and ADRs |
-| `research` | Background agent reads primary sources → `ai/research/` |
+| `research` | Background agent reads primary sources → `.ai/research/` |
 | `prototype` | Throwaway code that answers a design question |
 | `zoom-out` | Map the modules and callers around unfamiliar code |
 | `complexity` | Ousterhout's complexity model — the ledger plans answer to |
 
 | `planning` — produce the breakdown | |
 | --- | --- |
-| `wayfinder` | Chart a big effort as decision tickets → `ai/wayfinder/` |
-| `to-spec` | Current context → spec → `ai/specs/` |
-| `to-tickets` | Spec → vertical-slice tickets → `ai/tickets/` |
+| `wayfinder` | Chart a big effort as decision tickets → `.ai/wayfinder/` |
+| `to-spec` | Current context → spec → `.ai/specs/` |
+| `to-tickets` | Spec → vertical-slice tickets → `.ai/tickets/` |
 | `vet-tickets` | Read tickets cold; report what would block an implementer |
-| `to-questionnaire` | Questions for someone else → `ai/questionnaires/` |
+| `to-questionnaire` | Questions for someone else → `.ai/questionnaires/` |
 
 | `code-quality` — judge and refine code | |
 | --- | --- |
-| `review` | Two-axis review, scored 0–100 → `ai/reviews/` |
+| `review` | Two-axis review, scored 0–100 → `.ai/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
 | `codebase-design` | Deep-module vocabulary — interfaces, seams, adapters, depth |
-| `improve-codebase-architecture` | Find deepening candidates → HTML report → `ai/architecture/` |
+| `improve-codebase-architecture` | Find deepening candidates → HTML report → `.ai/architecture/` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
@@ -88,7 +88,7 @@ Categories are folders only — skills install with bare names regardless.
 | `implement` | Build approved work: `tdd` → `simplify` → `review` |
 | `complete-ticket` | Judge a ticket against its criteria; offer the `commit` |
 | `commit` | Structured commits with imperative titles |
-| `handoff` | Compact the session for the next agent → `ai/handoff.md` |
+| `handoff` | Compact the session for the next agent → `.ai/handoff.md` |
 | `wait-what` | Re-pitch the last message, simply |
 | `wizard` | Interactive bash walkthrough for steps only a human can do |
 
@@ -101,6 +101,6 @@ Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows) and
 
 Several skills are taken or adapted from
 [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) — see each
-skill's history. The composition — local-file outputs under `ai/`, scored
+skill's history. The composition — local-file outputs under `.ai/`, scored
 reviews, the RFA/RFH and Category axes, and the ticket pipeline — is this
 repo's own.

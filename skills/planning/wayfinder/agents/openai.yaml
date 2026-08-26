@@ -1,5 +1,5 @@
 interface:
   display_name: "Wayfinder"
-  short_description: "Plan work too big for one grilling session as a map of decision tickets under ai/wayfinder/, resolved one at a time."
+  short_description: "Plan work too big for one grilling session as a map of decision tickets under .ai/wayfinder/, resolved one at a time."
 policy:
   allow_implicit_invocation: false

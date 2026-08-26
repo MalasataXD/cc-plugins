@@ -18,10 +18,10 @@ This is **read-only by default**. Assess and report first. Do NOT edit the ticke
 Work out which ticket is being verified:
 
 1. If the user names a specific ticket file, use it.
-2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `ai/tickets/`.
+2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `.ai/tickets/`.
 3. If it is still ambiguous — several open tickets, no clear signal — ask which one to check rather than guessing.
 
-Read the full ticket: `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `ai/research/`; a Decision ticket's is the recorded outcome (and ADR, if one was warranted); a Prototype ticket's is the verdict and the captured prototype pointer.
+Read the full ticket: `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `.ai/research/`; a Decision ticket's is the recorded outcome (and ADR, if one was warranted); a Prototype ticket's is the verdict and the captured prototype pointer.
 
 ### 2. Dispatch a cold read
 

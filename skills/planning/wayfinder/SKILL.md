@@ -1,6 +1,6 @@
 ---
 name: wayfinder
-description: Plan work too big for one grilling session as a map of decision tickets under ai/wayfinder/, resolved one at a time.
+description: Plan work too big for one grilling session as a map of decision tickets under .ai/wayfinder/, resolved one at a time.
 disable-model-invocation: true
 ---
 
@@ -20,7 +20,7 @@ Every ticket has a **name** — its title. In everything the human reads — nar
 
 ## The Map
 
-The map lives at `ai/wayfinder/map.md` — the canonical artifact. Its tickets live beside it in `ai/wayfinder/tickets/`, one file per ticket, named `<ordinal>-<slug>.md` (zero-padded, e.g. `03-auth-provider.md`). These are **decision tickets**, deliberately kept apart from the build tickets in `ai/tickets/` — those execute a plan; these produce one.
+The map lives at `.ai/wayfinder/map.md` — the canonical artifact. Its tickets live beside it in `.ai/wayfinder/tickets/`, one file per ticket, named `<ordinal>-<slug>.md` (zero-padded, e.g. `03-auth-provider.md`). These are **decision tickets**, deliberately kept apart from the build tickets in `.ai/tickets/` — those execute a plan; these produce one.
 
 The map is an **index**, not a store. It lists the decisions made and points at the tickets that hold their detail; a decision lives in exactly one place — its ticket — so the map never restates it, only gists it and links.
 
@@ -84,9 +84,9 @@ A session **claims** a ticket by setting its Status to `In progress`, **first**,
 
 ## Ticket Categories
 
-The same `Category` axis the build tickets in `ai/tickets/` carry — `research`, `prototype`, and `decision` mean the same thing in both places; only `build` never appears here, because wayfinder plans rather than builds, and `task` never appears there. Every ticket is either **HITL** — human in the loop, worked _with_ a human who speaks for themselves — or **AFK**, driven by the agent alone. A HITL ticket only resolves through that live exchange; the agent never stands in for the human's side of it (a grilling agent that answers its own questions has broken this).
+The same `Category` axis the build tickets in `.ai/tickets/` carry — `research`, `prototype`, and `decision` mean the same thing in both places; only `build` never appears here, because wayfinder plans rather than builds, and `task` never appears there. Every ticket is either **HITL** — human in the loop, worked _with_ a human who speaks for themselves — or **AFK**, driven by the agent alone. A HITL ticket only resolves through that live exchange; the agent never stands in for the human's side of it (a grilling agent that answers its own questions has broken this).
 
-- **Research** (AFK): Reading documentation, third-party APIs, or local resources like knowledge bases to surface a fact a decision waits on. Resolved by a `research` **subagent** writing to `ai/research/`, linked from the ticket. Use when knowledge outside the current working directory is required.
+- **Research** (AFK): Reading documentation, third-party APIs, or local resources like knowledge bases to surface a fact a decision waits on. Resolved by a `research` **subagent** writing to `.ai/research/`, linked from the ticket. Use when knowledge outside the current working directory is required.
 - **Prototype** (HITL): Raise the fidelity of the discussion by making a cheap, rough, concrete artifact to react to — an outline, a rough take, a stub, or UI/logic code via the `prototype` skill. Links the artifact as an asset. Use when "how should it look" or "how should it behave" is the key question.
 - **Decision** (HITL): Conversation — the choice is put to the human. The default case. Always invoke the `grilling` and `domain-modeling` skills.
 - **Task** (HITL or AFK): Manual work that must happen before a _decision_ can be made — nothing to decide, prototype, or research, but the discussion is blocked until it's done. Signing up for a service so its API can be judged, provisioning access, moving data so its shape can be seen. This is the one type that _does_ rather than decides — and it earns its place by unblocking a decision, not by delivering the destination. The agent drives it alone where it can (AFK); otherwise it hands the human a precise checklist — or, for a dashboard-and-credentials procedure, generates one via the `wizard` skill (HITL). Resolved when the work is done; the resolution records what was done and any resulting facts (credentials location, new URLs, row counts) later tickets depend on.
@@ -122,9 +122,9 @@ User invokes with a loose idea.
 
 1. **Name the destination.** Run a `grilling` and `domain-modeling` session to pin down what this map is finding its way to — the spec, decision, or change. The destination fixes the scope, so it's settled first.
 2. **Map the frontier.** Grill again, **breadth-first** this time: fan out across the whole space rather than deep on any one thread, surfacing the open decisions and the first steps takeable now. **If this surfaces no fog** — the way to the destination is already clear, the whole journey small enough for one session — you don't need a map. Stop and ask the user how they'd like to proceed (usually straight to `to-spec`).
-3. **Create the map** at `ai/wayfinder/map.md`: Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**.
-4. **Create the tickets you can specify now** under `ai/wayfinder/tickets/` — then wire the **Blocked by** references in a **second pass** (files need names before they can reference each other). Wiring sorts them into the frontier and the blocked; everything you can't yet specify stays in the fog — the **Not yet specified** section.
-5. **Fire the research subagents.** For each `research` ticket you just created, spin up a `research` subagent to resolve it in parallel, its findings landing in `ai/research/` with a link from the ticket.
+3. **Create the map** at `.ai/wayfinder/map.md`: Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**.
+4. **Create the tickets you can specify now** under `.ai/wayfinder/tickets/` — then wire the **Blocked by** references in a **second pass** (files need names before they can reference each other). Wiring sorts them into the frontier and the blocked; everything you can't yet specify stays in the fog — the **Not yet specified** section.
+5. **Fire the research subagents.** For each `research` ticket you just created, spin up a `research` subagent to resolve it in parallel, its findings landing in `.ai/research/` with a link from the ticket.
 6. Stop — charting is one session's work; it hand-resolves nothing.
 
 ### Work through the map

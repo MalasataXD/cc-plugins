@@ -1,3 +1,3 @@
 interface:
   display_name: "Review"
-  short_description: "Multi-dimension code review written to ai/reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved."
+  short_description: "Multi-dimension code review written to .ai/reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved."

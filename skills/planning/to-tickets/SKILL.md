@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: Break a plan or spec into independently-grabbable tickets using tracer-bullet vertical slices, written as local markdown files under ai/tickets/. Use when the user wants to break work down into tickets or tasks.
+description: Break a plan or spec into independently-grabbable tickets using tracer-bullet vertical slices, written as local markdown files under .ai/tickets/. Use when the user wants to break work down into tickets or tasks.
 ---
 
 # To Tickets
@@ -11,7 +11,7 @@ Break a plan into independently-grabbable tickets using vertical slices (tracer 
 
 ### 1. Gather context
 
-Work from whatever is already in the conversation context. If the user passes a reference (a path, a spec, or a plan) as an argument, read its full body before slicing. Specs from this workspace typically live under `ai/specs/`.
+Work from whatever is already in the conversation context. If the user passes a reference (a path, a spec, or a plan) as an argument, read its full body before slicing. Specs from this workspace typically live under `.ai/specs/`.
 
 ### 2. Explore the codebase (optional)
 
@@ -74,9 +74,9 @@ Iterate until the user approves the breakdown.
 
 Tickets are written as local markdown files only — never published to an external tracker.
 
-1. Find the `ai/` folder at the repository root. Reuse it if it exists, otherwise create it.
-2. Inside `ai/`, tickets always go in `ai/tickets/`. Reuse the folder if it exists, otherwise create it.
-3. Write one file per approved slice, using the body template below. Name each file with a zero-padded ordinal and a short kebab-case slug so dependency order is visible at a glance, e.g. `ai/tickets/01-account-balance-endpoint.md`. If a file with that name already exists, confirm with the user before overwriting.
+1. Find the `.ai/` folder at the repository root. Reuse it if it exists, otherwise create it.
+2. Inside `.ai/`, tickets always go in `.ai/tickets/`. Reuse the folder if it exists, otherwise create it.
+3. Write one file per approved slice, using the body template below. Name each file with a zero-padded ordinal and a short kebab-case slug so dependency order is visible at a glance, e.g. `.ai/tickets/01-account-balance-endpoint.md`. If a file with that name already exists, confirm with the user before overwriting.
 4. Write files in dependency order (blockers first) so the "Blocked by" field can reference the real filename of the blocking ticket.
 
 Report the list of written file paths to the user once done.
@@ -97,7 +97,7 @@ Aggregate the verdicts and present them with the file paths. Findings stay findi
 
 ## Parent
 
-A reference to the parent plan, spec, or spec this slice came from (e.g. `ai/specs/<name>.md`). Omit this section if there is no parent source.
+A reference to the parent plan, spec, or spec this slice came from (e.g. `.ai/specs/<name>.md`). Omit this section if there is no parent source.
 
 ## Type
 
@@ -111,7 +111,7 @@ One of:
 One of:
 
 - **Build** — a vertical slice of the plan; the default.
-- **Research** — a question answered from primary sources, not a slice of the build. Resolved by the `research` skill writing its findings to `ai/research/`; the acceptance criteria name what the findings must settle.
+- **Research** — a question answered from primary sources, not a slice of the build. Resolved by the `research` skill writing its findings to `.ai/research/`; the acceptance criteria name what the findings must settle.
 - **Decision** — a choice nobody has made yet. Resolved through a `grilling` session; the acceptance criteria name what must be decided. The outcome is recorded in the ticket, and a hard-to-reverse decision earns an ADR via `domain-modeling`.
 - **Prototype** — a design question answered with throwaway code via the `prototype` skill. The acceptance criteria name the question the prototype must settle; the verdict and a pointer to the captured prototype are recorded in the ticket.
 
@@ -135,7 +135,7 @@ Avoid specific file paths or code snippets — they go stale fast. Exception: if
 
 ## Blocked by
 
-- A reference to the blocking ticket file (e.g. `ai/tickets/01-...md`)
+- A reference to the blocking ticket file (e.g. `.ai/tickets/01-...md`)
 
 Or "None — self-contained" if there are no blockers.
 

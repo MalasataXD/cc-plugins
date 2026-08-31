@@ -151,35 +151,6 @@ Overall Score = (Security × 0.25) + (Performance × 0.15) + (Quality × 0.20) +
 - **30-39**: Very Poor - Major refactoring required
 - **0-29**: Critical - Code needs to be rewritten
 
-## Presentation Format
-
-When presenting the score, use this format:
-
-```
-## Code Review Score: X/100
-
-### Category Breakdown:
-- Security: X/100 (Weight: 25%)
-- Performance: X/100 (Weight: 15%)
-- Code Quality: X/100 (Weight: 20%)
-- Complexity: X/100 (Weight: 10%)
-- Style & Standards: X/100 (Weight: 10%)
-- Architecture: X/100 (Weight: 10%)
-- Documentation: X/100 (Weight: 10%)
-
-### Key Strengths:
-- [Bullet point]
-- [Bullet point]
-
-### Areas for Improvement:
-- [Bullet point with brief explanation]
-- [Bullet point with brief explanation]
-
-### Priority Issues:
-1. [Most critical issue with example]
-2. [Second most critical issue with example]
-```
-
 ## Scoring Guidelines
 
 1. **Be objective**: Base scores on observable code characteristics, not subjective preferences

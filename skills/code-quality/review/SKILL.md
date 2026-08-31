@@ -34,13 +34,13 @@ Dispatch sub-agents over **disjoint** dimensions, so one lens cannot colour anot
 - **Architecture and complexity** — the design-level lens: separation of concerns, dependency direction, and the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
 - **Spec compliance** — only when a spec or plan exists for this change (`.ai/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
 
-Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one.
+Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one. Every sub-agent prompt includes the finding block and return envelope from [finding-format.md](references/finding-format.md) verbatim, so all dimensions come back in one shape.
 
 Dispatch the three dimension agents in parallel. When spec compliance applies, dispatch it as soon as a slot frees if the environment caps concurrent sub-agents — it is the lightest of the four and never blocks the review.
 
-**Aggregate verbatim.** Present each sub-agent's findings under its own heading without reranking or merging them. Cross-contamination is the thing the split exists to prevent.
+**Aggregate verbatim.** Present each sub-agent's findings under its own heading without reranking or merging them. Cross-contamination is the thing the split exists to prevent. Verbatim covers the wording; the structure is fixed by `finding-format.md`, so aggregation is copy-through.
 
-**Tag, don't rerank.** After aggregating, give each finding one verdict: **Act on** (fix before this ships), **Consider** (worth doing, can wait), or **Noted** (an observation, no action expected). A finding a reviewer raised that turns out wrong or out of scope is **Dismissed** — kept as a one-line entry so the reader sees what was thrown out, never silently dropped. The verdict is a tag on the finding where it stands; findings keep their dimension and their reviewer's wording.
+**Tag, don't rerank.** After aggregating, give each finding one verdict: **Act on** (fix before this ships), **Consider** (worth doing, can wait), or **Noted** (an observation, no action expected). The reviewer's **Recommendation** field is its proposal; the orchestrator's verdict replaces that field and settles it. A finding a reviewer raised that turns out wrong or out of scope is **Dismissed** — kept as a one-line entry so the reader sees what was thrown out, never silently dropped. The verdict is a tag on the finding where it stands; findings keep their dimension and their reviewer's wording.
 
 ## 4. Score the standards axis
 
@@ -91,7 +91,7 @@ Report the path and the overall score to the user, so the result is both saved a
 
 ### 1. <title>
 
-**Verdict:** Act on / Consider / Noted · **Category:** … · **Where:** `path/file.ts:42`
+**Verdict:** Act on / Consider / Noted · **Category:** … · **Where:** `path/file.ts:42` · **Evidence rung:** …
 
 Why it matters, then the current shape and the suggested one — code snippets only where prose is less precise.
 

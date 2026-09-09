@@ -1,94 +1,82 @@
 ---
 name: vet-tickets
-description: Pressure-test tickets by reading each one as an implementer picking it up cold, and report what would block them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown.
+description: Read tickets cold as an implementer and report only what would stall them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown.
 ---
 
 # Vet Tickets
 
-Pressure-test a set of tickets by simulating the person who will actually implement them. For each ticket, put yourself in the shoes of an implementer who is grabbing it **cold** — no access to the conversation that produced it, only the ticket text and the codebase. Ask: *Can I tell what to build? Do I know where to start? Will I have to guess at a decision nobody made?* Then report what would trip them up.
+Read a set of tickets as the implementer who will pick them up **cold** — no access to the conversation that produced them, only the ticket text, what it points at, and the codebase. The one question per ticket: *where would I stall?* A **stall** is the moment the implementer must guess at a decision the author knew. Everything else is healthy exploration, and healthy exploration is not a finding.
 
-This is **read-only**. Do NOT edit, annotate, or rewrite the tickets. Do NOT write a report file. Present every finding directly in the conversation. The user fixes the tickets themselves — your job is to surface the gaps, not to paper over them by inventing answers.
+This is **read-only**. Do NOT edit or annotate the tickets. Do NOT write a report file. Present the findings directly in the conversation; the caller decides what to do with them.
 
 ## Process
 
 ### 1. Locate the tickets
 
-Work out which tickets to vet:
-
 1. If the user passes a path or glob (a single ticket file, a folder, or a pattern), use that.
-2. Otherwise default to `.ai/tickets/` at the repository root.
-3. If no tickets are found, say so and stop — there is nothing to vet.
+2. Otherwise use `<work folder>/tickets/`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
+3. If no tickets are found, say so and stop.
 
-Read the full body of every ticket in scope before judging any of them. The cross-ticket checks in step 4 need the whole set in view.
+Tickets carry their phase as a `[P<x>]` title prefix and their Type, Category, and Status as header lines under the title.
 
-### 2. Explore the codebase (lightly)
+### 2. Find the stall, one ticket at a time
 
-Skim the codebase enough to judge whether a ticket's "where do I start" is *answerable from the code* or genuinely *missing*. Name things the way `CONTEXT.md` names them so your findings speak the same language as the tickets — see the `domain-modeling` skill. You are not implementing anything — just calibrating what a competent implementer could reasonably figure out on their own.
+Take the tickets **one by one**, the way an implementer picks them up. For each: read the ticket, follow only what it points at — its `Blocked by` tickets and its `Parent` spec — walk the checklist, and write the verdict down before opening the next ticket. A ticket is judged on what it and its references say, never on what a sibling you happened to read earlier said.
 
-### 3. Vet each ticket through an implementer's eyes
+Skim the codebase only far enough to answer one question per ticket: is the area this touches identifiable from the ticket's vocabulary and the existing seams? Stop there. Quoting file paths and line numbers back means the implementer would have found them too.
 
-For each ticket, walk the checklist below. The goal is to find the moment an implementer would **stall** — the first question they cannot answer from the ticket plus the codebase.
+Stop at the **first** stall. One finding per ticket; a second stall is found by the implementer once the first is fixed.
 
-<implementer-checklist>
-- **Goal clarity** — Can I state, in one sentence, what "done" looks like? Or is the intent ambiguous?
-- **Starting point** — Do I know where to begin? The ticket need not name files (it shouldn't), but the area should be identifiable from domain vocabulary, existing seams, or the codebase. If I'd have to guess *which* part of the system this even touches, that's a gap.
-- **Acceptance criteria** — Are the criteria concrete and verifiable, or vague ("works well", "handles errors")? Could two implementers disagree on whether a criterion is met?
-- **Scope boundaries** — Do I know what is explicitly NOT in this slice? Where is the risk of scope creep?
-- **Undecided decisions** — Is there a choice the ticket assumes is made but never states (a data shape, an edge-case behavior, a UX detail)? These are the dangerous ones: an implementer will silently guess and may guess wrong.
-- **Self-containedness & dependencies** — Can this actually be started alone? If it declares a blocker, does the blocker exist and come first? If it declares none, is that true?
-- **Verifiability** — Could the implementer demo or test this slice on its own, as the tracer-bullet model intends?
-</implementer-checklist>
+<stall-checklist>
+- **Done** — can I state in one sentence what "done" looks like? A `What to build` of a single sentence that names a feature but not its end-to-end behavior is a stall.
+- **Start** — can I tell which part of the system this touches? Naming files is not the ticket's job; naming the area is.
+- **Criteria** — could two implementers disagree on whether an acceptance criterion is met?
+- **Decisions** — is there a choice the ticket assumes is made but never states — a data shape, an edge-case behavior, a UX detail — that I would have to invent?
+- **Verification** — could I test or demo this ticket on its own?
+</stall-checklist>
 
-<signal-vs-noise>
-Distinguish a **genuine gap** from **healthy exploration**:
+<not-a-finding>
+Report a stall only when the implementer would have to **guess**. When they would only have to **look** or **read**, the ticket holds:
 
-- A genuine gap is a decision nobody made that the implementer must invent to proceed (e.g. "what happens when the balance is negative?" with no answer anywhere). Flag these — unless a Research, Decision, or Prototype-category ticket in the set already owns that question and the slice blocks on it; then the breakdown has handled it, and the finding would be noise.
-- Healthy exploration is work the implementer is *supposed* to do — reading the code to find the right function, choosing a variable name, picking an obvious idiom. Do NOT flag these. Tickets that avoid file paths and code snippets are following the `to-tickets` design on purpose; needing to read the code is not a defect.
+- Wording you would have phrased differently, or a sentence that would be nice to add.
+- A term defined in another ticket of the set, in the spec, or in `CONTEXT.md`.
+- Anything answerable by reading the code: the right function, an idiom, a name.
+- A question that a Research or Decision ticket in the set already owns, when this ticket is blocked by it.
+</not-a-finding>
 
-When in doubt, ask: *would a competent implementer have to guess at something the author actually knew?* If yes, it's a gap. If they'd just have to look, it's fine.
-</signal-vs-noise>
+Verdict per ticket, one of two:
 
-Give each ticket a one-word **verdict**:
+- **Ready** — no stall. Ready tickets get their table row and nothing else.
+- **Blocked** — one stall, quoted against the ticket, with the question whose answer removes it. Pose the question; never answer it.
 
-- **Ready** — an implementer could pick this up and start with no clarification.
-- **Needs work** — implementable, but they'd hit one or more questions worth resolving first.
-- **Blocked** — they could not meaningfully start; a core decision or dependency is missing.
+### 3. Check the set
 
-### 4. Check the set as a whole
+With every verdict recorded, read the whole set together and check the breakdown as a whole:
 
-After the per-ticket pass, look across all tickets:
+- **Phases** — does each phase end in a state that can be verified or demoed once its tickets complete?
+- **Blockers** — does every `Blocked by` name a ticket that exists in the same phase? Do two unblocked tickets in one phase touch the same code?
+- **Coverage** — is there a step between tickets that nobody owns?
+- **Overlap** — do two tickets claim the same work?
 
-- **Dependency sanity** — Are there cycles? Does anything depend on a ticket that does not exist? Is the ordering coherent?
-- **Coverage gaps** — Does the plan have an obvious hole between tickets (a step everyone assumes someone else owns)?
-- **Overlap** — Do two tickets claim the same work, risking a collision?
-- **Granularity drift** — Is one ticket a thin slice while another secretly bundles five?
+### 4. Report
 
-### 5. Report the findings directly
-
-Present everything in the conversation using the format below. Be specific: quote the ticket, name the exact question an implementer would ask, and suggest concretely how the author could resolve it — **as a question to answer or a sentence to add, never as a decision you invent for them.** Lead with the verdict so the state of the breakdown is clear at a glance.
+Lead with the table so the state of the set is clear at a glance. Be specific: quote the ticket and name the exact question.
 
 <output-format>
-## Ticket vet: <scope, e.g. .ai/tickets/ (5 tickets)>
+## Ticket vet: <scope> (<n> tickets)
 
 | Ticket | Verdict |
 | --- | --- |
-| 01-account-balance-endpoint.md | Ready |
-| 02-balance-display.md | Needs work |
-| 03-... | Blocked |
+| 1-1-account-balance-endpoint.md | Ready |
+| 1-2-balance-display.md | Blocked |
 
-### 01-account-balance-endpoint.md — Ready
-Brief note on why it holds up. Skip the detail subsections when a ticket is clean.
-
-### 02-balance-display.md — Needs work
-- **Where they'd stall:** the first question an implementer hits, quoted against the ticket.
-- **Gap:** what decision is missing or what criterion is too vague.
-- **Suggested fix:** the question the author should answer, or the sentence to add. Do not answer it yourself.
+### 1-2-balance-display.md — Blocked
+- **Stall:** the first question the implementer hits, quoted against the ticket.
+- **Question for the author:** the decision that removes it.
 
 ### Across the set
-- Dependency, coverage, overlap, or granularity findings — or "No cross-ticket problems found."
+Phase, blocker, coverage, or overlap findings — or "No cross-ticket problems found."
 
 ### Bottom line
-One or two sentences: is this breakdown ready to hand off, and what is the highest-leverage thing to fix first?
+One sentence: ready to hand off, or the one thing to fix first.
 </output-format>
-
-Do NOT modify any ticket file. Do NOT write the report to disk.

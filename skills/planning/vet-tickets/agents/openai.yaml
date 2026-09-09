@@ -1,3 +1,3 @@
 interface:
   display_name: "Vet Tickets"
-  short_description: "Pressure-test tickets by reading each one as an implementer picking it up cold, and report what would block them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown."
+  short_description: "Read tickets cold as an implementer and report only what would stall them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown."

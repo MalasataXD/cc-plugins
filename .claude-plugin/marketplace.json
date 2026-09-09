@@ -5,35 +5,32 @@
     "url": "https://github.com/MalasataXD"
   },
   "metadata": {
-    "description": "Personal skill set: an interview-driven planning-to-commit pipeline with reasoning, planning, code-quality and workflow skills."
+    "description": "Personal skill set: an interview-driven planning-to-PR pipeline with reasoning, planning, code-quality, workflow and git skills."
   },
   "plugins": [
     {
       "name": "reasoning",
       "source": "./",
-      "description": "Resolve uncertainty — interviews, personas, domain language, research, prototypes.",
+      "description": "Resolve uncertainty — interviews, domain language, research, prototypes.",
       "skills": [
         "./skills/reasoning/grilling",
         "./skills/reasoning/grill-me",
         "./skills/reasoning/batch-grill-me",
-        "./skills/reasoning/think-like",
         "./skills/reasoning/domain-modeling",
         "./skills/reasoning/research",
         "./skills/reasoning/prototype",
-        "./skills/reasoning/zoom-out",
         "./skills/reasoning/complexity"
       ]
     },
     {
       "name": "planning",
       "source": "./",
-      "description": "Produce the breakdown — maps, specs, tickets, questionnaires.",
+      "description": "Produce the breakdown — maps, specs, tickets.",
       "skills": [
         "./skills/planning/wayfinder",
         "./skills/planning/to-spec",
         "./skills/planning/to-tickets",
-        "./skills/planning/vet-tickets",
-        "./skills/planning/to-questionnaire"
+        "./skills/planning/vet-tickets"
       ]
     },
     {
@@ -55,29 +52,39 @@
       "name": "learning",
       "source": "./",
       "description": "Learn beyond the codebase — a stateful tutor with missions, lessons and learning records.",
-      "skills": ["./skills/learning/teach"]
+      "skills": [
+        "./skills/learning/teach"
+      ]
     },
     {
       "name": "utility",
       "source": "./",
-      "description": "Maintain the toolset itself — writing for agents, prose polish for humans.",
+      "description": "Maintain the toolset and the conversation — writing for agents, prose polish, re-pitches, human walkthroughs.",
       "skills": [
         "./skills/utility/writing-for-agents",
-        "./skills/utility/unslop"
+        "./skills/utility/unslop",
+        "./skills/utility/wait-what",
+        "./skills/utility/wizard"
       ]
     },
     {
       "name": "workflow",
       "source": "./",
-      "description": "Move the work — pick tickets, build, verify, commit, hand off.",
+      "description": "Move the work — pick tickets, build, verify, hand off.",
       "skills": [
         "./skills/workflow/next-ticket",
         "./skills/workflow/implement",
         "./skills/workflow/complete-ticket",
-        "./skills/workflow/commit",
-        "./skills/workflow/handoff",
-        "./skills/workflow/wait-what",
-        "./skills/workflow/wizard"
+        "./skills/workflow/handoff"
+      ]
+    },
+    {
+      "name": "git",
+      "source": "./",
+      "description": "Ship the work — commits and pull requests in the house style.",
+      "skills": [
+        "./skills/git/commit",
+        "./skills/git/file-pr"
       ]
     }
   ]

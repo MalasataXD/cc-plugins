@@ -23,7 +23,7 @@ group. Skills trigger on natural phrasing
 ## The pipeline
 
 ```
-grilling ──┬→ to-spec → to-tickets → next-ticket → implement → complete-ticket → commit
+grilling ──┬→ to-spec → to-tickets → next-ticket → implement → complete-ticket → commit → file-pr
 wayfinder ─┘                 │                          │
                         vet-tickets           tdd → simplify → review
 ```
@@ -34,9 +34,9 @@ and gates the commit. Two ideas run through it:
 
 - **Two front doors.** `grilling` stress-tests an idea that fits one session;
   `wayfinder` charts one that doesn't, then hands the cleared route to `to-spec`.
-- **Every ticket has a Category** — `Build` (default), `Research`, `Decision`,
-  or `Prototype`. The last three are open questions split out of the build,
-  resolved by the `research`, `grilling`, and `prototype` skills.
+- **Every ticket has a Category** — `Build` (default), `Research`, or
+  `Decision`. The last two are open questions split out of the build,
+  resolved by the `research` and `grilling` skills.
 
 ## Skills
 
@@ -47,28 +47,25 @@ Categories are folders only — skills install with bare names regardless.
 | `grilling` | The interview primitive — walk a design tree to its frontier |
 | `grill-me` | Grilling, one question at a time |
 | `batch-grill-me` | Grilling, rounds of 3–5 questions |
-| `think-like` | Reason as an expert persona, from an editable library |
 | `domain-modeling` | One term, one meaning — `CONTEXT.md` and ADRs |
-| `research` | Background agent reads primary sources → `.ai/research/` |
+| `research` | Background agent reads primary sources → `<work folder>/research/` |
 | `prototype` | Throwaway code that answers a design question |
-| `zoom-out` | Map the modules and callers around unfamiliar code |
 | `complexity` | Ousterhout's complexity model — the ledger plans answer to |
 
 | `planning` — produce the breakdown | |
 | --- | --- |
-| `wayfinder` | Chart a big effort as decision tickets → `.ai/wayfinder/` |
-| `to-spec` | Current context → spec → `.ai/specs/` |
-| `to-tickets` | Spec → vertical-slice tickets → `.ai/tickets/` |
-| `vet-tickets` | Read tickets cold; report what would block an implementer |
-| `to-questionnaire` | Questions for someone else → `.ai/questionnaires/` |
+| `wayfinder` | Chart a big effort as decision tickets → `<work folder>/wayfinder/` |
+| `to-spec` | Current context → compact spec → `<work folder>/specs/` |
+| `to-tickets` | Spec → phases of compact tickets → `<work folder>/tickets/` |
+| `vet-tickets` | Read tickets cold; report only what would stall an implementer |
 
 | `code-quality` — judge and refine code | |
 | --- | --- |
-| `review` | Two-axis review, scored 0–100 → `.ai/reviews/` |
+| `review` | Two-axis review, scored 0–100 → `<work folder>/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
 | `codebase-design` | Deep-module vocabulary — interfaces, seams, adapters, depth |
-| `improve-codebase-architecture` | Find deepening candidates → HTML report → `.ai/architecture/` |
+| `improve-codebase-architecture` | Find deepening candidates → HTML report → `<work folder>/architecture/` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
@@ -80,27 +77,32 @@ Categories are folders only — skills install with bare names regardless.
 | `utility` — maintain the toolset | |
 | --- | --- |
 | `writing-for-agents` | Reference for writing any document an agent consumes — skills, `CLAUDE.md`, pointed-at docs |
-| `unslop` | Final prose pass for anything a human reads — specs, reviews, research findings |
+| `unslop` | Final prose pass for anything a human reads — specs, reviews, PR bodies |
+| `wait-what` | Re-pitch the last message, simply |
+| `wizard` | Interactive bash walkthrough for steps only a human can do |
 
 | `workflow` — move the work | |
 | --- | --- |
 | `next-ticket` | Pick and plan the next open ticket, then wait for approval |
-| `implement` | Build approved work: `tdd` → `simplify` → `review` |
+| `implement` | Build approved work: `tdd` where a seam exists → `simplify` → `review` when big |
 | `complete-ticket` | Judge a ticket against its criteria; offer the `commit` |
+| `handoff` | Compact the session for the next agent → `<work folder>/handoff.md` |
+
+| `git` — ship the work | |
+| --- | --- |
 | `commit` | Structured commits with imperative titles |
-| `handoff` | Compact the session for the next agent → `.ai/handoff.md` |
-| `wait-what` | Re-pitch the last message, simply |
-| `wizard` | Interactive bash walkthrough for steps only a human can do |
+| `file-pr` | Open a PR with a changelog body written from the diff |
 
 ## Archived
 
-Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows) and
-`grill-with-docs` (superseded by `grilling` + `domain-modeling`).
+Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
+`grill-with-docs` (superseded by `grilling` + `domain-modeling`), `think-like`,
+`zoom-out` and `to-questionnaire` (unused).
 
 ## Credits
 
 Several skills are taken or adapted from
 [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) — see each
-skill's history. The composition — local-file outputs under `.ai/`, scored
+skill's history. The composition — local-file outputs under a project work folder, scored
 reviews, the RFA/RFH and Category axes, and the ticket pipeline — is this
 repo's own.

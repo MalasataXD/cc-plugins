@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work.
 
-Save it to `.ai/handoff.md` at the repository root, reusing the `.ai/` folder if it exists and creating it otherwise. There is exactly one handoff file and it is **overwritten** each time — the next agent needs one known path to read, not a folder to search. A handoff describes a moment, so a stale one is worth less than the one replacing it.
+Save it to `<work folder>/handoff.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. There is exactly one handoff file and it is **overwritten** each time — the next agent needs one known path to read, not a folder to search. A handoff describes a moment, so a stale one is worth less than the one replacing it.
 
 Open the document with this standing header, addressed to the agent reading it (fill in the date and commit):
 

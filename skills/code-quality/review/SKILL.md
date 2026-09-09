@@ -1,6 +1,6 @@
 ---
 name: review
-description: Multi-dimension code review written to .ai/reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved.
+description: Multi-dimension code review written to the work folder's reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved.
 ---
 
 # Code Review
@@ -32,7 +32,7 @@ Dispatch sub-agents over **disjoint** dimensions, so one lens cannot colour anot
 - **Security and performance** — the `security-checklist.md` sweep, algorithmic cost, resource handling, N+1s, caching that is missing or wrong.
 - **Quality, style and documentation** — the code-level lens: the `code-smells` baseline, naming, project conventions, and whether public interfaces are documented.
 - **Architecture and complexity** — the design-level lens: separation of concerns, dependency direction, and the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
-- **Spec compliance** — only when a spec or plan exists for this change (`.ai/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
+- **Spec compliance** — only when a spec or plan exists for this change (`<work folder>/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
 
 Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one. Every sub-agent prompt includes the finding block and return envelope from [finding-format.md](references/finding-format.md) verbatim, so all dimensions come back in one shape.
 
@@ -54,9 +54,8 @@ The spec axis stays out of the score. It reports its own verdict — **Met**, **
 
 Write the report to a local markdown file — never to an external tracker. Pass its prose through the `unslop` skill before saving; findings keep their reviewer's wording, the connective prose around them gets the pass.
 
-1. Find `.ai/` at the repository root; reuse it or create it.
-2. Reviews go in `.ai/reviews/`; reuse or create.
-3. Name it with the date and a kebab-case slug of what was reviewed, e.g. `.ai/reviews/2026-06-02-auth-service.md`. The date prefix keeps a history across re-reviews. Confirm before overwriting an existing file.
+1. Reviews go in `<work folder>/reviews/`; create the folder if it is missing. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
+2. Name it with the date and a kebab-case slug of what was reviewed, e.g. `reviews/2026-06-02-auth-service.md`. The date prefix keeps a history across re-reviews. Confirm before overwriting an existing file.
 
 Report the path and the overall score to the user, so the result is both saved and visible at a glance.
 

@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Turn the current conversation context into a spec and save it as a local markdown file under .ai/specs/. Use when the user wants to create a spec from the current context.
+description: Turn the current conversation context into a compact spec. Use when the user wants to create a spec.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec as a local markdown file. Do NOT interview the user — just synthesize what you already know.
@@ -15,63 +15,29 @@ This skill takes the current conversation context and codebase understanding and
 
 3. Run each implementation decision through the ledger in the `complexity` skill — every new module, dependency, config option, and special case must name what pays for it before it goes in the spec.
 
-4. Write the spec using the template below and pass its prose through the `unslop` skill, then save it as a local markdown file (see [Output location](#output-location)). Confirm the path to the user once written.
-
-## Output location
-
-Specs are written as local markdown files only — never published to an external tracker.
-
-1. Find the `.ai/` folder. It lives at the repository root. If one already exists, reuse it. Otherwise create it.
-2. Inside `.ai/`, specs always go in `.ai/specs/`. Reuse the folder if it exists, otherwise create it.
-3. Name the file with a short kebab-case slug derived from the feature, e.g. `.ai/specs/account-balance-display.md`. If a file with that name already exists, confirm with the user before overwriting.
+4. Write the spec using the template below and pass its prose through the `unslop` skill, then save it to `<work folder>/specs/<slug>.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. The slug is short kebab-case derived from the feature, e.g. `specs/account-balance-display.md`; if that file already exists, confirm with the user before overwriting. Confirm the path to the user once written.
 
 ## Spec template
 
+The spec is read by agents building the feature, so it carries decisions, not narrative. Every section is a short paragraph or a bullet list; a spec that runs past a screen or two is carrying something the tickets should carry instead.
+
 <spec-template>
 
-## Problem Statement
+## Goal
 
-The problem that the user is facing, from the user's perspective.
+One paragraph: what is wrong or missing today, and what is true once this ships.
 
-## Solution
+## Decisions
 
-The solution to the problem, from the user's perspective.
-
-## User Stories
-
-A LONG, numbered list of user stories. Each user story should be in the format of:
-
-1. As an <actor>, I want a <feature>, so that <benefit>
-
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
-
-This list of user stories should be extremely extensive and cover all aspects of the feature.
-
-## Implementation Decisions
-
-A list of implementation decisions that were made. This can include:
-
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
+One bullet per decision, stating the decision and why it beat the alternative. Cover the modules built or modified and their interfaces, schema changes, API contracts, architectural choices, and any clarification the developer gave. Each new module, dependency, config option, or special case names what pays for it.
 
 Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
 
 Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
 
-## Testing Decisions
+## Testing
 
-A list of testing decisions that were made. Include:
-
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
+The seam the feature is tested at, what a good test there looks like (external behavior only, never implementation details), and prior art for such tests in the codebase.
 
 ## Required Research
 
@@ -79,10 +45,6 @@ Questions that must be answered from primary sources — official docs, third-pa
 
 ## Out of Scope
 
-A description of the things that are out of scope for this spec.
-
-## Further Notes
-
-Any further notes about the feature.
+Bullets naming what this spec deliberately leaves out.
 
 </spec-template>

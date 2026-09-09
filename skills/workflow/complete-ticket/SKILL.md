@@ -1,27 +1,25 @@
 ---
 name: complete-ticket
-description: Check a ticket's changes against its acceptance criteria and report what remains. Use when the user thinks a ticket is finished and wants to confirm it is actually complete.
+description: Check a ticket's changes against its acceptance criteria. Use when the user thinks a ticket is finished and wants to confirm it.
 ---
 
 # Complete Ticket
 
-Check whether the work done for a ticket actually satisfies it. Walk each acceptance criterion against the real changes, and report — honestly — what is done, what is partial, and what is still missing. The goal is a trustworthy answer to "is this ticket finished?", not a rubber stamp.
+Check whether the work done for a ticket actually satisfies it. Walk each acceptance criterion against the real changes and report what is met and what is not. The goal is a trustworthy answer to "is this ticket finished?", not a rubber stamp.
 
 This judges a **ticket** against its criteria; `handoff` transfers a **conversation** to another agent. Reach for that one instead when the work is unfinished and someone else is picking it up.
 
-This is **read-only by default**. Assess and report first. Do NOT edit the ticket, tick criteria, or change its status as part of the assessment. Only after presenting the state and getting the user's confirmation may you record completion (see step 5). Never invent evidence: if you cannot see that a criterion is met, it is not met.
+Never invent evidence: if you cannot see that a criterion is met, it is not met.
 
 ## Process
 
 ### 1. Identify the ticket
 
-Work out which ticket is being verified:
-
 1. If the user names a specific ticket file, use it.
-2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `.ai/tickets/`.
+2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `<work folder>/tickets/`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 3. If it is still ambiguous — several open tickets, no clear signal — ask which one to check rather than guessing.
 
-Read the full ticket: `Type`, `Category`, `What to build`, `Acceptance criteria`, `Blocked by`, and any `Parent`. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `.ai/research/`; a Decision ticket's is the recorded outcome (and ADR, if one was warranted); a Prototype ticket's is the verdict and the captured prototype pointer.
+Read the full ticket: the `Type`, `Category`, and `Status` lines under the title, `What to build`, `Acceptance criteria`, `Blocked by`, and the `Parent` spec. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `<work folder>/research/`; a Decision ticket's is the recorded outcome, and the ADR if one was warranted.
 
 ### 2. Dispatch a cold read
 
@@ -31,49 +29,45 @@ The sub-agent surveys what was really done, not what was intended: the working t
 
 ### 3. Judge each acceptance criterion
 
-The sub-agent assigns every criterion in the ticket one state, backed with concrete evidence. Evidence is graded on the `prove-it` ladder, and the rung is stated in the report:
+The sub-agent gives every criterion one of two states, backed with concrete evidence graded on the `prove-it` ladder, the rung stated in the report:
 
-- **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it. A behavioral criterion is Met only at **Ran it** or higher — cited or walked-through evidence for behavior grades as Partial (the proof is missing, not the work) or Unverifiable.
-- **Partial** — started but incomplete, or met only for the happy path. Say exactly what is missing.
-- **Not met** — no evidence it was addressed.
-- **Unverifiable** — you cannot confirm it from here (needs a manual step, an environment you lack, a human judgment). Say what would verify it.
+- **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it. A behavioral criterion is Met only at **Ran it** or higher.
+- **Not met** — anything short of that. Say what is missing: the work itself, the error path, or the proof — when a criterion cannot be verified from here (a manual step, an environment you lack, a human judgment), it is Not met, and the evidence column names what would verify it.
 
-It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the slice's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship? For anything risky the criteria don't cover, name the safety fact from `prove-it` — the one fact the change is safe because of — and the rung it reached.
+It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the ticket's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship? For anything risky the criteria don't cover, name the safety fact from `prove-it` — the one fact the change is safe because of — and the rung it reached.
 
-### 4. Report the state directly
+### 4. Report the state
 
-Present the sub-agent's assessment in the conversation using the format below, without softening its verdicts — the cold read is the point. Lead with a clear verdict so the answer to "is it done?" is visible immediately.
+Present the sub-agent's assessment in the conversation using the format below, without softening its verdicts — the cold read is the point.
 
 <output-format>
 ## Ticket check: <filename> — <title>
 
-**Verdict:** Complete / Almost there / Not done — one line.
-**Type:** RFA / RFH · **Category:** Build / Research / Decision / Prototype · **Current status:** In progress
+**Verdict:** Complete / Not done — one line.
+**Type:** RFA / RFH · **Category:** Build / Research / Decision
 
 ### Acceptance criteria
 | Criterion | State | Evidence / what's missing |
 | --- | --- | --- |
-| Criterion 1 | Met | `path/thing.ts` does X; covered by `thing.test.ts` (Ran it) |
-| Criterion 2 | Partial | happy path done; error case in <area> not handled |
-| Criterion 3 | Not met | no change addresses this |
+| C1 | Met | `path/thing.ts` does X; covered by `thing.test.ts` (Ran it) |
+| C2 | Not met | happy path done; error case in <area> not handled |
+| C3 | Not met | needs a manual check of <thing>; no change addresses it |
 
 ### What's left to finish
-- The concrete, ordered remaining work — or "Nothing; all criteria met." Frame each as an actionable step.
+- The concrete, ordered remaining work — or "Nothing; all criteria met."
 
 ### Beyond the checklist
 - Scope drift, missing tests, regressions, or loose ends — or "None spotted."
 </output-format>
 
-### 5. Offer to record completion
+### 5. Record the verdict
 
-After presenting the state, offer to update the ticket file — and do it only if the user confirms:
+The verdict is **Complete** only when every criterion is Met. Then tick every `- [ ]` acceptance box and set the `Status` line to `Completed` — that records what the report already said, and it is the only edit made to the ticket. The parent spec is never modified.
 
-- If every criterion is **Met**, offer to tick the `- [ ]` acceptance boxes and move `## Status` to `Completed`.
-- If some criteria are met and others are not, offer to tick only the verified boxes and leave the status as `In progress`.
-- If little is done, record nothing — just report.
+If the ticket was the last open one in its phase (the `[P<x>]` title prefix; the other tickets of the phase sit beside it), say so and name the phase's verifiable state from the spec's `## Phases` map: this is the moment the user can check the feature end to end.
 
-Apply only the edits the user approves: tick the agreed boxes and set the agreed status. Make no other changes to the ticket, and never modify the parent source.
+On **Not done**, change nothing and leave the report as the answer.
 
 ### 6. Offer to commit
 
-When every criterion is **Met** and the working tree still holds uncommitted changes from the ticket, offer to finish with the `commit` skill — a separate confirmation from recording completion, never bundled into it. Skip the offer when the verdict is anything short of complete, or the tree is already clean.
+When the verdict is Complete and the working tree still holds uncommitted changes from the ticket, ask once whether to finish with the `commit` skill. Skip the question when the tree is already clean.

@@ -84,7 +84,8 @@
       "description": "Ship the work — commits and pull requests in the house style.",
       "skills": [
         "./skills/git/commit",
-        "./skills/git/file-pr"
+        "./skills/git/file-pr",
+        "./skills/git/github-attribution"
       ]
     }
   ]

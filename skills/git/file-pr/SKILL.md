@@ -5,7 +5,7 @@ description: Open a pull request in the house style, with a changelog body writt
 
 # File PR
 
-Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation; the commit skill's rule applies here too — no "Generated with" or "Co-Authored-By" lines anywhere.
+Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation. It closes with the note from the `github-attribution` skill, and carries no other attribution — no "Generated with" or "Co-Authored-By" lines.
 
 ## Process
 
@@ -49,6 +49,7 @@ The Verification section states only what was actually run at the branch head, w
 - Each bullet is one **entry**: it opens with a past-tense verb (Added, Routed, Removed, Replaced, Migrated, Extended, Regenerated), names the real identifier in backticks, and ends with the reason or the consequence when either is not obvious. One change per entry; a change that needs a paragraph is two entries.
 - Renames as `old` → `new`. Numbers where they change what the reviewer does: test counts, caps, line reductions.
 - **Testing** lists the coverage the PR adds; **Verification** lists what was run and its result. They are different sections. **Breaking changes for clients** appears only when there are some.
+- The attribution note from the `github-attribution` skill closes the body.
 
 <pr-template>
 
@@ -74,6 +75,9 @@ This pull request <establishes / adds / replaces> … . <Second sentence: the sh
 **Verification**
 - `<command>` at the branch head: <result, with counts>.
 - What was not exercised, and what a reviewer should click through.
+
+> [!NOTE]
+> Filed by <model name> on behalf of <name>.
 
 </pr-template>
 

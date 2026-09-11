@@ -1,0 +1,3 @@
+interface:
+  display_name: "GitHub attribution"
+  short_description: "The attribution note that closes every write to GitHub — a PR body, a PR or issue comment, a review, an issue. Use before running any `gh` command that creates or edits text on GitHub, or when another skill needs the note."

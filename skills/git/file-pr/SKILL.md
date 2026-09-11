@@ -5,7 +5,7 @@ description: Open a pull request in the house style, with a changelog body writt
 
 # File PR
 
-Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation. It closes with the note from the `github-attribution` skill, and carries no other attribution — no "Generated with" or "Co-Authored-By" lines.
+Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation. It opens with the note from the `github-attribution` skill, and carries no other attribution — no "Generated with" or "Co-Authored-By" lines.
 
 ## Process
 
@@ -44,14 +44,17 @@ The Verification section states only what was actually run at the branch head, w
 
 **Body:** a changelog, not an essay. Follow the template:
 
+- The attribution note from the `github-attribution` skill opens the body, before the stacked blockquote when there is one.
 - An opening paragraph of two or three sentences on what the PR establishes, in present tense ("This pull request adds…"), closing with "The most important changes are:".
 - Groups as bold headings, named by the thing they change — a rule, a seam, a tool, a contract, a setup step.
 - Each bullet is one **entry**: it opens with a past-tense verb (Added, Routed, Removed, Replaced, Migrated, Extended, Regenerated), names the real identifier in backticks, and ends with the reason or the consequence when either is not obvious. One change per entry; a change that needs a paragraph is two entries.
 - Renames as `old` → `new`. Numbers where they change what the reviewer does: test counts, caps, line reductions.
 - **Testing** lists the coverage the PR adds; **Verification** lists what was run and its result. They are different sections. **Breaking changes for clients** appears only when there are some.
-- The attribution note from the `github-attribution` skill closes the body.
 
 <pr-template>
+
+> [!NOTE]
+> Filed by <model name> on behalf of <name>.
 
 > Stacked on #<n> (`<head of #n>`). Merge that first; this PR only contains the commits on top of it.
 
@@ -75,9 +78,6 @@ This pull request <establishes / adds / replaces> … . <Second sentence: the sh
 **Verification**
 - `<command>` at the branch head: <result, with counts>.
 - What was not exercised, and what a reviewer should click through.
-
-> [!NOTE]
-> Filed by <model name> on behalf of <name>.
 
 </pr-template>
 

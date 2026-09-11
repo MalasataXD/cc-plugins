@@ -92,7 +92,7 @@ Categories are folders only — skills install with bare names regardless.
 | --- | --- |
 | `commit` | Structured commits with imperative titles |
 | `file-pr` | Open a PR with a changelog body written from the diff |
-| `github-attribution` | The "Filed by <model name> on behalf of <name>" note that closes every GitHub write |
+| `github-attribution` | The "Filed by <model name> on behalf of <name>" note that opens every GitHub write |
 
 ## Archived
 

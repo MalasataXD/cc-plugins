@@ -1,5 +1,5 @@
 interface:
   display_name: "Wayfinder"
-  short_description: "Plan work too big for one grilling session as a map of decision tickets under the work folder's wayfinder/, resolved one at a time."
+  short_description: "Use when an effort is too big for one spec, or to continue an existing wayfinder map."
 policy:
   allow_implicit_invocation: false

@@ -11,4 +11,4 @@ Its job:
 2. Write the findings to a single Markdown file, citing each claim's source, and pass the prose through the `unslop` skill before saving.
 3. Save it to `<work folder>/research/<slug>.md` (kebab-case slug from the question; create the folder if missing) and report the path. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 
-When the research resolves a ticket — a Research-category ticket from `to-tickets`, or a research ticket on a `wayfinder` map — link the findings file from that ticket rather than pasting the content in.
+When the research resolves a Research-category ticket from `to-tickets`, link the findings file from that ticket rather than pasting the content in.

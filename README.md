@@ -33,7 +33,7 @@ Each stage stops where the next begins, and nothing grades its own work:
 and gates the commit. Two ideas run through it:
 
 - **Two front doors.** `grilling` stress-tests an idea that fits one session;
-  `wayfinder` charts one that doesn't, then hands the cleared route to `to-spec`.
+  `wayfinder` charts one that doesn't as a route of pitches, grilling each into a spec in turn.
 - **Every ticket has a Category** — `Build` (default), `Research`, or
   `Decision`. The last two are open questions split out of the build,
   resolved by the `research` and `grilling` skills.
@@ -54,7 +54,7 @@ Categories are folders only — skills install with bare names regardless.
 
 | `planning` — produce the breakdown | |
 | --- | --- |
-| `wayfinder` | Chart a big effort as decision tickets → `<work folder>/wayfinder/` |
+| `wayfinder` | Chart a big effort as a route of pitches → specs → `<work folder>/wayfinder/` |
 | `to-spec` | Current context → compact spec → `<work folder>/specs/` |
 | `to-tickets` | Spec → phases of compact tickets → `<work folder>/tickets/` |
 | `vet-tickets` | Read tickets cold; report only what would stall an implementer |

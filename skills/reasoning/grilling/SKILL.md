@@ -13,14 +13,9 @@ For every question, give your recommended answer.
 
 The session is done when the frontier is empty: every branch visited, nothing left silently assumed. Hold off on acting until the user confirms you have reached that shared understanding.
 
-## Cadence
+## Rounds
 
-Two ways to walk the tree. **Serial** is the default; use **batch** when the caller asks for it.
-
-- **Serial** — one question at a time, waiting for the answer before the next. Deepest resolution per question, and the user can redirect at any point.
-- **Batch** — a numbered round of questions at once, each with a recommended answer; wait for the round's answers before recomputing the frontier. Fewer turns over a wide tree. A question that depends on another still open in this round belongs to a *later* round.
-
-### Batch rounds
+Walk the tree in rounds: a numbered set of questions at once, each with a recommended answer. Wait for the round's answers before recomputing the frontier. A question that depends on another still open in this round belongs to a *later* round.
 
 Cap each round at **3–5 questions** — a round has to fit in the user's head, not exhaust the tree. When the frontier is wider than that, ask the 3–5 questions that unblock the most downstream decisions and hold the rest for later rounds; they are not lost, the frontier is recomputed every round.
 
@@ -36,7 +31,7 @@ Format every question in the round like so:
 
 When a question needs a fact from the environment, find it — explore the codebase, read the files, run the tools — rather than asking the user for something you could look up.
 
-In batch cadence, dispatch a sub-agent for the lookup and keep going: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait. Ask the rest of the frontier now.
+Dispatch a sub-agent for the lookup and keep going: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait. Ask the rest of the frontier now.
 
 The decisions stay the user's. Put each one to them and wait.
 

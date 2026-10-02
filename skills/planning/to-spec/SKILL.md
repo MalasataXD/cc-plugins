@@ -41,7 +41,7 @@ The seam the feature is tested at, what a good test there looks like (external b
 
 ## Required Research
 
-Questions that must be answered from primary sources — official docs, third-party APIs, specs — before dependent work can be built. One bullet per question, each naming the decision that waits on its answer. When the spec is broken down, `to-tickets` turns each into a **Research**-category ticket resolved by the `research` skill. Omit this section when there is none.
+Questions that must be answered from primary sources — official docs, third-party APIs, specs — before dependent work can be built. One bullet per question, each naming the decision that waits on its answer. When the spec is broken down, `to-tickets` answers each with the `research` skill before writing any ticket. Omit this section when there is none.
 
 ## Out of Scope
 

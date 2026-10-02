@@ -52,7 +52,7 @@ When a pitch becomes a spec, its text goes and the entry collapses to name, stat
 
 **A spec ends where a decision can only be made after earlier work has landed.** A question you can't answer until you've seen something built belongs to a later pitch, whose **Waits on** names that work. This is what cuts the route into specs; the ticket count never does.
 
-The rule applies while grilling too. A question that surfaces mid-grill and waits on unlanded work moves to the pitch it belongs to — or a new one — instead of becoming an assumption in the spec or a Decision ticket under it.
+The rule applies while grilling too. A question that surfaces mid-grill and waits on unlanded work moves to the pitch it belongs to — or a new one — instead of becoming an assumption in the spec.
 
 ### Out of scope
 

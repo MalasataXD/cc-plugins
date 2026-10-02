@@ -18,7 +18,7 @@ Pick up the next open ticket from a local breakdown, understand it, and present 
 
 ### 2. Select the next open ticket
 
-Survey the set by headers only: the `[P<x>]` phase in each title, the `Type`, `Category`, and `Status` lines under it, and the `## Blocked by` section. A ticket is **open** when its Status is `Not started` or `In progress`.
+Survey the set by headers only: the `[P<x>]` phase in each title, the `Type` and `Status` lines under it, and the `## Blocked by` section. A ticket is **open** when its Status is `Not started` or `In progress`.
 
 1. Prefer an `In progress` ticket if one exists — finishing started work beats starting new work. Surface it and confirm the user wants to continue it.
 2. Otherwise stay in the **lowest phase with an open ticket**; phases complete in order, so a later phase waits until every ticket in the current one is `Completed`. Within that phase, pick the lowest-ordinal `Not started` ticket whose blockers are all `Completed`.
@@ -30,13 +30,9 @@ State which ticket you picked and why.
 
 Read the whole ticket, and skim its `Parent` spec for the context the ticket assumes.
 
-The `Type` decides where the user is needed. **RFA** runs end to end with no human during the work. **RFH** needs the user at a specific point — a decision, a design review, a credential — so the plan names exactly where; when the human-only steps are a manual procedure (credentials, dashboards, provisioning), plan to generate a walkthrough via the `wizard` skill.
+The `Type` decides where the user is needed. **RFA** runs end to end with no human during the work. **RFH** needs the user at a specific point — a design review, a credential — so the plan names exactly where; when the human-only steps are a manual procedure (credentials, dashboards, provisioning), plan to generate a walkthrough via the `wizard` skill.
 
-The `Category` decides what the plan is and who takes it on approval:
-
-- **Build** — an implementation plan; on approval it goes to `implement`.
-- **Research** — no code. The plan is the question, the primary sources to check, and what the findings must settle; on approval it goes to the `research` skill.
-- **Decision** — no code. The plan is the question, the realistic options, and your recommended answer; on approval it becomes a `grilling` session, the outcome recorded in the ticket, with an ADR via `domain-modeling` if hard to reverse.
+A ticket that still holds an open question — a fact nobody looked up, a choice nobody made — slipped past `to-tickets`. Settle it with the `research` or `grilling` skill before planning, rather than planning around a guess.
 
 ### 4. Explore the codebase
 
@@ -49,7 +45,7 @@ Present the plan in the conversation using the format below: each step tied to t
 <output-format>
 ## Next ticket: <filename> — <title>
 
-**Type:** RFA / RFH · **Category:** Build / Research / Decision
+**Type:** RFA / RFH
 
 **Goal:** one sentence on what "done" looks like, drawn from the acceptance criteria.
 
@@ -71,4 +67,4 @@ Wait for the user to approve, adjust, or redirect.
 
 ### 6. On approval
 
-Approval is the go-ahead: set the ticket's `Status` line to `In progress` and hand the plan to the skill its Category names. That status line is the only edit made here — acceptance criteria are marked by `complete-ticket`, never by this skill.
+Approval is the go-ahead: set the ticket's `Status` line to `In progress` and hand the plan to `implement`. That status line is the only edit made here — acceptance criteria are marked by `complete-ticket`, never by this skill.

@@ -19,7 +19,7 @@ Never invent evidence: if you cannot see that a criterion is met, it is not met.
 2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `<work folder>/tickets/`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 3. If it is still ambiguous — several open tickets, no clear signal — ask which one to check rather than guessing.
 
-Read the full ticket: the `Type`, `Category`, and `Status` lines under the title, `What to build`, `Acceptance criteria`, `Blocked by`, and the `Parent` spec. The Category names where the evidence lives: a Build ticket's evidence is the diff and tests; a Research ticket's is the findings file under `<work folder>/research/`; a Decision ticket's is the recorded outcome, and the ADR if one was warranted.
+Read the full ticket: the `Type` and `Status` lines under the title, `What to build`, `Acceptance criteria`, `Blocked by`, and the `Parent` spec.
 
 ### 2. Dispatch a cold read
 
@@ -44,7 +44,7 @@ Present the sub-agent's assessment in the conversation using the format below, w
 ## Ticket check: <filename> — <title>
 
 **Verdict:** Complete / Not done — one line.
-**Type:** RFA / RFH · **Category:** Build / Research / Decision
+**Type:** RFA / RFH
 
 ### Acceptance criteria
 | Criterion | State | Evidence / what's missing |
@@ -68,6 +68,10 @@ If the ticket was the last open one in its phase (the `[P<x>]` title prefix; the
 
 On **Not done**, change nothing and leave the report as the answer.
 
-### 6. Offer to commit
+### 6. Commit and point to the next ticket
 
-When the verdict is Complete and the working tree still holds uncommitted changes from the ticket, ask once whether to finish with the `commit` skill. Skip the question when the tree is already clean.
+When the verdict is Complete, commit with the `commit` skill without asking — the cold read is the approval. Make one commit for the ticket, so it can be traced and reverted on its own. Stage only the paths in the scope the sub-agent judged, plus the ticket file; leave anything else in the tree unstaged and name it in the report. Skip the commit when the tree is already clean.
+
+Then name the next ticket using `next-ticket`'s selection rules, with one line on why it is next, and stop. Planning it is `next-ticket`'s job, once the user asks for it. When the finished ticket closed its phase, the end-to-end check from step 5 comes first and the next ticket second.
+
+On **Not done**, there is no commit and no next ticket.

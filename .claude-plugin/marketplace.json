@@ -14,8 +14,6 @@
       "description": "Resolve uncertainty — interviews, domain language, research, prototypes.",
       "skills": [
         "./skills/reasoning/grilling",
-        "./skills/reasoning/grill-me",
-        "./skills/reasoning/batch-grill-me",
         "./skills/reasoning/domain-modeling",
         "./skills/reasoning/research",
         "./skills/reasoning/prototype",

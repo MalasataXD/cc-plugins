@@ -8,7 +8,7 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 npx skills add MalasataXD/cc-plugins --all -g -y
 
 # or one category, by passing its skills (see the tables below)
-npx skills add MalasataXD/cc-plugins -g -y -s grilling grill-me batch-grill-me
+npx skills add MalasataXD/cc-plugins -g -y -s grilling domain-modeling research prototype complexity
 
 # refresh everything already installed
 npx skills update -g -y
@@ -34,9 +34,9 @@ and gates the commit. Two ideas run through it:
 
 - **Two front doors.** `grilling` stress-tests an idea that fits one session;
   `wayfinder` charts one that doesn't as a route of pitches, grilling each into a spec in turn.
-- **Every ticket has a Category** — `Build` (default), `Research`, or
-  `Decision`. The last two are open questions split out of the build,
-  resolved by the `research` and `grilling` skills.
+- **Tickets are only build work.** `to-tickets` settles every open question
+  before writing one — facts through `research`, choices through `grilling` —
+  so no ticket carries a guess.
 
 ## Skills
 
@@ -44,9 +44,7 @@ Categories are folders only — skills install with bare names regardless.
 
 | `reasoning` — resolve uncertainty | |
 | --- | --- |
-| `grilling` | The interview primitive — walk a design tree to its frontier |
-| `grill-me` | Grilling, one question at a time |
-| `batch-grill-me` | Grilling, rounds of 3–5 questions |
+| `grilling` | Interview in rounds of 3–5 questions, walking a design tree to its frontier |
 | `domain-modeling` | One term, one meaning — `CONTEXT.md` and ADRs |
 | `research` | Background agent reads primary sources → `<work folder>/research/` |
 | `prototype` | Throwaway code that answers a design question |
@@ -85,7 +83,7 @@ Categories are folders only — skills install with bare names regardless.
 | --- | --- |
 | `next-ticket` | Pick and plan the next open ticket, then wait for approval |
 | `implement` | Build approved work: `tdd` where a seam exists → `simplify` → `review` when big |
-| `complete-ticket` | Judge a ticket against its criteria; offer the `commit` |
+| `complete-ticket` | Judge a ticket against its criteria; commit and name the next ticket |
 | `handoff` | Compact the session for the next agent → `<work folder>/handoff.md` |
 
 | `git` — ship the work | |
@@ -105,5 +103,5 @@ Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
 Several skills are taken or adapted from
 [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) — see each
 skill's history. The composition — local-file outputs under a project work folder, scored
-reviews, the RFA/RFH and Category axes, and the ticket pipeline — is this
+reviews, the RFA/RFH axis, and the ticket pipeline — is this
 repo's own.

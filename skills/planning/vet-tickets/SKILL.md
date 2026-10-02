@@ -17,7 +17,7 @@ This is **read-only**. Do NOT edit or annotate the tickets. Do NOT write a repor
 2. Otherwise use `<work folder>/tickets/`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 3. If no tickets are found, say so and stop.
 
-Tickets carry their phase as a `[P<x>]` title prefix and their Type, Category, and Status as header lines under the title.
+Tickets carry their phase as a `[P<x>]` title prefix and their Type and Status as header lines under the title.
 
 ### 2. Find the stall, one ticket at a time
 
@@ -41,7 +41,6 @@ Report a stall only when the implementer would have to **guess**. When they woul
 - Wording you would have phrased differently, or a sentence that would be nice to add.
 - A term defined in another ticket of the set, in the spec, or in `CONTEXT.md`.
 - Anything answerable by reading the code: the right function, an idiom, a name.
-- A question that a Research or Decision ticket in the set already owns, when this ticket is blocked by it.
 </not-a-finding>
 
 Verdict per ticket, one of two:

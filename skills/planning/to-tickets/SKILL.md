@@ -13,7 +13,7 @@ Break a plan into **phases** of tickets. A phase is a group of tickets that, onc
 
 Work from whatever is already in the conversation context. If the user passes a reference (a path, a spec, or a plan) as an argument, read its full body before grouping. Specs live under `<work folder>/specs/`; the project's `AGENTS.md` or `CLAUDE.md` names the work folder, and when it names nothing, use `.ai/` at the repository root.
 
-If you have not already explored the codebase, do so. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. If a ticket introduces a new module, dependency, or special case the plan didn't account for, run it through the ledger in the `complexity` skill before writing it.
+If you have not already explored the codebase, do so through sub-agents, one per area the spec touches, each returning the modules, seams, and patterns it found rather than file dumps. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. If a ticket introduces a new module, dependency, or special case the plan didn't account for, run it through the ledger in the `complexity` skill before writing it.
 
 ### 2. Resolve open questions
 

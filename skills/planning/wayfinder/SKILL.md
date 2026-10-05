@@ -14,7 +14,7 @@ Wayfinder produces specs. `to-tickets` cuts a spec into tickets, as a separate s
 
 One map per effort, at `<work folder>/wayfinder/<effort-slug>.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 
-The map is an **index**, not a store. Decisions live in the specs (and the ADRs and `CONTEXT.md` they feed); the map only orders the specs and links them.
+The map is an **index**, not a store. Decisions live in the specs (and the ADRs and `GLOSSARY.md` they feed); the map only orders the specs and links them.
 
 ```markdown
 # <Effort>

@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: Sharpen the project's domain language and record the decisions behind it. Use when terminology is fuzzy or conflicts with the glossary, when writing or editing a CONTEXT.md or ADR, when a hard-to-reverse decision needs recording, or when another skill needs the project's domain vocabulary.
+description: Sharpen the project's domain language and record the decisions behind it. Use when terminology is fuzzy or conflicts with the glossary, when writing or editing a GLOSSARY.md or ADR, when a hard-to-reverse decision needs recording, or when another skill needs the project's domain vocabulary.
 ---
 
 # Domain Modeling
@@ -13,7 +13,7 @@ Most repos have a single context:
 
 ```
 /
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── docs/
 │   └── adr/
 │       ├── 0001-event-sourced-orders.md
@@ -21,27 +21,27 @@ Most repos have a single context:
 └── src/
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+If a `GLOSSARY-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
 
 ```
 /
-├── CONTEXT-MAP.md
+├── GLOSSARY-MAP.md
 ├── docs/
 │   └── adr/                          ← system-wide decisions
 ├── src/
 │   ├── ordering/
-│   │   ├── CONTEXT.md
+│   │   ├── GLOSSARY.md
 │   │   └── docs/adr/                 ← context-specific decisions
 │   └── billing/
-│       ├── CONTEXT.md
+│       ├── GLOSSARY.md
 │       └── docs/adr/
 ```
 
-Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is warranted.
+Create files lazily — only when you have something to write. If no `GLOSSARY.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is warranted.
 
 ## Sharpening the language
 
-**Challenge against the glossary.** When a term conflicts with the existing language in `CONTEXT.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y — which is it?"
+**Challenge against the glossary.** When a term conflicts with the existing language in `GLOSSARY.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y — which is it?"
 
 **Sharpen fuzzy language.** When a term is vague or overloaded, propose a precise canonical one. "You're saying 'account' — do you mean the Customer or the User? Those are different things."
 
@@ -51,9 +51,9 @@ Create files lazily — only when you have something to write. If no `CONTEXT.md
 
 ## Capturing it
 
-**Update `CONTEXT.md` inline.** The moment a term is resolved, write it down — capture as you go rather than batching. Format in [CONTEXT-FORMAT.md](./references/CONTEXT-FORMAT.md).
+**Update `GLOSSARY.md` inline.** The moment a term is resolved, write it down — capture as you go rather than batching. Format in [GLOSSARY-FORMAT.md](./references/GLOSSARY-FORMAT.md).
 
-`CONTEXT.md` is a glossary and nothing else. It stays free of implementation details, and is not a spec, a scratch pad, or a home for implementation decisions.
+`GLOSSARY.md` is a glossary and nothing else. It stays free of implementation details, and is not a spec, a scratch pad, or a home for implementation decisions.
 
 **Offer ADRs sparingly.** An ADR is warranted only when all three hold:
 
@@ -65,4 +65,4 @@ If any of the three is missing, skip it. Format in [ADR-FORMAT.md](./references/
 
 ## Reading it back
 
-When another skill needs the project's vocabulary, `CONTEXT.md` is the source: name things the way the glossary names them, and respect the ADRs covering the area being touched.
+When another skill needs the project's vocabulary, `GLOSSARY.md` is the source: name things the way the glossary names them, and respect the ADRs covering the area being touched.

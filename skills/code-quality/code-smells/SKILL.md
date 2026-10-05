@@ -20,7 +20,7 @@ scope for both skills.
 ## Naming and abstraction
 
 - **Mysterious name** — a name that doesn't say what the thing is or does. Rename until it does.
-- **Primitive obsession** — a domain concept carried as a string, int, or map. Give it a type, named the way `CONTEXT.md` names it.
+- **Primitive obsession** — a domain concept carried as a string, int, or map. Give it a type, named the way `GLOSSARY.md` names it.
 - **Data clumps** — the same few fields or parameters travelling together everywhere. Bundle them into one type.
 - **Speculative generality** — an abstraction, hook, or parameter with no present caller. Remove it until something needs it.
 

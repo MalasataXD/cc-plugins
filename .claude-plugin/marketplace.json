@@ -57,12 +57,13 @@
     {
       "name": "utility",
       "source": "./",
-      "description": "Maintain the toolset and the conversation — writing for agents, prose polish, re-pitches, human walkthroughs.",
+      "description": "Maintain the toolset and the conversation — writing for agents, prose polish, re-pitches, human walkthroughs, session retros.",
       "skills": [
         "./skills/utility/writing-for-agents",
         "./skills/utility/unslop",
         "./skills/utility/wait-what",
-        "./skills/utility/wizard"
+        "./skills/utility/wizard",
+        "./skills/utility/retro"
       ]
     },
     {

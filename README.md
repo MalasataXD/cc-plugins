@@ -45,7 +45,7 @@ Categories are folders only — skills install with bare names regardless.
 | `reasoning` — resolve uncertainty | |
 | --- | --- |
 | `grilling` | Interview in rounds of 3–5 questions, walking a design tree to its frontier |
-| `domain-modeling` | One term, one meaning — `CONTEXT.md` and ADRs |
+| `domain-modeling` | One term, one meaning — `GLOSSARY.md` and ADRs |
 | `research` | Background agent reads primary sources → `<work folder>/research/` |
 | `prototype` | Throwaway code that answers a design question |
 | `complexity` | Ousterhout's complexity model — the ledger plans answer to |
@@ -78,6 +78,7 @@ Categories are folders only — skills install with bare names regardless.
 | `unslop` | Final prose pass for anything a human reads — specs, reviews, PR bodies |
 | `wait-what` | Re-pitch the last message, simply |
 | `wizard` | Interactive bash walkthrough for steps only a human can do |
+| `retro` | Review a session and suggest changes to the agent's setup, not the code |
 
 | `workflow` — move the work | |
 | --- | --- |

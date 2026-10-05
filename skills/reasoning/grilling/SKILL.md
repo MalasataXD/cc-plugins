@@ -19,10 +19,16 @@ Walk the tree in rounds: a numbered set of questions at once, each with a recomm
 
 Cap each round at **3–5 questions** — a round has to fit in the user's head, not exhaust the tree. When the frontier is wider than that, ask the 3–5 questions that unblock the most downstream decisions and hold the rest for later rounds; they are not lost, the frontier is recomputed every round.
 
-Format every question in the round like so:
+Format every question in the round like so, with a `---` line between questions:
 
 ```
 ❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+
+➡️ <your recommended answer>
+
+---
+
+❓ **Q2** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
 
 ➡️ <your recommended answer>
 ```
@@ -37,4 +43,4 @@ The decisions stay the user's. Put each one to them and wait.
 
 ## Domain language
 
-When `CONTEXT.md` or `CONTEXT-MAP.md` exists, read it, hold the user to the vocabulary it defines, and offer to bring in the `domain-modeling` skill so resolved terms and hard-to-reverse decisions get captured as you go.
+When `GLOSSARY.md` or `GLOSSARY-MAP.md` exists, read it, hold the user to the vocabulary it defines, and offer to bring in the `domain-modeling` skill so resolved terms and hard-to-reverse decisions get captured as you go.

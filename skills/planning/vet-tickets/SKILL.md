@@ -39,7 +39,7 @@ Stop at the **first** stall. One finding per ticket; a second stall is found by 
 Report a stall only when the implementer would have to **guess**. When they would only have to **look** or **read**, the ticket holds:
 
 - Wording you would have phrased differently, or a sentence that would be nice to add.
-- A term defined in another ticket of the set, in the spec, or in `CONTEXT.md`.
+- A term defined in another ticket of the set, in the spec, or in `GLOSSARY.md`.
 - Anything answerable by reading the code: the right function, an idiom, a name.
 </not-a-finding>
 

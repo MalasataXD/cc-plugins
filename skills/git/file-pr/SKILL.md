@@ -36,7 +36,7 @@ Group the changes by the **thing they change** — a rule, a seam, a tool, a con
 
 ### 4. Establish verification
 
-The Verification section states only what was actually run at the branch head, with the command and the result. Reuse results from this session when they came from the branch head; otherwise run the project's checks now (test suite, type checker, lint, build — whatever the project has). Name what was **not** exercised, such as a UI that was never clicked through, so the reviewer knows where to look. Never claim a pass you did not see.
+The Verification section states only what was actually run at the branch head, with the command and the result. Reuse results from this session when they came from the branch head; otherwise run the project's checks now (test suite, type checker, lint, build — whatever the project has). Name what was **not** exercised, such as a UI that was never clicked through, so the reviewer knows where to look. Never claim a pass you did not see. When the PR is a performance change, show the same measurement before and after.
 
 ### 5. Draft the title and body
 
@@ -46,6 +46,7 @@ The Verification section states only what was actually run at the branch head, w
 
 - The attribution note from the `github-attribution` skill opens the body, before the stacked blockquote when there is one.
 - An opening paragraph of two or three sentences on what the PR establishes, in present tense ("This pull request adds…"), closing with "The most important changes are:".
+- A tree after the opening paragraph, only when the PR changes structure (files moved or split, a new call path). Use a short file tree or call tree, as a `diff` block when it changes an existing shape, and keep only the nodes the change touches. Most PRs have no tree.
 - Groups as bold headings, named by the thing they change — a rule, a seam, a tool, a contract, a setup step.
 - Each bullet is one **entry**: it opens with a past-tense verb (Added, Routed, Removed, Replaced, Migrated, Extended, Regenerated), names the real identifier in backticks, and ends with the reason or the consequence when either is not obvious. One change per entry; a change that needs a paragraph is two entries.
 - Renames as `old` → `new`. Numbers where they change what the reviewer does: test counts, caps, line reductions.
@@ -61,6 +62,16 @@ The Verification section states only what was actually run at the branch head, w
 _(Blockquote only when stacked or blocked; a blocked PR names what it waits on and why merging early would break.)_
 
 This pull request <establishes / adds / replaces> … . <Second sentence: the shape of the change or what it removes.> The most important changes are:
+
+```diff
+ src/
+ ├── orders/
++│   └── pricing.ts    # moved out of checkout
+ └── checkout/
+-    └── pricing.ts
+```
+
+_(Tree only when the PR changes structure.)_
 
 **<Group>**
 - Added `NewSeam` in `src/area` and routed `CallerA`, `CallerB`, and `CallerC` through it; the private copies are removed.

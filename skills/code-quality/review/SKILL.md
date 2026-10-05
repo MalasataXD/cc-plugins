@@ -17,13 +17,13 @@ State the pinned scope in the report so the review can be repeated against the s
 
 Standards apply in layers, highest precedence first:
 
-1. **The project's own** — `AGENTS.md` / `CLAUDE.md`, `CONTRIBUTING.md`, style guides, and the ADRs covering the area. Documented project standards **override** everything below.
+1. **The project's own** — `CODING_STANDARDS.md`, `AGENTS.md` / `CLAUDE.md`, `CONTRIBUTING.md`, style guides, and the ADRs covering the area. Documented project standards **override** everything below.
 2. **The baseline** — the `code-smells` skill for structure, the `complexity` skill for the symptoms-and-causes lens, [security-checklist.md](references/security-checklist.md) for vulnerabilities.
 3. **Language and community idioms**, plus the conventions of the surrounding code.
 
 Skip anything a tool already enforces. A finding the formatter, linter, or type checker would fix is noise in a review — it belongs in the pipeline, not the report.
 
-Read `CONTEXT.md` so findings use the project's own vocabulary (see `domain-modeling`).
+Read `GLOSSARY.md` so findings use the project's own vocabulary (see `domain-modeling`).
 
 ## 3. Review in parallel
 

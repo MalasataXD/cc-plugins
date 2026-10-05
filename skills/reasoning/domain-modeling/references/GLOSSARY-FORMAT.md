@@ -1,6 +1,6 @@
-# CONTEXT.md format
+# GLOSSARY.md format
 
-`CONTEXT.md` is a **glossary** of the ubiquitous language for a single bounded context. It records what each term *means* — not how it is implemented. Keep it free of code, data shapes, APIs, and design decisions (those belong in ADRs).
+`GLOSSARY.md` is a **glossary** of the ubiquitous language for a single bounded context. It records what each term *means* — not how it is implemented. Keep it free of code, data shapes, APIs, and design decisions (those belong in ADRs).
 
 ## Document header
 

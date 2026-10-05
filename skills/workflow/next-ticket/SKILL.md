@@ -36,7 +36,7 @@ A ticket that still holds an open question — a fact nobody looked up, a choice
 
 ### 4. Explore the codebase
 
-Ground the plan in the actual code: the modules, seams, and existing patterns, so the plan names real integration points rather than guesses. Name things the way `CONTEXT.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. Run anything the plan adds — a new module, dependency, or special case — through the ledger in the `complexity` skill.
+Ground the plan in the actual code: the modules, seams, and existing patterns, so the plan names real integration points rather than guesses. Name things the way `GLOSSARY.md` names them and respect ADRs in the area you're touching — see the `domain-modeling` skill. Run anything the plan adds — a new module, dependency, or special case — through the ledger in the `complexity` skill.
 
 Fan the reading out to sub-agents, one per area the ticket touches, each returning the modules, seams, and patterns it found — conclusions, not file dumps. The plan itself is written here, from what they report.
 

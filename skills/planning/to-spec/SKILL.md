@@ -9,13 +9,15 @@ This skill takes the current conversation context and codebase understanding and
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Name things the way `GLOSSARY.md` names them throughout the spec, and respect any ADRs in the area you're touching (see the `domain-modeling` skill).
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can.
+2. Apply the deletion test from the `complexity` skill's `references/deep-modules.md` to the modules the feature touches. If deepening one would make the feature cheaper to build or test, propose it to the user as a preparatory refactor; an approved one goes into the spec as its own decision. When nothing qualifies, move on without comment.
+
+3. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can, using the `complexity` skill's `references/seams.md`.
 
    Check with the user that these seams match their expectations.
 
-3. Run each implementation decision through the ledger in the `complexity` skill. Every new module, dependency, config option, and special case must name what pays for it before it goes in the spec.
+4. Run each implementation decision through the ledger in the `complexity` skill. Every new module, dependency, config option, and special case must name what pays for it before it goes in the spec.
 
-4. Write the spec using the template below and pass its prose through the `unslop` skill, then save it to `<work folder>/specs/<slug>.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. The slug is short kebab-case derived from the feature, e.g. `specs/account-balance-display.md`; if that file already exists, confirm with the user before overwriting. Confirm the path to the user once written.
+5. Write the spec using the template below and pass its prose through the `unslop` skill, then save it to `<work folder>/specs/<slug>.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. The slug is short kebab-case derived from the feature, e.g. `specs/account-balance-display.md`; if that file already exists, confirm with the user before overwriting. Confirm the path to the user once written.
 
 ## Spec template
 

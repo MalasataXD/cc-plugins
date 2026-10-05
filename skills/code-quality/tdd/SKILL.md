@@ -17,13 +17,13 @@ See [tests.md](references/tests.md) for worked examples and [mocking.md](referen
 
 ## Seams: where tests go
 
-A **seam** is the public boundary you test at: the interface where you observe behavior without reaching inside. Tests live at seams.
+A **seam** is where a module's interface lives: the place you observe behavior without reaching inside. Tests live at seams.
 
 **Test only at pre-agreed seams.** Before writing any test, write down the seams under test and confirm them with the user. No test is written at an unconfirmed seam. You can't test everything. Agreeing the seams up front is how testing effort lands on the critical paths and the complex logic instead of every edge case.
 
 Ask: "What's the public interface, and which seams should we test?"
 
-Prefer existing seams to new ones, and take the highest seam that still observes the behavior. When a new seam is needed, design it to be worth testing at: see [interface-design.md](references/interface-design.md), and [deep-modules.md](references/deep-modules.md) for small interfaces over deep implementations.
+Prefer existing seams to new ones, and take the highest seam that still observes the behavior. When a new seam is needed, design it to be worth testing at: load the `complexity` skill and read its `references/seams.md`.
 
 ## Anti-patterns
 

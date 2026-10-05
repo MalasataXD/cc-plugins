@@ -1,0 +1,5 @@
+interface:
+  display_name: "Health Check"
+  short_description: "Check the codebase's health and suggest the few places where reducing complexity would pay off most."
+policy:
+  allow_implicit_invocation: false

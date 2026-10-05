@@ -48,7 +48,7 @@ Categories are folders only. Skills install with bare names regardless.
 | `domain-modeling` | One term, one meaning: `GLOSSARY.md` and ADRs |
 | `research` | Background agent reads primary sources → `<work folder>/research/` |
 | `prototype` | Throwaway code that answers a design question |
-| `complexity` | Ousterhout's complexity model, used as the ledger plans answer to |
+| `complexity` | Ousterhout's complexity model: the ledger plans answer to, plus deep modules and seams |
 
 | `planning`: produce the breakdown | |
 | --- | --- |
@@ -62,8 +62,7 @@ Categories are folders only. Skills install with bare names regardless.
 | `review` | Two-axis review, scored 0–100 → `<work folder>/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
-| `codebase-design` | Deep-module vocabulary: interfaces, seams, adapters, depth |
-| `improve-codebase-architecture` | Find deepening candidates → HTML report → `<work folder>/architecture/` |
+| `health-check` | Rank the codebase's hot spots from git history; hand the top one to `to-spec` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
@@ -97,7 +96,8 @@ Categories are folders only. Skills install with bare names regardless.
 
 Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
 `grill-with-docs` (superseded by `grilling` + `domain-modeling`), `think-like`,
-`zoom-out` and `to-questionnaire` (unused).
+`zoom-out` and `to-questionnaire` (unused), `codebase-design` (merged into
+`complexity`), and `improve-codebase-architecture` (superseded by `health-check`).
 
 ## Credits
 

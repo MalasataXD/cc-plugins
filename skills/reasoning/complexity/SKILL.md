@@ -1,11 +1,16 @@
 ---
 name: complexity
-description: A ledger for weighing complexity against value. Use when planning or specing a new solution, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary.
+description: A ledger for weighing complexity against value, plus how to shape deep modules and place seams. Use when planning or specing a new solution, designing a module's interface or deciding where a seam goes, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary.
 ---
 
 # Complexity
 
 **Complexity is anything about a system's structure that makes it hard to understand or modify.** It is not size or sophistication. It is difficulty of change. Use this vocabulary when planning a solution, so complexity is spent deliberately instead of accumulated by accident.
+
+Two references carry the structural side:
+
+- **When proposing a new module, shaping its interface, or judging whether one is shallow**, read [deep-modules.md](references/deep-modules.md).
+- **When deciding where a seam goes, whether it is justified, or how to test a module across its dependencies**, read [seams.md](references/seams.md).
 
 ## The three symptoms
 
@@ -37,7 +42,7 @@ How complexity gets in (or gets kept out) is a way of working, not a single deci
 
 - **Complexity is incremental.** No single decision makes a system complex; hundreds of small ones do. That is why "it's only a little hack" is not an argument. The ledger below applies to small things too.
 - **Complexity is what the reader experiences, not the writer.** The author's familiarity is not evidence of simplicity. Judge from the position of someone arriving cold.
-- **Pull complexity downwards.** When complexity is unavoidable, the implementer should absorb it rather than the caller. A module with a simple interface and a hard implementation beats the reverse. The deepening moves live in `codebase-design`.
+- **Pull complexity downwards.** When complexity is unavoidable, the implementer should absorb it rather than the caller. A module with a simple interface and a hard implementation beats the reverse. The deepening moves are in [deep-modules.md](references/deep-modules.md).
 - **Somewhat general-purpose.** The interface serves more than today's exact need, while the implementation does only what today needs. Guards against both special-casing and speculative generality.
 
 ## The complexity ledger
@@ -55,7 +60,7 @@ An element that can't answer 3 is tactical programming; cut it or say explicitly
 
 - **Dependencies** and **obscurity** cause complexity; **change amplification**, **cognitive load**, and **unknown unknowns** are how it is felt.
 - **Tactical programming** is how complexity gets in; **strategic programming** plus the **ledger** is how it is kept out of a plan.
-- In existing code, symptoms surface as entries in `code-smells`; the structural cure is a deeper module (vocabulary and moves in `codebase-design`).
+- In existing code, symptoms surface as entries in `code-smells`; the structural cure is a deeper module ([deep-modules.md](references/deep-modules.md)), tested at its seam ([seams.md](references/seams.md)).
 
 ## Rejected framings
 

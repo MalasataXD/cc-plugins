@@ -81,7 +81,7 @@ Categories are folders only — skills install with bare names regardless.
 
 | `workflow` — move the work | |
 | --- | --- |
-| `next-ticket` | Pick and plan the next open ticket, then wait for approval |
+| `next-ticket` | Pick and plan the next open ticket, then build it unless the plan has open questions |
 | `implement` | Build approved work: `tdd` where a seam exists → `simplify` → `review` when big |
 | `complete-ticket` | Judge a ticket against its criteria; commit and name the next ticket |
 | `handoff` | Compact the session for the next agent → `<work folder>/handoff.md` |

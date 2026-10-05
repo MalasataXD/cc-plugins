@@ -5,7 +5,7 @@ description: Pick the next open ticket. Use when the user wants to pick up the n
 
 # Next Ticket
 
-Pick up the next open ticket from a local breakdown, understand it, and present a concrete plan — then **stop and wait for approval** before touching any code. The plan is the user's chance to catch a mistake on the way out the door, so selection and planning are the whole job.
+Pick up the next open ticket from a local breakdown, understand it, present a concrete plan, and start the build. The plan is the user's chance to catch a mistake on the way out the door: an open question stops the run until they answer it, and a plan with none goes straight to `implement`, left on screen so they can interrupt.
 
 ## Process
 
@@ -40,9 +40,9 @@ Ground the plan in the actual code: the modules, seams, and existing patterns, s
 
 Fan the reading out to sub-agents, one per area the ticket touches, each returning the modules, seams, and patterns it found — conclusions, not file dumps. The plan itself is written here, from what they report.
 
-### 5. Present the plan and wait
+### 5. Present the plan
 
-Present the plan in the conversation using the format below: each step tied to the acceptance criteria it satisfies, the real parts of the codebase it touches, and every point where an RFH ticket needs the user. Then **stop**.
+Present the plan in the conversation using the format below: each step tied to the acceptance criteria it satisfies, the real parts of the codebase it touches, and every point where an RFH ticket needs the user.
 
 <output-format>
 ## Next ticket: <filename> — <title>
@@ -62,11 +62,14 @@ Present the plan in the conversation using the format below: each step tied to t
 How the finished ticket will be demoed or tested on its own, mapped to the acceptance criteria.
 
 ### Open questions
-Anything ambiguous in the ticket worth resolving before starting — or "None." Ask; never silently guess.
+Every point whose answer would change the plan — a criterion you would have to interpret, a choice between approaches the code doesn't settle — or "None." Ask; never silently guess.
 </output-format>
 
-Wait for the user to approve, adjust, or redirect.
+The Open questions section decides what happens next:
 
-### 6. On approval
+- **None** — continue to step 6 in the same turn. Write "None." only when every step of the plan follows from the ticket and the code; it is what starts the build.
+- **Any question** — **stop** and wait for the user to answer, adjust, or redirect.
 
-Approval is the go-ahead: set the ticket's `Status` line to `In progress` and hand the plan to `implement`. That status line is the only edit made here — acceptance criteria are marked by `complete-ticket`, never by this skill.
+### 6. Start the build
+
+The go-ahead is a plan with no open questions, or the user's answer to them: set the ticket's `Status` line to `In progress` and hand the plan to `implement`. That status line is the only edit made here — acceptance criteria are marked by `complete-ticket`, never by this skill.

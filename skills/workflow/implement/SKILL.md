@@ -7,7 +7,7 @@ description: Build an approved ticket or plan end to end. Use when the user appr
 
 Build the approved work. This skill is the chain — each stage belongs to another skill, and this one runs them in order and keeps the suite honest between them. `simplify` always runs; `tdd` runs where the code has a seam to test at; `review` runs when the change is big.
 
-It starts from work that is already understood and agreed: a ticket with a plan the user approved, or a plan from the conversation. Selecting what to work on is `next-ticket`'s job; judging whether it is finished is `complete-ticket`'s. Coming straight from `next-ticket`, the ticket, its parent spec, and the codebase are already in context; when they are not, read the ticket and the plan before building.
+It starts from work that is already understood and agreed: a ticket whose plan the user approved or `next-ticket` presented with no open questions, or a plan from the conversation. Selecting what to work on is `next-ticket`'s job; judging whether it is finished is `complete-ticket`'s. Coming straight from `next-ticket`, the ticket, its parent spec, and the codebase are already in context; when they are not, read the ticket and the plan before building.
 
 ## When the plan runs out
 
@@ -48,4 +48,4 @@ The user can ask for a review at any size. When it runs, act on what it raises, 
 
 ## Done
 
-The chain is complete when the stages that apply have run and the full suite passes — the full suite, not just the affected files. Continue straight into `complete-ticket` — the approval that started this chain covers the whole run through it, and the only stops along the way are the decisions described in [When the plan runs out](#when-the-plan-runs-out). Do **not** commit here — the work has not been judged yet. `complete-ticket` verifies the acceptance criteria against what was actually built and commits once they hold. Leave the criteria unticked and the status alone here.
+The chain is complete when the stages that apply have run and the full suite passes — the full suite, not just the affected files. Continue straight into `complete-ticket` — the go-ahead that started this chain covers the whole run through it, and the only stops along the way are the decisions described in [When the plan runs out](#when-the-plan-runs-out). Do **not** commit here — the work has not been judged yet. `complete-ticket` verifies the acceptance criteria against what was actually built and commits once they hold. Leave the criteria unticked and the status alone here.

@@ -162,7 +162,8 @@ def codex_sessions():
                     if th is None:
                         th = threads[tid] = new_session('codex', tid, os.path.basename(p.get('cwd', '')))
                         th['root'] = root
-                        th['source'] = p.get('thread_source')
+                        # T3 Code left thread_source unset on user threads from 1 Oct 2026; a string source (vscode, cli) is a user thread
+                        th['source'] = p.get('thread_source') or ('user' if isinstance(p.get('source'), str) else None)
                         th['parent'] = p.get('parent_thread_id')
                         th['agent_path'] = ((p.get('source') or {}).get('subagent', {}) if isinstance(p.get('source'), dict) else {}).get('thread_spawn', {}).get('agent_path') if isinstance(p.get('source'), dict) else None
                     born = ts(p['timestamp'])

@@ -4,11 +4,11 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 [Codex](https://skills.sh), installed with bare names via the `skills` CLI.
 
 ```shell
-# a new machine: the main tier, no prompts
-npx skills add MalasataXD/cc-plugins -g -y -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review complete-ticket code-smells prove-it commit file-pr github-attribution unslop health-check retro writing-for-agents
+# a new machine: the main tier
+npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review complete-ticket code-smells prove-it commit file-pr github-attribution unslop health-check retro writing-for-agents
 
-# everything, including the extras tier
-npx skills add MalasataXD/cc-plugins --all -g -y
+# the extras tier, on top
+npx skills add MalasataXD/cc-plugins -g -s wayfinder wizard wait-what teach
 
 # refresh everything already installed
 npx skills update -g -y
@@ -17,7 +17,13 @@ npx skills update -g -y
 Skills come in two tiers, which are the groups in the interactive picker
 (driven by `.claude-plugin/marketplace.json`). **Main** is the working set:
 the pipeline, every skill it loads, and the tools for maintaining the skills.
-**Extras** is everything outside day-to-day work, marked *(extras)* below. Skills trigger on natural
+**Extras** is everything outside day-to-day work, marked *(extras)* below.
+The install commands prompt for which agents to install to.
+
+Name skills explicitly rather than using `--all`: it installs every
+`SKILL.md` in the repo, `archive/` included, for every agent the CLI knows.
+
+Skills trigger on natural
 phrasing (*"grill me on this plan"*, *"what's the next ticket"*) or by name.
 Each skill's `SKILL.md` is its full documentation. This README is just the map.
 

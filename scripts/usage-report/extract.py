@@ -9,7 +9,7 @@ END = datetime(2026, 9, 23, 23, 59, tzinfo=timezone.utc)
 IDLE_CAP = timedelta(minutes=10)
 CPH = timezone(timedelta(hours=2))
 
-REPO_SKILLS = {os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(HOME, 'sandbox/cc-plugins/skills/*/*/SKILL.md'))}
+REPO_SKILLS = {os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../skills/*/*/SKILL.md'))}
 INSTALLED = {os.path.basename(p) for p in glob.glob(os.path.join(HOME, '.agents/skills/*'))} | {os.path.basename(p) for p in glob.glob(os.path.join(HOME, '.claude/skills/*'))}
 KNOWN = REPO_SKILLS | INSTALLED | {'handoff', 'wait-what', 'teach', 'batch-grill-me'}
 

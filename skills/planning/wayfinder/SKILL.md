@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Wayfinder
 
-A loose idea has arrived — too big for one spec, and wrapped in fog: the way from here to the **destination** isn't visible yet, and you can't grasp all of it at once. This skill charts the way as a **route**: an ordered list of specs, each starting life as a short **pitch**. It then grills one pitch at a time into a spec, and **re-charts** the route every time a spec's work lands.
+A loose idea has arrived. It is too big for one spec and wrapped in fog: the way from here to the **destination** isn't visible yet, and you can't grasp all of it at once. This skill charts the way as a **route**: an ordered list of specs, each starting life as a short **pitch**. It then grills one pitch at a time into a spec, and **re-charts** the route every time a spec's work lands.
 
 Wayfinder produces specs. `to-tickets` cuts a spec into tickets, as a separate step the user starts.
 
@@ -21,7 +21,7 @@ The map is an **index**, not a store. Decisions live in the specs (and the ADRs 
 
 ## Destination
 
-<what is true once this effort is finished — one or two lines; every session orients to it>
+<what is true once this effort is finished, in one or two lines; every session orients to it>
 
 ## Route
 
@@ -46,17 +46,17 @@ The map is an **index**, not a store. Decisions live in the specs (and the ADRs 
 
 A pitch is the fog written down per spec: loose on purpose, a line or two plus **Waits on**. It is the base the deep grill starts from, never a substitute for it. When a pitch outgrows a few lines, it's sharp enough to grill.
 
-When a pitch becomes a spec, its text goes and the entry collapses to name, status and link — the spec now holds it.
+When a pitch becomes a spec, its text goes and the entry collapses to name, status and link. The spec now holds it.
 
 ### The dependency rule
 
 **A spec ends where a decision can only be made after earlier work has landed.** A question you can't answer until you've seen something built belongs to a later pitch, whose **Waits on** names that work. This is what cuts the route into specs; the ticket count never does.
 
-The rule applies while grilling too. A question that surfaces mid-grill and waits on unlanded work moves to the pitch it belongs to — or a new one — instead of becoming an assumption in the spec.
+The rule applies while grilling too. A question that surfaces mid-grill and waits on unlanded work moves to the pitch it belongs to (or a new one) instead of becoming an assumption in the spec.
 
 ### Out of scope
 
-The destination fixes the scope. Work beyond it goes in **Out of scope** with one line on why — not in a pitch. It returns only if the destination is redrawn.
+The destination fixes the scope. Work beyond it goes in **Out of scope** with one line on why, not in a pitch. It returns only if the destination is redrawn.
 
 ## Invocation
 
@@ -76,8 +76,8 @@ User invokes with an existing map, or asks to redirect the effort.
 
 1. **Load the map** and refresh `Ticketed` and `Done`.
 2. **Re-chart** when the refresh moved a stop to `Done`, or when the user has changed direction: rewrite each remaining pitch against what actually landed, drop the ones reality killed, add the ones it revealed, and move anything now past the destination to Out of scope. Confirm the new route with the user. A map that no longer matches the direction misdirects everyone who reads it, so the rewrite happens in this session.
-3. **Pick the stop:** the first `Pitch` whose Waits on has landed. If none has, report which work the route waits on and stop — the next move is building, not planning.
+3. **Pick the stop:** the first `Pitch` whose Waits on has landed. If none has, report which work the route waits on and stop. The next move is building, not planning.
 4. **Grill it deep** with `grilling` and `domain-modeling`, until every question in the pitch is decided or has moved to a later pitch under the dependency rule.
 5. **Write the spec** with `to-spec`, then collapse the stop to `Specced` with its link.
 
-When every stop is `Done`, the destination is reached: report it, and offer to delete the map — a finished map only misdirects.
+When every stop is `Done`, the destination is reached: report it, and offer to delete the map. A finished map only misdirects.

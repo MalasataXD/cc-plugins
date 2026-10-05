@@ -9,7 +9,7 @@ Judge code on two axes: against the **standards** it should meet, and against th
 
 ## 1. Pin a fixed point
 
-Settle exactly what is under review before reading anything: a ref (commit, branch, tag), a path, a directory, a named function, or the working tree. Confirm it resolves and that the diff is non-empty — an empty diff means say so and stop, rather than reviewing the whole repository by accident.
+Settle exactly what is under review before reading anything: a ref (commit, branch, tag), a path, a directory, a named function, or the working tree. Confirm it resolves and that the diff is non-empty. If the diff is empty, say so and stop, rather than reviewing the whole repository by accident.
 
 State the pinned scope in the report so the review can be repeated against the same thing.
 
@@ -17,11 +17,11 @@ State the pinned scope in the report so the review can be repeated against the s
 
 Standards apply in layers, highest precedence first:
 
-1. **The project's own** — `CODING_STANDARDS.md`, `AGENTS.md` / `CLAUDE.md`, `CONTRIBUTING.md`, style guides, and the ADRs covering the area. Documented project standards **override** everything below.
-2. **The baseline** — the `code-smells` skill for structure, the `complexity` skill for the symptoms-and-causes lens, [security-checklist.md](references/security-checklist.md) for vulnerabilities.
+1. **The project's own**: `CODING_STANDARDS.md`, `AGENTS.md` / `CLAUDE.md`, `CONTRIBUTING.md`, style guides, and the ADRs covering the area. Documented project standards **override** everything below.
+2. **The baseline**: the `code-smells` skill for structure, the `complexity` skill for the symptoms-and-causes lens, [security-checklist.md](references/security-checklist.md) for vulnerabilities.
 3. **Language and community idioms**, plus the conventions of the surrounding code.
 
-Skip anything a tool already enforces. A finding the formatter, linter, or type checker would fix is noise in a review — it belongs in the pipeline, not the report.
+Skip anything a tool already enforces. A finding the formatter, linter, or type checker would fix is noise in a review. It belongs in the pipeline, not the report.
 
 Read `GLOSSARY.md` so findings use the project's own vocabulary (see `domain-modeling`).
 
@@ -29,18 +29,18 @@ Read `GLOSSARY.md` so findings use the project's own vocabulary (see `domain-mod
 
 Dispatch sub-agents over **disjoint** dimensions, so one lens cannot colour another:
 
-- **Security and performance** — the `security-checklist.md` sweep, algorithmic cost, resource handling, N+1s, caching that is missing or wrong.
-- **Quality, style and documentation** — the code-level lens: the `code-smells` baseline, naming, project conventions, and whether public interfaces are documented.
-- **Architecture and complexity** — the design-level lens: separation of concerns, dependency direction, and the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
-- **Spec compliance** — only when a spec or plan exists for this change (`<work folder>/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
+- **Security and performance**: the `security-checklist.md` sweep, algorithmic cost, resource handling, N+1s, caching that is missing or wrong.
+- **Quality, style and documentation**: the code-level lens: the `code-smells` baseline, naming, project conventions, and whether public interfaces are documented.
+- **Architecture and complexity**: the design-level lens: separation of concerns, dependency direction, and the `complexity` skill's vocabulary: interfaces whose obscurity or dependencies will surface as change amplification, cognitive load, or unknown unknowns for the next maintainer; complexity pushed onto callers that the implementation should absorb.
+- **Spec compliance**: only when a spec or plan exists for this change (`<work folder>/specs/`, a plan in the conversation, a commit message naming one) **and no ticket does**. Does the change do what was specified, no less and no more? When a ticket exists, skip this dimension: `complete-ticket` owns that verdict, and two verdicts on the same question can disagree.
 
-Each sub-agent returns findings with concrete evidence — file, line, and what makes it a problem — plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one. Every sub-agent prompt includes the finding block and return envelope from [finding-format.md](references/finding-format.md) verbatim, so all dimensions come back in one shape.
+Each sub-agent returns findings with concrete evidence (file, line, and what makes it a problem), plus a score per category it covered. Evidence states the rung it reached on the `prove-it` ladder; a review reports the rung, it does not enforce one. Every sub-agent prompt includes the finding block and return envelope from [finding-format.md](references/finding-format.md) verbatim, so all dimensions come back in one shape.
 
-Dispatch the three dimension agents in parallel. When spec compliance applies, dispatch it as soon as a slot frees if the environment caps concurrent sub-agents — it is the lightest of the four and never blocks the review.
+Dispatch the three dimension agents in parallel. When spec compliance applies, dispatch it as soon as a slot frees if the environment caps concurrent sub-agents. It is the lightest of the four and never blocks the review.
 
 **Aggregate verbatim.** Present each sub-agent's findings under its own heading without reranking or merging them. Cross-contamination is the thing the split exists to prevent. Verbatim covers the wording; the structure is fixed by `finding-format.md`, so aggregation is copy-through.
 
-**Tag, don't rerank.** After aggregating, give each finding one verdict: **Act on** (fix before this ships), **Consider** (worth doing, can wait), or **Noted** (an observation, no action expected). The reviewer's **Recommendation** field is its proposal; the orchestrator's verdict replaces that field and settles it. A finding a reviewer raised that turns out wrong or out of scope is **Dismissed** — kept as a one-line entry so the reader sees what was thrown out, never silently dropped. The verdict is a tag on the finding where it stands; findings keep their dimension and their reviewer's wording.
+**Tag, don't rerank.** After aggregating, give each finding one verdict: **Act on** (fix before this ships), **Consider** (worth doing, can wait), or **Noted** (an observation, no action expected). The reviewer's **Recommendation** field is its proposal; the orchestrator's verdict replaces that field and settles it. A finding a reviewer raised that turns out wrong or out of scope is **Dismissed**. It stays as a one-line entry so the reader sees what was thrown out, and is never silently dropped. The verdict is a tag on the finding where it stands; findings keep their dimension and their reviewer's wording.
 
 ## 4. Score the standards axis
 
@@ -48,11 +48,11 @@ Apply [scoring-rubric.md](references/scoring-rubric.md): score each category 0�
 
 Security 25% · Performance 15% · Quality & Maintainability 20% · Complexity 10% · Style & Standards 10% · Architecture & Design 10% · Documentation 10%
 
-The spec axis stays out of the score. It reports its own verdict — **Met**, **Partial**, or **Not met** — because a change can be immaculate and still build the wrong thing.
+The spec axis stays out of the score. It reports its own verdict (**Met**, **Partial**, or **Not met**) because a change can be immaculate and still build the wrong thing.
 
 ## 5. Write the review
 
-Write the report to a local markdown file — never to an external tracker. Pass its prose through the `unslop` skill before saving; findings keep their reviewer's wording, the connective prose around them gets the pass.
+Write the report to a local markdown file, never to an external tracker. Pass its prose through the `unslop` skill before saving; findings keep their reviewer's wording, the connective prose around them gets the pass.
 
 1. Reviews go in `<work folder>/reviews/`; create the folder if it is missing. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
 2. Name it with the date and a kebab-case slug of what was reviewed, e.g. `reviews/2026-06-02-auth-service.md`. The date prefix keeps a history across re-reviews. Confirm before overwriting an existing file.
@@ -76,11 +76,11 @@ Report the path and the overall score to the user, so the result is both saved a
 | Architecture & Design | X | 10% |
 | Documentation | X | 10% |
 
-**Spec compliance:** Met / Partial / Not met — one line, or "No spec found for this change."
+**Spec compliance:** Met / Partial / Not met. One line, or "No spec found for this change."
 
 ## Act on first
 
-- Pointers to the findings tagged **Act on**, e.g. "Priority issue 1 — <title>" — no restating, just the skim list.
+- Pointers to the findings tagged **Act on**, e.g. "Priority issue 1: <title>". No restating, just the skim list.
 
 ## Strengths
 
@@ -92,7 +92,7 @@ Report the path and the overall score to the user, so the result is both saved a
 
 **Verdict:** Act on / Consider / Noted · **Category:** … · **Where:** `path/file.ts:42` · **Evidence rung:** …
 
-Why it matters, then the current shape and the suggested one — code snippets only where prose is less precise.
+Why it matters, then the current shape and the suggested one, with code snippets only where prose is less precise.
 
 ### 2. …
 
@@ -102,7 +102,7 @@ Grouped under the dimension that raised them, verbatim from each reviewer, each 
 
 ## Dismissed
 
-- One line per dismissed finding: what was raised, and why it doesn't apply — or omit the section when nothing was dismissed.
+- One line per dismissed finding: what was raised, and why it doesn't apply. Omit the section when nothing was dismissed.
 
 ## Summary
 
@@ -111,4 +111,4 @@ Two or three sentences: the state of the code and the highest-leverage next step
 
 ## Judgement, not enforcement
 
-Every entry in the baseline is a reason to look closer, not a rule that has been broken — say why *this* instance matters rather than citing the smell by name. Back every finding with evidence a reader can go and check, and report the strengths as specifically as the problems.
+Every entry in the baseline is a reason to look closer, not a rule that has been broken. Say why *this* instance matters rather than citing the smell by name. Back every finding with evidence a reader can go and check, and report the strengths as specifically as the problems.

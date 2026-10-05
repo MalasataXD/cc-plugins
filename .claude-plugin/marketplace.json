@@ -11,7 +11,7 @@
     {
       "name": "reasoning",
       "source": "./",
-      "description": "Resolve uncertainty — interviews, domain language, research, prototypes.",
+      "description": "Resolve uncertainty: interviews, domain language, research, prototypes.",
       "skills": [
         "./skills/reasoning/grilling",
         "./skills/reasoning/domain-modeling",
@@ -23,7 +23,7 @@
     {
       "name": "planning",
       "source": "./",
-      "description": "Produce the breakdown — maps, specs, tickets.",
+      "description": "Produce the breakdown: maps, specs, tickets.",
       "skills": [
         "./skills/planning/wayfinder",
         "./skills/planning/to-spec",
@@ -34,7 +34,7 @@
     {
       "name": "code-quality",
       "source": "./",
-      "description": "Judge and refine code — review, smells, TDD, simplify, bug diagnosis.",
+      "description": "Judge and refine code: review, smells, TDD, simplify, bug diagnosis.",
       "skills": [
         "./skills/code-quality/review",
         "./skills/code-quality/code-smells",
@@ -49,7 +49,7 @@
     {
       "name": "learning",
       "source": "./",
-      "description": "Learn beyond the codebase — a stateful tutor with missions, lessons and learning records.",
+      "description": "Learn beyond the codebase: a stateful tutor with missions, lessons and learning records.",
       "skills": [
         "./skills/learning/teach"
       ]
@@ -57,7 +57,7 @@
     {
       "name": "utility",
       "source": "./",
-      "description": "Maintain the toolset and the conversation — writing for agents, prose polish, re-pitches, human walkthroughs, session retros.",
+      "description": "Maintain the toolset and the conversation: writing for agents, prose polish, re-pitches, human walkthroughs, session retros.",
       "skills": [
         "./skills/utility/writing-for-agents",
         "./skills/utility/unslop",
@@ -69,7 +69,7 @@
     {
       "name": "workflow",
       "source": "./",
-      "description": "Move the work — pick tickets, build, verify, hand off.",
+      "description": "Move the work: pick tickets, build, verify, hand off.",
       "skills": [
         "./skills/workflow/next-ticket",
         "./skills/workflow/implement",
@@ -80,7 +80,7 @@
     {
       "name": "git",
       "source": "./",
-      "description": "Ship the work — commits and pull requests in the house style.",
+      "description": "Ship the work: commits and pull requests in the house style.",
       "skills": [
         "./skills/git/commit",
         "./skills/git/file-pr",

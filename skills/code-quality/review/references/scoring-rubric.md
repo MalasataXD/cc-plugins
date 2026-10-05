@@ -65,7 +65,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - **90-100**: Deep interfaces; nothing a cold reader must know is left unstated.
 - **75-89**: Minor obscurity (an unstated invariant, an unexplained unit) with local impact.
 - **60-74**: A change here forces edits in several places, or callers carry knowledge the implementation should absorb.
-- **40-59**: High cognitive load — correct use requires knowledge the code does not surface.
+- **40-59**: High cognitive load: correct use requires knowledge the code does not surface.
 - **20-39**: Unknown unknowns likely: it is not evident which code must change or what must be known to change it safely.
 - **0-19**: Pervasive tactical shortcuts; every future change is amplified and unsafe.
 

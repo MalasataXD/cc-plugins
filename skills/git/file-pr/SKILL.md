@@ -5,7 +5,7 @@ description: Open a pull request in the house style, with a changelog body writt
 
 # File PR
 
-Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation. It opens with the note from the `github-attribution` skill, and carries no other attribution — no "Generated with" or "Co-Authored-By" lines.
+Open a pull request for the current branch against the branch the user names, with a body that is a changelog of what actually changed: grouped entries, one per change, written from the diff. The body is written from the diff, never from memory of the conversation. It opens with the note from the `github-attribution` skill, and carries no other attribution: no "Generated with" or "Co-Authored-By" lines.
 
 ## Process
 
@@ -30,24 +30,24 @@ If an open PR's head branch is an ancestor of `HEAD` and is not yet merged into 
 
 ### 3. Read the diff, not the log
 
-Read the full diff against the base — `git diff <base>...HEAD` — plus the files it touches where the diff alone does not explain the change. Commit messages are a guide to grouping, not a source: a commit can describe an intent the final diff no longer matches, and squashed or reverted work must not appear in the body.
+Read the full diff against the base (`git diff <base>...HEAD`), plus the files it touches where the diff alone does not explain the change. Commit messages are a guide to grouping, not a source: a commit can describe an intent the final diff no longer matches, and squashed or reverted work must not appear in the body.
 
-Group the changes by the **thing they change** — a rule, a seam, a tool, a contract, a setup step — not by file or by commit. Each group becomes a bold heading in the body, and each change inside it one entry.
+Group the changes by the **thing they change** (a rule, a seam, a tool, a contract, a setup step), not by file or by commit. Each group becomes a bold heading in the body, and each change inside it one entry.
 
 ### 4. Establish verification
 
-The Verification section states only what was actually run at the branch head, with the command and the result. Reuse results from this session when they came from the branch head; otherwise run the project's checks now (test suite, type checker, lint, build — whatever the project has). Name what was **not** exercised, such as a UI that was never clicked through, so the reviewer knows where to look. Never claim a pass you did not see. When the PR is a performance change, show the same measurement before and after.
+The Verification section states only what was actually run at the branch head, with the command and the result. Reuse results from this session when they came from the branch head; otherwise run the project's checks now (test suite, type checker, lint, build: whatever the project has). Name what was **not** exercised, such as a UI that was never clicked through, so the reviewer knows where to look. Never claim a pass you did not see. When the PR is a performance change, show the same measurement before and after.
 
 ### 5. Draft the title and body
 
-**Title:** imperative mood, under 70 characters, capitalized, no period — `Add purchasing foundation`, `Add Expo purchasing tools`, `Fix stale basket id across unit switch`.
+**Title:** imperative mood, under 70 characters, capitalized, no period. Examples: `Add purchasing foundation`, `Add Expo purchasing tools`, `Fix stale basket id across unit switch`.
 
 **Body:** a changelog, not an essay. Follow the template:
 
 - The attribution note from the `github-attribution` skill opens the body, before the stacked blockquote when there is one.
 - An opening paragraph of two or three sentences on what the PR establishes, in present tense ("This pull request adds…"), closing with "The most important changes are:".
 - A tree after the opening paragraph, only when the PR changes structure (files moved or split, a new call path). Use a short file tree or call tree, as a `diff` block when it changes an existing shape, and keep only the nodes the change touches. Most PRs have no tree.
-- Groups as bold headings, named by the thing they change — a rule, a seam, a tool, a contract, a setup step.
+- Groups as bold headings, named by the thing they change: a rule, a seam, a tool, a contract, a setup step.
 - Each bullet is one **entry**: it opens with a past-tense verb (Added, Routed, Removed, Replaced, Migrated, Extended, Regenerated), names the real identifier in backticks, and ends with the reason or the consequence when either is not obvious. One change per entry; a change that needs a paragraph is two entries.
 - Renames as `old` → `new`. Numbers where they change what the reviewer does: test counts, caps, line reductions.
 - **Testing** lists the coverage the PR adds; **Verification** lists what was run and its result. They are different sections. **Breaking changes for clients** appears only when there are some.
@@ -92,7 +92,7 @@ _(Tree only when the PR changes structure.)_
 
 </pr-template>
 
-Pass the body through the `unslop` skill — a PR body is read by people, and every one goes through that pass. Then show the title and body in the conversation and wait for the go-ahead. A PR is visible to the whole team, so this is the one confirmation the skill takes.
+Pass the body through the `unslop` skill. A PR body is read by people, and every one goes through that pass. Then show the title and body in the conversation and wait for the go-ahead. A PR is visible to the whole team, so this is the one confirmation the skill takes.
 
 ### 6. Open it
 

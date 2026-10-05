@@ -1,6 +1,6 @@
 # ADR format
 
-An **Architecture Decision Record** captures one significant decision: the context that forced it, the choice made, and the consequences accepted. One decision per file. Records are immutable — when a decision changes, write a new ADR that supersedes the old one rather than editing history.
+An **Architecture Decision Record** captures one significant decision: the context that forced it, the choice made, and the consequences accepted. One decision per file. Records are immutable. When a decision changes, write a new ADR that supersedes the old one rather than editing history.
 
 ## File location and naming
 
@@ -30,8 +30,8 @@ key reasons this option won over the alternatives.
 ## Consequences
 
 What becomes easier and what becomes harder as a result. Capture the trade-off
-honestly — the costs accepted, new constraints introduced, and follow-on work
-created — not just the benefits.
+honestly: the costs accepted, new constraints introduced, and follow-on work
+created, not just the benefits.
 ```
 
 ## Rules

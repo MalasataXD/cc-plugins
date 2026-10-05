@@ -1,9 +1,9 @@
-# Simplify — C# / .NET
+# Simplify: C# / .NET
 
 Apply these on top of the general principles. The project's `AGENTS.md` /
 `CLAUDE.md` still wins over anything here.
 
-> Tuned to your preferences — opinions about *clarity*, not a restatement of the
+> Tuned to your preferences. These are opinions about *clarity*, not a restatement of the
 > standard C# conventions the model already knows. Edit freely.
 
 - **Guard clauses over nesting.** Validate and return/throw early; keep the happy
@@ -16,7 +16,7 @@ Apply these on top of the general principles. The project's `AGENTS.md` /
 - **Async done right.** No `async` over sync, no `.Result` / `.Wait()` /
   `.GetAwaiter().GetResult()`. Propagate `CancellationToken`s; follow the
   project's `ConfigureAwait` stance.
-- **Pattern matching / `switch` expressions** for multi-branch logic — never
+- **Pattern matching / `switch` expressions** for multi-branch logic, never
   nested ternaries.
 - **Expression-bodied members** only when the body stays trivially readable; use
   a block body for anything with real logic.

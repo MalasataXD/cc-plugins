@@ -7,7 +7,7 @@ description: Interview the user relentlessly about a plan, decision, or design u
 
 Interview the user relentlessly about every aspect of this until you reach a shared understanding.
 
-Map the work as a **design tree**: every decision branches into the decisions that hang off it. The **frontier** is every decision whose prerequisites are already settled — the questions answerable *now*, without guessing at answers you have not heard yet. Each answer settles a decision, pushes the frontier outward, and unblocks the questions that depended on it.
+Map the work as a **design tree**: every decision branches into the decisions that hang off it. The **frontier** is every decision whose prerequisites are already settled: the questions answerable *now*, without guessing at answers you have not heard yet. Each answer settles a decision, pushes the frontier outward, and unblocks the questions that depended on it.
 
 For every question, give your recommended answer.
 
@@ -17,7 +17,7 @@ The session is done when the frontier is empty: every branch visited, nothing le
 
 Walk the tree in rounds: a numbered set of questions at once, each with a recommended answer. Wait for the round's answers before recomputing the frontier. A question that depends on another still open in this round belongs to a *later* round.
 
-Cap each round at **3–5 questions** — a round has to fit in the user's head, not exhaust the tree. When the frontier is wider than that, ask the 3–5 questions that unblock the most downstream decisions and hold the rest for later rounds; they are not lost, the frontier is recomputed every round.
+Cap each round at **3–5 questions**. A round has to fit in the user's head, not exhaust the tree. When the frontier is wider than that, ask the 3–5 questions that unblock the most downstream decisions and hold the rest for later rounds; they are not lost, the frontier is recomputed every round.
 
 Format every question in the round like so, with a `---` line between questions:
 
@@ -35,7 +35,7 @@ Format every question in the round like so, with a `---` line between questions:
 
 ## Facts are yours, decisions are theirs
 
-When a question needs a fact from the environment, find it — explore the codebase, read the files, run the tools — rather than asking the user for something you could look up.
+When a question needs a fact from the environment, find it yourself: explore the codebase, read the files, run the tools. Don't ask the user for something you could look up.
 
 Dispatch a sub-agent for the lookup and keep going: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait. Ask the rest of the frontier now.
 

@@ -18,7 +18,7 @@ The first thing in the body, as a GitHub alert, followed by a blank line and the
 <the body>
 ```
 
-- **`<model name>`** is the running model's display name — Fable 5.1, Opus 5, GPT-5 Codex — not the API slug and not the vendor alone.
+- **`<model name>`** is the running model's display name (Fable 5.1, Opus 5, GPT-5 Codex), not the API slug and not the vendor alone.
 - **`<name>`** is `git config user.name`. Outside a repository, ask.
 
 The note applies to every write: `gh pr create`, `gh pr comment`, `gh pr review`, `gh issue create`, `gh issue comment`, and any `--edit` of those bodies. Edits keep the note of the body they edit, where it is. Pass a body with `--body-file` so the blank line and the `>` survive the shell.

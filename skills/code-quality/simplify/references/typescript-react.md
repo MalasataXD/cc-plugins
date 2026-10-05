@@ -1,4 +1,4 @@
-# Simplify — TypeScript / React
+# Simplify: TypeScript / React
 
 Apply these on top of the general principles. The project's `AGENTS.md` /
 `CLAUDE.md` still wins over anything here.
@@ -14,7 +14,7 @@ Apply these on top of the general principles. The project's `AGENTS.md` /
   (result types, narrow guards, validating at the boundary). Keep `try/catch`
   where it genuinely belongs.
 - Replace `any` with a real type or `unknown` + narrowing.
-- Use `switch` or `if`/`else` chains for multiple conditions — **never nested
+- Use `switch` or `if`/`else` chains for multiple conditions. **Never nest
   ternaries**.
 - Consistent naming: `camelCase` values, `PascalCase` types/components.
 
@@ -22,9 +22,9 @@ Apply these on top of the general principles. The project's `AGENTS.md` /
 
 - **Explicit `Props` type** for every component; no inline anonymous prop shapes
   on non-trivial components.
-- Keep components focused — split when a component juggles too many concerns.
+- Keep components focused. Split when a component juggles too many concerns.
 - Derive state instead of duplicating it; lift only when genuinely shared.
 - Keep effects honest: correct dependency arrays, no logic that belongs in render
   or an event handler.
-- Extract a hook or helper when the same logic repeats — but don't abstract a
+- Extract a hook or helper when the same logic repeats, but don't abstract a
   one-off.

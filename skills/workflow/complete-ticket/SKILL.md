@@ -17,33 +17,33 @@ Never invent evidence: if you cannot see that a criterion is met, it is not met.
 
 1. If the user names a specific ticket file, use it.
 2. Otherwise infer it from the conversation, the current changes (`git status` / `git diff`), and the `In progress` tickets under `<work folder>/tickets/`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root.
-3. If it is still ambiguous — several open tickets, no clear signal — ask which one to check rather than guessing.
+3. If it is still ambiguous (several open tickets, no clear signal), ask which one to check rather than guessing.
 
 Read the full ticket: the `Type` and `Status` lines under the title, `What to build`, `Acceptance criteria`, `Blocked by`, and the `Parent` spec.
 
 ### 2. Dispatch a cold read
 
-The judgment itself goes to a sub-agent, not this conversation. This session often *wrote* the changes being judged — the `implement` chain ends here — and an author checking its own work against the criteria reads the ticket through the lens of what it built, not what was asked. The sub-agent gets exactly two things: the ticket file and the scope of the changes (the ref, branch, or list of touched paths). No conversation history, no plan, no explanation of intent.
+The judgment itself goes to a sub-agent, not this conversation. This session often *wrote* the changes being judged, since the `implement` chain ends here, and an author checking its own work against the criteria reads the ticket through the lens of what it built, not what was asked. The sub-agent gets exactly two things: the ticket file and the scope of the changes (the ref, branch, or list of touched paths). No conversation history, no plan, no explanation of intent.
 
-The sub-agent surveys what was really done, not what was intended: the working tree and diff (`git status`, `git diff`, and the relevant files). It runs the tests or the app where that is the only way to confirm a behavioral criterion — but stays within verification; it does not fix or extend the implementation.
+The sub-agent surveys what was really done, not what was intended: the working tree and diff (`git status`, `git diff`, and the relevant files). It runs the tests or the app where that is the only way to confirm a behavioral criterion, but stays within verification; it does not fix or extend the implementation.
 
 ### 3. Judge each acceptance criterion
 
 The sub-agent gives every criterion one of two states, backed with concrete evidence graded on the `prove-it` ladder, the rung stated in the report:
 
-- **Met** — the change demonstrably satisfies it. Point to the file, function, or test that proves it. A behavioral criterion is Met only at **Ran it** or higher.
-- **Not met** — anything short of that. Say what is missing: the work itself, the error path, or the proof — when a criterion cannot be verified from here (a manual step, an environment you lack, a human judgment), it is Not met, and the evidence column names what would verify it.
+- **Met**: the change demonstrably satisfies it. Point to the file, function, or test that proves it. A behavioral criterion is Met only at **Ran it** or higher.
+- **Not met**: anything short of that. Say what is missing: the work itself, the error path, or the proof. When a criterion cannot be verified from here (a manual step, an environment you lack, a human judgment), it is Not met, and the evidence column names what would verify it.
 
-It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the ticket's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship? For anything risky the criteria don't cover, name the safety fact from `prove-it` — the one fact the change is safe because of — and the rung it reached.
+It also sanity-checks beyond the checklist: does the change match `What to build`? Did it stay inside the ticket's scope, or drift? Are there obvious regressions, missing tests, or loose ends an implementer would be embarrassed to ship? For anything risky the criteria don't cover, name the safety fact from `prove-it` (the one fact the change is safe because of) and the rung it reached.
 
 ### 4. Report the state
 
-Present the sub-agent's assessment in the conversation using the format below, without softening its verdicts — the cold read is the point.
+Present the sub-agent's assessment in the conversation using the format below, without softening its verdicts. The cold read is the point.
 
 <output-format>
-## Ticket check: <filename> — <title>
+## Ticket check: <filename> (<title>)
 
-**Verdict:** Complete / Not done — one line.
+**Verdict:** Complete / Not done, in one line.
 **Type:** RFA / RFH
 
 ### Acceptance criteria
@@ -54,15 +54,15 @@ Present the sub-agent's assessment in the conversation using the format below, w
 | C3 | Not met | needs a manual check of <thing>; no change addresses it |
 
 ### What's left to finish
-- The concrete, ordered remaining work — or "Nothing; all criteria met."
+- The concrete, ordered remaining work, or "Nothing; all criteria met."
 
 ### Beyond the checklist
-- Scope drift, missing tests, regressions, or loose ends — or "None spotted."
+- Scope drift, missing tests, regressions, or loose ends, or "None spotted."
 </output-format>
 
 ### 5. Record the verdict
 
-The verdict is **Complete** only when every criterion is Met. Then tick every `- [ ]` acceptance box and set the `Status` line to `Completed` — that records what the report already said, and it is the only edit made to the ticket. The parent spec is never modified.
+The verdict is **Complete** only when every criterion is Met. Then tick every `- [ ]` acceptance box and set the `Status` line to `Completed`. That records what the report already said, and it is the only edit made to the ticket. The parent spec is never modified.
 
 If the ticket was the last open one in its phase (the `[P<x>]` title prefix; the other tickets of the phase sit beside it), say so and name the phase's verifiable state from the spec's `## Phases` map: this is the moment the user can check the feature end to end.
 
@@ -70,7 +70,7 @@ On **Not done**, change nothing and leave the report as the answer.
 
 ### 6. Commit and point to the next ticket
 
-When the verdict is Complete, commit with the `commit` skill without asking — the cold read is the approval. Make one commit for the ticket, so it can be traced and reverted on its own. Stage only the paths in the scope the sub-agent judged, plus the ticket file; leave anything else in the tree unstaged and name it in the report. Skip the commit when the tree is already clean.
+When the verdict is Complete, commit with the `commit` skill without asking. The cold read is the approval. Make one commit for the ticket, so it can be traced and reverted on its own. Stage only the paths in the scope the sub-agent judged, plus the ticket file; leave anything else in the tree unstaged and name it in the report. Skip the commit when the tree is already clean.
 
 Then name the next ticket using `next-ticket`'s selection rules, with one line on why it is next, and stop. Planning it is `next-ticket`'s job, once the user asks for it. When the finished ticket closed its phase, the end-to-end check from step 5 comes first and the next ticket second.
 

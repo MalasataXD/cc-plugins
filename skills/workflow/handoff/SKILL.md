@@ -7,13 +7,13 @@ disable-model-invocation: true
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work.
 
-Save it to `<work folder>/handoff.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. There is exactly one handoff file and it is **overwritten** each time — the next agent needs one known path to read, not a folder to search. A handoff describes a moment, so a stale one is worth less than the one replacing it.
+Save it to `<work folder>/handoff.md`. The project's `AGENTS.md` or `CLAUDE.md` names the work folder; when it names nothing, use `.ai/` at the repository root. There is exactly one handoff file and it is **overwritten** each time. The next agent needs one known path to read, not a folder to search. A handoff describes a moment, so a stale one is worth less than the one replacing it.
 
 Open the document with this standing header, addressed to the agent reading it (fill in the date and commit):
 
 > **Written:** YYYY-MM-DD at commit `<short-hash>`. Git is the source of truth, this file is a claim about it. If commits landed after that hash, this handoff is stale: reconstruct the state from `git log` and `git diff` instead, then rewrite this file with what you find. Even when fresh, verify what it claims against the actual diff before building on it.
 
-Include a "suggested skills" section naming the skills the next agent should reach for, and where in the pipeline the work sits — `next-ticket` when a ticket is chosen but unplanned, `implement` when a plan is approved and the build is underway, `complete-ticket` when the work looks finished, `diagnosing-bugs` when the session was chasing a symptom. Name the specific ticket or spec file where one exists.
+Include a "suggested skills" section naming the skills the next agent should reach for, and where in the pipeline the work sits: `next-ticket` when a ticket is chosen but unplanned, `implement` when a plan is approved and the build is underway, `complete-ticket` when the work looks finished, `diagnosing-bugs` when the session was chasing a symptom. Name the specific ticket or spec file where one exists.
 
 This transfers a **conversation**; `complete-ticket` judges a **ticket**. Reach for that one instead when the question is whether the work is done.
 

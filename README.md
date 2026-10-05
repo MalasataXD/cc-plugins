@@ -18,7 +18,7 @@ The interactive picker groups skills by category (driven by
 `.claude-plugin/marketplace.json`), and a category heading toggles its whole
 group. Skills trigger on natural phrasing
 (*"grill me on this plan"*, *"what's the next ticket"*) or by name. Each skill's
-`SKILL.md` is its full documentation — this README is just the map.
+`SKILL.md` is its full documentation. This README is just the map.
 
 ## The pipeline
 
@@ -35,59 +35,59 @@ and gates the commit. Two ideas run through it:
 - **Two front doors.** `grilling` stress-tests an idea that fits one session;
   `wayfinder` charts one that doesn't as a route of pitches, grilling each into a spec in turn.
 - **Tickets are only build work.** `to-tickets` settles every open question
-  before writing one — facts through `research`, choices through `grilling` —
+  before writing one (facts through `research`, choices through `grilling`),
   so no ticket carries a guess.
 
 ## Skills
 
-Categories are folders only — skills install with bare names regardless.
+Categories are folders only. Skills install with bare names regardless.
 
-| `reasoning` — resolve uncertainty | |
+| `reasoning`: resolve uncertainty | |
 | --- | --- |
 | `grilling` | Interview in rounds of 3–5 questions, walking a design tree to its frontier |
-| `domain-modeling` | One term, one meaning — `GLOSSARY.md` and ADRs |
+| `domain-modeling` | One term, one meaning: `GLOSSARY.md` and ADRs |
 | `research` | Background agent reads primary sources → `<work folder>/research/` |
 | `prototype` | Throwaway code that answers a design question |
-| `complexity` | Ousterhout's complexity model — the ledger plans answer to |
+| `complexity` | Ousterhout's complexity model, used as the ledger plans answer to |
 
-| `planning` — produce the breakdown | |
+| `planning`: produce the breakdown | |
 | --- | --- |
 | `wayfinder` | Chart a big effort as a route of pitches → specs → `<work folder>/wayfinder/` |
 | `to-spec` | Current context → compact spec → `<work folder>/specs/` |
 | `to-tickets` | Spec → phases of compact tickets → `<work folder>/tickets/` |
 | `vet-tickets` | Read tickets cold; report only what would stall an implementer |
 
-| `code-quality` — judge and refine code | |
+| `code-quality`: judge and refine code | |
 | --- | --- |
 | `review` | Two-axis review, scored 0–100 → `<work folder>/reviews/` |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
-| `codebase-design` | Deep-module vocabulary — interfaces, seams, adapters, depth |
+| `codebase-design` | Deep-module vocabulary: interfaces, seams, adapters, depth |
 | `improve-codebase-architecture` | Find deepening candidates → HTML report → `<work folder>/architecture/` |
 | `tdd` | Red → green at pre-agreed seams, vertical slices |
 | `simplify` | Refine recent code without changing what it does |
 | `diagnosing-bugs` | Feedback loop first; then reproduce, hypothesise, fix |
 
-| `learning` — learn beyond the codebase | |
+| `learning`: learn beyond the codebase | |
 | --- | --- |
-| `teach` | Stateful tutor: mission, HTML lessons, learning records, glossary — the invocation directory is the workspace |
+| `teach` | Stateful tutor: mission, HTML lessons, learning records, glossary. The invocation directory is the workspace |
 
-| `utility` — maintain the toolset | |
+| `utility`: maintain the toolset | |
 | --- | --- |
-| `writing-for-agents` | Reference for writing any document an agent consumes — skills, `CLAUDE.md`, pointed-at docs |
-| `unslop` | Final prose pass for anything a human reads — specs, reviews, PR bodies |
+| `writing-for-agents` | Reference for writing any document an agent consumes: skills, `CLAUDE.md`, pointed-at docs |
+| `unslop` | Final prose pass for anything a human reads: specs, reviews, PR bodies |
 | `wait-what` | Re-pitch the last message, simply |
 | `wizard` | Interactive bash walkthrough for steps only a human can do |
 | `retro` | Review a session and suggest changes to the agent's setup, not the code |
 
-| `workflow` — move the work | |
+| `workflow`: move the work | |
 | --- | --- |
 | `next-ticket` | Pick and plan the next open ticket, then build it unless the plan has open questions |
 | `implement` | Build approved work: `tdd` where a seam exists → `simplify` → `review` when big |
 | `complete-ticket` | Judge a ticket against its criteria; commit and name the next ticket |
 | `handoff` | Compact the session for the next agent → `<work folder>/handoff.md` |
 
-| `git` — ship the work | |
+| `git`: ship the work | |
 | --- | --- |
 | `commit` | Structured commits with imperative titles |
 | `file-pr` | Open a PR with a changelog body written from the diff |
@@ -102,7 +102,6 @@ Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
 ## Credits
 
 Several skills are taken or adapted from
-[mattpocock/skills](https://github.com/mattpocock/skills) (MIT) — see each
-skill's history. The composition — local-file outputs under a project work folder, scored
-reviews, the RFA/RFH axis, and the ticket pipeline — is this
-repo's own.
+[mattpocock/skills](https://github.com/mattpocock/skills) (MIT); see each
+skill's history. The composition is this repo's own: local-file outputs under a
+project work folder, scored reviews, the RFA/RFH axis, and the ticket pipeline.

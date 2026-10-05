@@ -5,85 +5,50 @@
     "url": "https://github.com/MalasataXD"
   },
   "metadata": {
-    "description": "Personal skill set: an interview-driven planning-to-PR pipeline with reasoning, planning, code-quality, workflow and git skills."
+    "description": "Personal skill set: an interview-driven planning-to-PR pipeline, split into a main tier and an extras tier."
   },
   "plugins": [
     {
-      "name": "reasoning",
+      "name": "main",
       "source": "./",
-      "description": "Resolve uncertainty: interviews, domain language, research, prototypes.",
+      "description": "The working set: the planning-to-PR pipeline, the skills it loads, and the tools for maintaining the skills. Install this on every machine.",
       "skills": [
-        "./skills/reasoning/grilling",
-        "./skills/reasoning/domain-modeling",
-        "./skills/reasoning/research",
-        "./skills/reasoning/prototype",
-        "./skills/reasoning/complexity"
+        "./skills/think/grilling",
+        "./skills/think/domain-modeling",
+        "./skills/think/research",
+        "./skills/think/prototype",
+        "./skills/think/complexity",
+        "./skills/plan/to-spec",
+        "./skills/plan/to-tickets",
+        "./skills/plan/vet-tickets",
+        "./skills/build/next-ticket",
+        "./skills/build/implement",
+        "./skills/build/tdd",
+        "./skills/build/diagnosing-bugs",
+        "./skills/build/simplify",
+        "./skills/build/handoff",
+        "./skills/check/review",
+        "./skills/check/complete-ticket",
+        "./skills/check/code-smells",
+        "./skills/check/prove-it",
+        "./skills/ship/commit",
+        "./skills/ship/file-pr",
+        "./skills/ship/github-attribution",
+        "./skills/toolbox/unslop",
+        "./skills/check/health-check",
+        "./skills/meta/retro",
+        "./skills/meta/writing-for-agents"
       ]
     },
     {
-      "name": "planning",
+      "name": "extras",
       "source": "./",
-      "description": "Produce the breakdown: maps, specs, tickets.",
+      "description": "Skills outside day-to-day work: charting big efforts, human walkthroughs, re-pitches, and tutoring.",
       "skills": [
-        "./skills/planning/wayfinder",
-        "./skills/planning/to-spec",
-        "./skills/planning/to-tickets",
-        "./skills/planning/vet-tickets"
-      ]
-    },
-    {
-      "name": "code-quality",
-      "source": "./",
-      "description": "Judge and refine code: review, smells, health checks, TDD, simplify, bug diagnosis.",
-      "skills": [
-        "./skills/code-quality/review",
-        "./skills/code-quality/code-smells",
-        "./skills/code-quality/prove-it",
-        "./skills/code-quality/health-check",
-        "./skills/code-quality/tdd",
-        "./skills/code-quality/simplify",
-        "./skills/code-quality/diagnosing-bugs"
-      ]
-    },
-    {
-      "name": "learning",
-      "source": "./",
-      "description": "Learn beyond the codebase: a stateful tutor with missions, lessons and learning records.",
-      "skills": [
-        "./skills/learning/teach"
-      ]
-    },
-    {
-      "name": "utility",
-      "source": "./",
-      "description": "Maintain the toolset and the conversation: writing for agents, prose polish, re-pitches, human walkthroughs, session retros.",
-      "skills": [
-        "./skills/utility/writing-for-agents",
-        "./skills/utility/unslop",
-        "./skills/utility/wait-what",
-        "./skills/utility/wizard",
-        "./skills/utility/retro"
-      ]
-    },
-    {
-      "name": "workflow",
-      "source": "./",
-      "description": "Move the work: pick tickets, build, verify, hand off.",
-      "skills": [
-        "./skills/workflow/next-ticket",
-        "./skills/workflow/implement",
-        "./skills/workflow/complete-ticket",
-        "./skills/workflow/handoff"
-      ]
-    },
-    {
-      "name": "git",
-      "source": "./",
-      "description": "Ship the work: commits and pull requests in the house style.",
-      "skills": [
-        "./skills/git/commit",
-        "./skills/git/file-pr",
-        "./skills/git/github-attribution"
+        "./skills/plan/wayfinder",
+        "./skills/toolbox/wizard",
+        "./skills/toolbox/wait-what",
+        "./skills/toolbox/teach"
       ]
     }
   ]

@@ -30,7 +30,7 @@ State which ticket you picked and why.
 
 Read the whole ticket, and skim its `Parent` spec for the context the ticket assumes.
 
-The `Type` decides where the user is needed. **RFA** runs end to end with no human during the work. **RFH** needs the user at a specific point (a design review, a credential), so the plan names exactly where; when the human-only steps are a manual procedure (credentials, dashboards, provisioning), plan to generate a walkthrough via the `wizard` skill.
+The `Type` decides where the user is needed. **RFA** runs end to end with no human during the work. **RFH** needs the user at a specific point (a design review, a credential), so the plan names exactly where.
 
 A ticket that still holds an open question (a fact nobody looked up, a choice nobody made) slipped past `to-tickets`. Settle it with the `research` or `grilling` skill before planning, rather than planning around a guess.
 

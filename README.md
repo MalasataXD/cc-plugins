@@ -97,7 +97,8 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 ## Archived
 
 Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
-`grill-with-docs` (superseded by `grilling` + `domain-modeling`), `think-like`,
+`grill-me` and `batch-grill-me` (superseded by `grilling`), `grill-with-docs`
+(superseded by `grilling` + `domain-modeling`), `think-like`,
 `zoom-out`, `to-questionnaire`, `wayfinder`, `wizard` and `teach` (unused),
 `codebase-design` (merged into `complexity`), and
 `improve-codebase-architecture` (superseded by `health-check`).

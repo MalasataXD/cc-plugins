@@ -70,7 +70,7 @@ On **Not done**, change nothing and leave the report as the answer.
 
 ### 6. Commit and point to the next ticket
 
-When the verdict is Complete, commit with the `commit` skill without asking. The cold read is the approval. Make one commit for the ticket, so it can be traced and reverted on its own. Stage only the paths in the scope the sub-agent judged, plus the ticket file; leave anything else in the tree unstaged and name it in the report. Skip the commit when the tree is already clean.
+When the verdict is Complete, commit with the `commit` skill without asking. The cold read is the approval. Make one commit for the ticket, so it can be traced and reverted on its own. Stage only the paths in the scope the sub-agent judged, never the ticket file; leave anything else in the tree unstaged and name it in the report. Skip the commit when the tree is already clean.
 
 Then name the next ticket using `next-ticket`'s selection rules, with one line on why it is next, and stop. Planning it is `next-ticket`'s job, once the user asks for it. When the finished ticket closed its phase, the end-to-end check from step 5 comes first and the next ticket second.
 

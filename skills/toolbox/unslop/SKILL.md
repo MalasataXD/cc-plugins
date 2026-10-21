@@ -1,6 +1,6 @@
 ---
 name: unslop
-description: Final prose pass for human-facing output. Lead with the conclusion, cut filler, and write full sentences. Use before saving a spec, review, research file, or any document a human will read, or when asked to make text readable.
+description: Use when writing or tightening a document a human will read.
 ---
 
 # Unslop

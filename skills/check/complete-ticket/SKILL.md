@@ -1,6 +1,6 @@
 ---
 name: complete-ticket
-description: Check a ticket's changes against its acceptance criteria. Use when the user thinks a ticket is finished and wants to confirm it.
+description: Use when a ticket's implementation is done and needs checking against its acceptance criteria.
 ---
 
 # Complete Ticket

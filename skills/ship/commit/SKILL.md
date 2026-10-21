@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Git commits in the house style. Use when the user asks to commit changes.
+description: Use when committing changes.
 ---
 
 # Commit Style

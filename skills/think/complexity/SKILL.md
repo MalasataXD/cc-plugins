@@ -1,6 +1,6 @@
 ---
 name: complexity
-description: A ledger for weighing complexity against value, plus how to shape deep modules and place seams. Use when planning or specing a new solution, designing a module's interface or deciding where a seam goes, when a plan element feels like a shortcut or special case, or when another skill needs the complexity vocabulary.
+description: Use when shaping a plan, a module's interface or a seam, or when something feels like a shortcut or special case.
 ---
 
 # Complexity

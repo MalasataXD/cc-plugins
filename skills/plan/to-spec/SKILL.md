@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Turn the current conversation context into a compact spec. Use when the user wants to create a spec.
+description: Use when the current conversation needs writing up as a spec.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec as a local markdown file. Do NOT interview the user. Just synthesize what you already know.

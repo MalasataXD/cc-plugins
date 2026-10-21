@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: Break a plan or spec into phases of compact tickets. Use when the user wants to break work down into tickets.
+description: Use when breaking work, a plan or a spec down into tickets.
 ---
 
 # To Tickets

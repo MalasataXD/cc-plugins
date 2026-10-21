@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development, covering the red → green loop and the rules that make its tests worth keeping. Use when the user wants to build a feature or fix a bug test-first, or mentions TDD or red-green.
+description: Use when building a feature or fixing a bug test-first, or when TDD or red-green comes up.
 ---
 
 # Test-Driven Development

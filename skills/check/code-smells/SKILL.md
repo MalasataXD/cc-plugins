@@ -1,6 +1,6 @@
 ---
 name: code-smells
-description: The shared baseline of structural problems to look for in code, covering naming, abstraction, structure, and change patterns. Use when reviewing or refining code, or when another skill needs the smell baseline.
+description: Use when reviewing or refining code.
 ---
 
 # Code Smells

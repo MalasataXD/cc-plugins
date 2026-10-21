@@ -1,6 +1,6 @@
 ---
 name: github-attribution
-description: The attribution note that opens every write to GitHub. Use before running any `gh` command that creates or edits text on GitHub, or when another skill needs the note.
+description: Use before running any `gh` command that creates or edits text on GitHub.
 ---
 
 # GitHub attribution

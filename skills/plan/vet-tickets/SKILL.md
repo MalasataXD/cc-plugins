@@ -1,6 +1,6 @@
 ---
 name: vet-tickets
-description: Read tickets cold as an implementer and report only what would stall them. Use when the user wants to sanity-check tickets before handing them off or find gaps in a breakdown.
+description: Use when tickets need a sanity check, or a breakdown needs checking for gaps.
 ---
 
 # Vet Tickets

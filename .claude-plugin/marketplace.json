@@ -11,7 +11,7 @@
     {
       "name": "main",
       "source": "./",
-      "description": "The working set: the planning-to-PR pipeline, the skills it loads, and the tools for maintaining the skills. Install this on every machine.",
+      "description": "The working set: the planning-to-PR pipeline and the skills it loads. Install this on every machine.",
       "skills": [
         "./skills/think/grilling",
         "./skills/think/domain-modeling",
@@ -34,21 +34,18 @@
         "./skills/ship/commit",
         "./skills/ship/file-pr",
         "./skills/ship/github-attribution",
-        "./skills/toolbox/unslop",
-        "./skills/check/health-check",
-        "./skills/meta/retro",
-        "./skills/meta/writing-for-agents"
+        "./skills/toolbox/unslop"
       ]
     },
     {
       "name": "extras",
       "source": "./",
-      "description": "Skills outside day-to-day work: charting big efforts, human walkthroughs, re-pitches, and tutoring.",
+      "description": "Skills outside day-to-day work: codebase health checks, session retros, writing for agents, and re-pitches.",
       "skills": [
-        "./skills/plan/wayfinder",
-        "./skills/toolbox/wizard",
-        "./skills/toolbox/wait-what",
-        "./skills/toolbox/teach"
+        "./skills/check/health-check",
+        "./skills/meta/retro",
+        "./skills/meta/writing-for-agents",
+        "./skills/toolbox/wait-what"
       ]
     }
   ]

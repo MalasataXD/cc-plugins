@@ -1,6 +1,6 @@
 ---
 name: review
-description: Multi-dimension code review written to the work folder's reviews/. Use when the user asks for a code review, a quality check, or how a change could be improved.
+description: Use when a finished change needs a review or quality check before it ships.
 ---
 
 # Code Review

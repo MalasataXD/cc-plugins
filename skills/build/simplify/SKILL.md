@@ -1,6 +1,6 @@
 ---
 name: simplify
-description: Refine code for clarity and consistency without changing what it does. Use when the user asks to simplify or clean up code, or to apply project standards to recent changes.
+description: Use when simplifying or cleaning up code, or applying project standards to recent changes.
 ---
 
 # Simplify

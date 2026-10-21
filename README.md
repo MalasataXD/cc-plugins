@@ -5,10 +5,10 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 
 ```shell
 # a new machine: the main tier
-npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review complete-ticket code-smells prove-it commit file-pr github-attribution unslop health-check retro writing-for-agents
+npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review complete-ticket code-smells prove-it commit file-pr github-attribution unslop
 
 # the extras tier, on top
-npx skills add MalasataXD/cc-plugins -g -s wayfinder wizard wait-what teach
+npx skills add MalasataXD/cc-plugins -g -s health-check retro writing-for-agents wait-what
 
 # refresh everything already installed
 npx skills update -g -y
@@ -16,8 +16,8 @@ npx skills update -g -y
 
 Skills come in two tiers, which are the groups in the interactive picker
 (driven by `.claude-plugin/marketplace.json`). **Main** is the working set:
-the pipeline, every skill it loads, and the tools for maintaining the skills.
-**Extras** is everything outside day-to-day work, marked *(extras)* below.
+the pipeline and every skill it loads. **Extras** is everything outside
+day-to-day work, marked *(extras)* below.
 The install commands prompt for which agents to install to.
 
 Name skills explicitly rather than using `--all`: it installs every
@@ -30,20 +30,18 @@ Each skill's `SKILL.md` is its full documentation. This README is just the map.
 ## The pipeline
 
 ```
-grilling ──┬→ to-spec → to-tickets → next-ticket → implement → complete-ticket → commit → file-pr
-wayfinder ─┘                 │                          │
-                        vet-tickets           tdd → simplify → review
+grilling → to-spec → to-tickets → next-ticket → implement → complete-ticket → commit → file-pr
+                          │                          │
+                     vet-tickets           tdd → simplify → review
 ```
 
 Each stage stops where the next begins, and nothing grades its own work:
 `implement` builds but never commits; `complete-ticket` judges the result cold
-and gates the commit. Two ideas run through it:
+and gates the commit.
 
-- **Two front doors.** `grilling` stress-tests an idea that fits one session;
-  `wayfinder` charts one that doesn't as a route of pitches, grilling each into a spec in turn.
-- **Tickets are only build work.** `to-tickets` settles every open question
-  before writing one (facts through `research`, choices through `grilling`),
-  so no ticket carries a guess.
+**Tickets are only build work.** `to-tickets` settles every open question
+before writing one (facts through `research`, choices through `grilling`),
+so no ticket carries a guess.
 
 ## Skills
 
@@ -59,7 +57,6 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 
 | `plan`: produce the breakdown | |
 | --- | --- |
-| `wayfinder` *(extras)* | Chart a big effort as a route of pitches → specs → `<work folder>/wayfinder/` |
 | `to-spec` | Current context → compact spec → `<work folder>/specs/` |
 | `to-tickets` | Spec → phases of compact tickets → `<work folder>/tickets/` |
 | `vet-tickets` | Read tickets cold; report only what would stall an implementer |
@@ -79,7 +76,7 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 | `complete-ticket` | Judge a ticket against its criteria; commit and name the next ticket |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |
-| `health-check` | Rank the codebase's hot spots from git history; hand the top one to `to-spec` |
+| `health-check` *(extras)* | Rank the codebase's hot spots from git history; hand the top one to `to-spec` |
 
 | `ship`: get it out | |
 | --- | --- |
@@ -90,21 +87,20 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 | `toolbox`: helpers for any stage | |
 | --- | --- |
 | `unslop` | Final prose pass for anything a human reads: specs, reviews, PR bodies |
-| `wizard` *(extras)* | Interactive bash walkthrough for steps only a human can do |
 | `wait-what` *(extras)* | Re-pitch the last message, simply |
-| `teach` *(extras)* | Stateful tutor: mission, HTML lessons, learning records, glossary. The invocation directory is the workspace |
 
 | `meta`: maintain the skills themselves | |
 | --- | --- |
-| `writing-for-agents` | Reference for writing any document an agent consumes: skills, `CLAUDE.md`, pointed-at docs |
-| `retro` | Review a session and suggest changes to the agent's setup, not the code |
+| `writing-for-agents` *(extras)* | Reference for writing any document an agent consumes: skills, `CLAUDE.md`, pointed-at docs |
+| `retro` *(extras)* | Review a session and suggest changes to the agent's setup, not the code |
 
 ## Archived
 
 Retired skills live in `archive/`, uninstalled: `gh` (GitHub CLI workflows),
 `grill-with-docs` (superseded by `grilling` + `domain-modeling`), `think-like`,
-`zoom-out` and `to-questionnaire` (unused), `codebase-design` (merged into
-`complexity`), and `improve-codebase-architecture` (superseded by `health-check`).
+`zoom-out`, `to-questionnaire`, `wayfinder`, `wizard` and `teach` (unused),
+`codebase-design` (merged into `complexity`), and
+`improve-codebase-architecture` (superseded by `health-check`).
 
 ## Credits
 

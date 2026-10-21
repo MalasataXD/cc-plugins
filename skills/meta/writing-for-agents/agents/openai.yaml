@@ -1,3 +1,3 @@
 interface:
   display_name: "Writing for Agents"
-  short_description: "Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md."
+  short_description: "Use when writing or editing a document agents will read, such as a skill, AGENTS.md or CLAUDE.md."

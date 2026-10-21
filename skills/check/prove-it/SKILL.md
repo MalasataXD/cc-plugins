@@ -1,6 +1,6 @@
 ---
 name: prove-it
-description: The certainty ladder for evidence. Name the fact a change is safe because of, and how far up the ladder it was pushed. Use when judging whether work is complete, backing a review finding with evidence, or when another skill needs the ladder.
+description: Use when judging whether work is complete, or backing a review finding with evidence.
 ---
 
 # Prove It

@@ -1,6 +1,6 @@
 ---
 name: file-pr
-description: Open a pull request in the house style, with a changelog body written from the branch's real diff. Use when the user asks to file, open, or raise a PR.
+description: Use when filing, opening or raising a PR.
 ---
 
 # File PR

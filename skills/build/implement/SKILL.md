@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Build an approved ticket or plan end to end. Use when the user approves a plan and wants it built, or asks to implement a ticket.
+description: Use when building an approved plan or ticket.
 ---
 
 # Implement

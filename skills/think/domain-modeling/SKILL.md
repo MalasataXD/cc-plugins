@@ -37,11 +37,13 @@ If a `GLOSSARY-MAP.md` exists at the root, the repo has multiple contexts. The m
 │       └── docs/adr/
 ```
 
-Create files lazily, only when you have something to write. If no `GLOSSARY.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is warranted.
+In a mapped repo, **the glossary** means the one the map lists for the context you are working in. A term from a context the map doesn't cover gets a new glossary beside the map's existing ones, and its own row in the map.
+
+Create files lazily, only when you have something to write. If the repo has no glossary yet, create `GLOSSARY.md` when the first term is resolved; in a mapped repo, follow the rule above. If no `docs/adr/` exists, create it when the first ADR is warranted.
 
 ## Sharpening the language
 
-**Challenge against the glossary.** When a term conflicts with the existing language in `GLOSSARY.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y. Which is it?"
+**Challenge against the glossary.** When a term conflicts with the existing language in the glossary, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y. Which is it?"
 
 **Sharpen fuzzy language.** When a term is vague or overloaded, propose a precise canonical one. "You're saying 'account'. Do you mean the Customer or the User? Those are different things."
 
@@ -51,9 +53,9 @@ Create files lazily, only when you have something to write. If no `GLOSSARY.md` 
 
 ## Capturing it
 
-**Update `GLOSSARY.md` inline.** The moment a term is resolved, write it down. Capture as you go rather than batching. Format in [GLOSSARY-FORMAT.md](./references/GLOSSARY-FORMAT.md).
+**Update the glossary inline.** The moment a term is resolved, write it down. Capture as you go rather than batching. Format in [GLOSSARY-FORMAT.md](./references/GLOSSARY-FORMAT.md).
 
-`GLOSSARY.md` is a glossary and nothing else. It stays free of implementation details, and is not a spec, a scratch pad, or a home for implementation decisions.
+The glossary is a glossary and nothing else. It stays free of implementation details, and is not a spec, a scratch pad, or a home for implementation decisions.
 
 **Offer ADRs sparingly.** An ADR is warranted only when all three hold:
 
@@ -65,4 +67,4 @@ If any of the three is missing, skip it. Format in [ADR-FORMAT.md](./references/
 
 ## Reading it back
 
-When another skill needs the project's vocabulary, `GLOSSARY.md` is the source: name things the way the glossary names them, and respect the ADRs covering the area being touched.
+When another skill needs the project's vocabulary, the glossary is the source: name things the way the glossary names them, and respect the ADRs covering the area being touched.

@@ -23,7 +23,7 @@ Standards apply in layers, highest precedence first:
 
 Skip anything a tool already enforces. A finding the formatter, linter, or type checker would fix is noise in a review. It belongs in the pipeline, not the report.
 
-Read `GLOSSARY.md` so findings use the project's own vocabulary (see `domain-modeling`).
+Read the glossary so findings use the project's own vocabulary (see `domain-modeling`).
 
 ## 3. Review in parallel
 

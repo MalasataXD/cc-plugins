@@ -7,7 +7,7 @@ description: Use when building a feature or fixing a bug test-first, or when TDD
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every section applies on every cycle. Consult them before and during the loop, not after.
 
-When exploring the codebase, read `GLOSSARY.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching. See the `domain-modeling` skill.
+When exploring the codebase, read the glossary (if one exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching. See the `domain-modeling` skill.
 
 ## What a good test is
 

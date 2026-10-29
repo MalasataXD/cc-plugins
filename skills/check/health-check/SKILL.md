@@ -8,7 +8,7 @@ The user has asked for a **health check**: a short, ranked list of the places wh
 
 ## Steps
 
-1. Load the `complexity` skill and read both of its references, then load `code-smells`. Read `GLOSSARY.md` and any ADRs in `docs/adr/` if they exist (see the `domain-modeling` skill), so findings use the project's names and don't re-suggest what an ADR settled.
+1. Load the `complexity` skill and read both of its references, then load `code-smells`. Read the glossary and any ADRs if they exist (see the `domain-modeling` skill for where they live), so findings use the project's names and don't re-suggest what an ADR settled.
 
 2. Find the **hot spots**. If the user named an area, that area is the scope; go to step 3. Otherwise read the recent history (`git log --name-only`, a few hundred commits or the last few months, whichever is shorter) for:
 
@@ -29,7 +29,7 @@ The user has asked for a **health check**: a short, ranked list of the places wh
 
 4. Present 3 to 5 candidates in chat, most severe first. For each:
 
-   - **Area**: the modules involved, named as `GLOSSARY.md` names them.
+   - **Area**: the modules involved, named as the glossary names them.
    - **Evidence**: the churn, co-change, or fix commits that put it on the list.
    - **Problem**: one sentence naming the symptom (change amplification, cognitive load, or unknown unknowns).
    - **Move**: one sentence: deepen, fold into its caller, or move the seam.

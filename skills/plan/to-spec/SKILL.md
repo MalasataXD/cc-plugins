@@ -7,7 +7,7 @@ This skill takes the current conversation context and codebase understanding and
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Name things the way `GLOSSARY.md` names them throughout the spec, and respect any ADRs in the area you're touching (see the `domain-modeling` skill).
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Name things the way the glossary names them throughout the spec, and respect any ADRs in the area you're touching (see the `domain-modeling` skill).
 
 2. Apply the deletion test from the `complexity` skill's `references/deep-modules.md` to the modules the feature touches. If deepening one would make the feature cheaper to build or test, propose it to the user as a preparatory refactor; an approved one goes into the spec as its own decision. When nothing qualifies, move on without comment.
 

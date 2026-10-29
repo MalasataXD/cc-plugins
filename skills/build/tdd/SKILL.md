@@ -33,7 +33,7 @@ Prefer existing seams to new ones, and take the highest seam that still observes
 
 ## Rules of the loop
 
-- **Red before green.** Write the failing test first, then only enough code to pass it. Build for the test in front of you.
+- **Red before green.** Write the failing test first, then only enough code to pass it. Build for the test in front of you. Red means the new test failing against the code as it stood before the change. When a test arrives after its fix, prove red on the parent commit in a separate worktree. Don't break finished code in the shared tree: the break reaches the dev server and every agent working there, and an interrupted run leaves it behind.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** Once green, refactoring belongs to the `simplify` skill and review to the `review` skill. The `implement` skill chains all three. Inside the loop, stay on red → green.
 

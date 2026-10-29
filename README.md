@@ -12,7 +12,13 @@ npx skills add MalasataXD/cc-plugins -g -s health-check retro writing-for-agents
 
 # refresh everything already installed
 npx skills update -g -y
+
+# refresh one skill in a project, from nightly
+npx skills add "MalasataXD/cc-plugins#nightly" -s <skill> -a universal -y
 ```
+
+In a project, use `add -a universal` rather than `update`: `update` targets
+every agent folder it finds and can create unwanted ones, such as `.grok/skills`.
 
 Skills come in two tiers, which are the groups in the interactive picker
 (driven by `.claude-plugin/marketplace.json`). **Main** is the working set:

@@ -117,15 +117,15 @@ Two or three sentences: the state of the code, the safety fact and its rung, and
 - Up to five specific things the code does well.
 
 **Weaknesses**
-- Up to five patterns that span several findings, each pointing at those findings.
+- Up to five patterns that span several findings, each pointing at those findings by number.
 
 ## Act on first
 
-- The title of each **Act on** finding. Omit the section when there are none.
+- The number and title of each **Act on** finding. Omit the section when there are none.
 
 ## Findings
 
-Each finding not dismissed is its reviewer's block from [finding-format](references/finding-format.md), with **Recommendation** replaced by **Verdict**. Order them Act on, Consider, Noted, keeping each reviewer's order within a verdict.
+Each finding not dismissed is its reviewer's block from [finding-format](references/finding-format.md), with **Recommendation** replaced by **Verdict**. Order them Act on, Consider, Noted, keeping each reviewer's order within a verdict, and number them from 1 in that order as `### <n>. <title>`.
 
 ## Dismissed
 

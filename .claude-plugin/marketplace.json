@@ -31,6 +31,7 @@
         "./skills/check/complete-ticket",
         "./skills/check/code-smells",
         "./skills/check/prove-it",
+        "./skills/ship/ship",
         "./skills/ship/commit",
         "./skills/ship/file-pr",
         "./skills/ship/github-attribution",

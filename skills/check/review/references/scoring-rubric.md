@@ -1,6 +1,6 @@
 # Code Review Scoring Rubric
 
-Provide a consistent 0-100 score based on the following categories. Calculate the overall score as a weighted average of these categories.
+Score the pinned target, not the repository around it, from 0 to 100 in each category. A category the target doesn't touch scores `N/A`. Every score below 90 names the findings that cost it.
 
 ## Scoring Categories
 
@@ -40,10 +40,10 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Caching strategies
 - Resource management (connection pooling, file handles)
 
-### 3. Code Quality & Maintainability (Weight: 20%)
+### 3. Quality & Maintainability (Weight: 20%)
 
 **Score Range:**
-- **90-100**: Exemplary code quality. Clear, well-structured, and follows SOLID principles.
+- **90-100**: Clear, well-structured, and easy to change.
 - **75-89**: High quality code with minor readability or structure improvements possible.
 - **60-74**: Adequate quality but needs refactoring for better maintainability.
 - **40-59**: Poor code organization, difficult to understand or modify.
@@ -51,13 +51,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - **0-19**: Unmaintainable code (spaghetti code, no structure).
 
 **Key Factors:**
-- Code readability and clarity
-- Function/method length and complexity
-- Single Responsibility Principle adherence
-- DRY (Don't Repeat Yourself) compliance
-- Proper abstraction levels
-- Cyclomatic complexity
-- Magic numbers and hardcoded values
+- The `code-smells` baseline
 
 ### 4. Complexity (Weight: 10%)
 
@@ -77,7 +71,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - Obscurity: names, units, and invariants evident from the code itself
 - Complexity pulled downwards: hard parts absorbed by the implementation, not exported to callers
 
-### 5. Style & Standards Compliance (Weight: 10%)
+### 5. Style & Standards (Weight: 10%)
 
 **Score Range:**
 - **90-100**: Perfectly follows style guide and coding standards.
@@ -89,34 +83,33 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 
 **Key Factors:**
 - Naming conventions (variables, functions, classes)
-- Indentation and formatting
 - Code organization and file structure
 - Language-specific idioms and best practices
 - Consistency with existing codebase patterns
 - Use of modern language features appropriately
 
-### 6. Architecture & Design Patterns (Weight: 10%)
+### 6. Architecture & Design (Weight: 10%)
 
 **Score Range:**
-- **90-100**: Excellent architecture. Appropriate design patterns used correctly.
+- **90-100**: Responsibilities sit in the right place and dependencies point the right way.
 - **75-89**: Good design with minor architectural improvements possible.
-- **60-74**: Acceptable design but doesn't follow established patterns well.
+- **60-74**: Acceptable design, but it departs from the codebase's established shape.
 - **40-59**: Poor architectural choices or misuse of design patterns.
 - **20-39**: Architectural anti-patterns present.
 - **0-19**: No discernible architecture, chaotic design.
 
 **Key Factors:**
-- Appropriate use of design patterns
 - Separation of concerns
-- Dependency injection and inversion
+- Dependency direction
+- Seams justified by a real need
 - Layer separation (presentation, business logic, data access)
 - Consistency with existing codebase architecture
 - Interface design and contracts
 
-### 7. Documentation Quality (Weight: 10%)
+### 7. Documentation (Weight: 10%)
 
 **Score Range:**
-- **90-100**: Comprehensive, clear documentation for all public interfaces.
+- **90-100**: Public interfaces and non-obvious behaviour are documented, and nothing restates the code.
 - **75-89**: Good documentation with minor gaps.
 - **60-74**: Basic documentation present but incomplete.
 - **40-59**: Minimal documentation, key areas undocumented.
@@ -124,7 +117,7 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 - **0-19**: No documentation or completely incorrect documentation.
 
 **Key Factors:**
-- Function/method documentation (JSDoc, docstrings, etc.)
+- Public interface documentation
 - Class and module documentation
 - Complex logic explanation
 - API documentation
@@ -134,28 +127,4 @@ Provide a consistent 0-100 score based on the following categories. Calculate th
 
 ## Overall Score Calculation
 
-```
-Overall Score = (Security × 0.25) + (Performance × 0.15) + (Quality × 0.20) +
-                (Complexity × 0.10) + (Style × 0.10) + (Architecture × 0.10) +
-                (Documentation × 0.10)
-```
-
-## Score Interpretation
-
-- **90-100**: Excellent - Production-ready code with minimal issues
-- **80-89**: Very Good - High quality with some minor improvements needed
-- **70-79**: Good - Solid code but notable improvements recommended
-- **60-69**: Acceptable - Functional but needs refactoring before production
-- **50-59**: Below Average - Multiple issues need to be addressed
-- **40-49**: Poor - Significant problems, not ready for production
-- **30-39**: Very Poor - Major refactoring required
-- **0-29**: Critical - Code needs to be rewritten
-
-## Scoring Guidelines
-
-1. **Be objective**: Base scores on observable code characteristics, not subjective preferences
-2. **Be consistent**: Use the same criteria across all reviews
-3. **Be fair**: Consider the context (prototype vs production, complexity of domain)
-4. **Be specific**: Provide concrete examples for score deductions
-5. **Be actionable**: Focus on what can be improved
-6. **Be balanced**: Acknowledge both strengths and weaknesses
+Take the weighted average of the scored categories, dividing by the sum of their weights so an `N/A` adds nothing to the total. Round to the nearest whole number.

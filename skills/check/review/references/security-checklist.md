@@ -1,186 +1,58 @@
-# Security Checklist for Code Review
+# Security Checklist
 
-## General Security Issues
+Trace the target, not the whole application. Find each trust boundary the change crosses, then follow untrusted data from its source to its sink. Untrusted data includes requests, files, webhooks, third-party responses, and model output. The sweep is done when every boundary has been traced. A control that may live outside the target, such as a gateway, is a question to raise, not a finding.
 
-### Input Validation
-- Validate and sanitize all user inputs
-- Check for proper type checking and bounds checking
-- Validate file uploads (type, size, content)
-- Prevent injection attacks through input sanitization
+## Untrusted data reaching a sink
 
-### Injection Vulnerabilities
+- **Queries**: Is data bound as parameters, including in raw ORM calls and dynamic `ORDER BY` clauses?
+- **Commands**: Does the code pass an argument array rather than a shell string?
+- **HTML**: Is output contextually encoded? Check raw-HTML paths such as `innerHTML` and `dangerouslySetInnerHTML`.
+- **Paths**: Is the path canonicalized, then confirmed to sit inside the permitted root?
+- **Outbound URLs**: Can the caller steer the destination, including through redirects? This is SSRF.
+- **Redirects**: Is the target limited to known destinations?
+- **Deserialization**: Can untrusted data reach `pickle`, unsafe YAML loading, Java object deserialization, or an XML parser with external entities enabled?
+- **Code execution**: Can it reach `eval`, `exec`, `Function`, dynamic imports, or templates compiled from input?
+- **Regular expressions**: Can input trigger catastrophic backtracking?
+- **Object mapping**: Is input mapped to allowed fields only? Check mass assignment and prototype pollution.
+- **Prompts and model output**: Can untrusted text steer an agent into using its tools? Is model output treated as untrusted before it reaches a sink?
 
-#### SQL Injection
-- Use parameterized queries or prepared statements
-- Avoid string concatenation for SQL queries
-- Use ORM frameworks properly
-- Validate and escape user input in database queries
+## Who is acting
 
-#### Command Injection
-- Avoid executing shell commands with user input
-- Use safe APIs instead of shell execution when possible
-- Properly escape and validate arguments if shell execution is necessary
-- Use allowlists for permitted commands
+- **Object access**: Does each read and write confirm that this caller may touch this specific record, including tenant scope?
+- **Function access**: Is authorization enforced server-side on every new route, job, and action?
+- **Sessions and tokens**: Are cookies `Secure`, `HttpOnly`, and `SameSite`, and is the session rotated at login? Are a JWT's signature, algorithm, expiry, and audience verified?
+- **Passwords**: Are they hashed with Argon2, scrypt, or bcrypt?
+- **CSRF**: Do cookie-authenticated, state-changing requests carry a CSRF defence?
+- **Webhooks**: Is the signature verified against the raw body?
+- **Races**: Can a check-then-act sequence be raced, such as a balance check or a single-use token?
 
-#### Cross-Site Scripting (XSS)
-- Encode output when rendering user-provided data
-- Use Content Security Policy (CSP) headers
-- Sanitize HTML input
-- Avoid `innerHTML` and similar dangerous DOM methods
+## Secrets and sensitive data
 
-#### Path Traversal
-- Validate file paths against allowlists
-- Use path normalization and canonicalization
-- Avoid user input in file system operations
-- Check for `../` sequences and absolute paths
+- **Secrets**: Are they kept out of code and config? Treat a committed secret as compromised and rotate it.
+- **Logs and errors**: Do secrets, tokens, and personal data stay out of logs, traces, and error responses?
+- **Responses**: Does each response return only the fields this caller may see?
+- **Personal data**: Is new collection or sharing necessary, and is the data protected at rest?
 
-### Authentication & Authorization
-- Implement strong password requirements
-- Use secure password hashing (bcrypt, Argon2, scrypt)
-- Never store passwords in plain text
-- Implement proper session management
-- Use secure session tokens (random, unpredictable, sufficient entropy)
-- Implement proper access control checks
-- Validate authorization on every request
-- Avoid relying on client-side authorization
+## Cryptography
 
-### Sensitive Data Exposure
+- Does the code use established libraries and authenticated encryption, such as AES-GCM or ChaCha20-Poly1305?
+- Do tokens, keys, and nonces come from a secure random source, with nonces never reused?
+- Are MD5 and SHA-1 absent from security-sensitive use?
+- Are secrets compared in constant time?
 
-#### API Keys & Secrets
-- Never hardcode API keys, passwords, or secrets
-- Use environment variables or secure vaults for secrets
-- Check for secrets in configuration files
-- Ensure secrets are not logged or exposed in error messages
-- Use `.gitignore` to prevent committing secrets
+## Files and resource limits
 
-#### Data Encryption
-- Use HTTPS/TLS for data in transit
-- Encrypt sensitive data at rest
-- Use strong encryption algorithms (AES-256, RSA-2048+)
-- Avoid deprecated encryption methods (MD5, SHA1 for passwords, DES)
+- **Uploads**: Are size and content type checked, with files stored outside the web root under non-guessable names?
+- **Limits**: Do parsing, pagination, and new expensive or authentication endpoints have limits?
 
-#### Personal Identifiable Information (PII)
-- Minimize collection of PII
-- Implement proper data retention policies
-- Ensure PII is properly encrypted
-- Comply with privacy regulations (GDPR, CCPA)
+## Supply chain and configuration
 
-### Cryptography
-- Use well-established cryptographic libraries
-- Avoid custom cryptographic implementations
-- Use secure random number generators
-- Properly manage cryptographic keys
-- Use appropriate key sizes
-- Implement proper IV/nonce generation for encryption
+- **Dependencies**: Is each new package needed, maintained, spelled correctly, and locked? Do lockfile changes match the manifest?
+- **CI**: Does untrusted pull request data stay out of `run:` steps? Check `pull_request_target`, actions pinned to a commit SHA, and token permissions.
+- **Configuration**: Check changed CORS rules, security headers, debug flags, TLS settings, and default credentials.
 
-### Error Handling & Logging
-- Avoid exposing sensitive information in error messages
-- Log security-relevant events
-- Sanitize log output to prevent log injection
-- Avoid logging sensitive data (passwords, tokens, PII)
-- Implement proper error handling (avoid generic catch-all)
+## C and C++
 
-### Session Management
-- Use secure, httpOnly, and sameSite cookies
-- Implement proper session timeout
-- Regenerate session IDs after authentication
-- Implement secure logout functionality
-- Protect against session fixation attacks
-
-### Cross-Site Request Forgery (CSRF)
-- Implement CSRF tokens for state-changing operations
-- Use SameSite cookie attribute
-- Validate origin and referrer headers
-- Require re-authentication for sensitive operations
-
-### XML/JSON Processing
-- Prevent XXE (XML External Entity) attacks
-- Disable external entity processing in XML parsers
-- Validate JSON schema
-- Implement size limits for parsed data
-
-### File Operations
-- Validate file types and extensions
-- Implement file size limits
-- Scan uploaded files for malware
-- Store uploaded files outside web root
-- Use unique, non-guessable filenames
-
-### API Security
-- Implement rate limiting
-- Use API authentication (OAuth, API keys, JWT)
-- Validate API request parameters
-- Implement proper CORS configuration
-- Version APIs properly
-
-### Dependency Management
-- Keep dependencies up to date
-- Scan for known vulnerabilities in dependencies
-- Use dependency lock files
-- Avoid dependencies with security issues
-- Review dependency licenses
-
-## Language-Specific Considerations
-
-### JavaScript/TypeScript
-- Avoid `eval()`, `Function()`, and similar dynamic code execution
-- Use strict mode
-- Validate JSON parsing input
-- Sanitize DOM manipulation
-- Use TypeScript for type safety
-
-### Python
-- Avoid `exec()`, `eval()`, `__import__()`
-- Use parameterized queries with database libraries
-- Validate pickle deserialization sources
-- Be cautious with `subprocess` and `os.system()`
-
-### Java
-- Avoid deserialization of untrusted data
-- Use prepared statements for SQL
-- Validate XML input
-- Be cautious with reflection APIs
-- Use security manager appropriately
-
-### C/C++
-- Prevent buffer overflows
-- Use safe string functions (`strncpy`, `snprintf`)
-- Avoid format string vulnerabilities
-- Prevent memory leaks
-- Validate array bounds
-- Use smart pointers (C++)
-
-### PHP
-- Disable dangerous functions (`eval`, `system`, `exec`)
-- Use prepared statements
-- Validate `include`/`require` paths
-- Escape output properly
-- Configure PHP securely (`display_errors=off` in production)
-
-### Go
-- Validate SQL queries (use parameterized queries)
-- Be cautious with `os/exec`
-- Properly handle errors
-- Validate template inputs
-- Use context for timeouts and cancellation
-
-## Infrastructure & Configuration
-
-### Server Configuration
-- Disable directory listing
-- Remove default/sample files
-- Configure security headers (X-Frame-Options, X-Content-Type-Options, etc.)
-- Implement HTTPS with strong TLS configuration
-- Keep server software updated
-
-### Access Control
-- Implement principle of least privilege
-- Use role-based access control (RBAC)
-- Regularly review permissions
-- Implement multi-factor authentication for sensitive operations
-
-### Monitoring & Alerting
-- Implement security monitoring
-- Set up alerts for suspicious activities
-- Regular security audits
-- Implement intrusion detection
+- Are copies bounded, using `snprintf`, `std::string`, or `std::span`?
+- Are format strings constant?
+- Check object lifetimes, use-after-free, and integer overflow before allocation.

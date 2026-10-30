@@ -7,7 +7,7 @@ The return contract for the dimension reviewers. Paste the finding block and the
 ```markdown
 ### <title: name the problem, not the category>
 
-**Recommendation:** Act on / Consider / Noted · **Category:** <rubric category> · **Where:** `path/file.cs:42` · **Evidence rung:** <prove-it rung>
+**Recommendation:** Act on / Consider / Noted · **Category:** <rubric category, Bugs, or Spec> · **Where:** `path/file.cs:42` · **Evidence rung:** <prove-it rung>
 
 Why it matters, then the current shape and the suggested one, with code snippets only where prose is less precise.
 ```
@@ -27,7 +27,7 @@ Each sub-agent returns exactly this shape:
 
 ## Scores
 
-- <Category>: X/100
+- <Category>: X/100 or N/A, plus the findings that cost it
 
 ## Strengths
 
@@ -36,4 +36,4 @@ Each sub-agent returns exactly this shape:
 <closing line: what was and wasn't run, e.g. "Read-only review; no tests were run.">
 ```
 
-Scores are 0–100 (the rubric's scale), one line per category the dimension covers, and nothing else is scored.
+Scores are 0–100 or `N/A` (the rubric's scale), one line per category the dimension covers, and nothing else is scored. A dimension with no rubric category returns no `## Scores` section.

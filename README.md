@@ -5,7 +5,7 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 
 ```shell
 # a new machine: the main tier
-npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review peer-review complete-ticket code-smells prove-it ship commit file-pr github-attribution unslop
+npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review peer-review complete-ticket code-smells prove-it ship commit file-pr babysit-pr github-attribution unslop
 
 # the extras tier, on top
 npx skills add MalasataXD/cc-plugins -g -s health-check retro writing-for-agents wait-what
@@ -90,6 +90,7 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 | `ship` | Gate finished work on its review, checks, spec and tickets: Ready or Not ready |
 | `commit` | Structured commits with imperative titles |
 | `file-pr` | Open a PR with a changelog body written from the diff |
+| `babysit-pr` | Carry an open PR to green CI, fixing causes and clearing conflicts |
 | `github-attribution` | The "Filed by <model name> on behalf of <name>" note that opens every GitHub write |
 
 | `toolbox`: helpers for any stage | |

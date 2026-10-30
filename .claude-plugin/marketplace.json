@@ -35,6 +35,7 @@
         "./skills/ship/ship",
         "./skills/ship/commit",
         "./skills/ship/file-pr",
+        "./skills/ship/babysit-pr",
         "./skills/ship/github-attribution",
         "./skills/toolbox/unslop"
       ]

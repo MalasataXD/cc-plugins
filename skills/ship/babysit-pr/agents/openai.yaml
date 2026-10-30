@@ -1,0 +1,5 @@
+interface:
+  display_name: "Babysit PR"
+  short_description: "Carry an open pull request to green CI, pushing the fixes and merges it needs."
+policy:
+  allow_implicit_invocation: false

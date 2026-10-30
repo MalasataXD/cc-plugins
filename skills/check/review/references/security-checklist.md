@@ -1,6 +1,6 @@
 # Security Checklist
 
-Trace the target, not the whole application. Find each trust boundary the change crosses, then follow untrusted data from its source to its sink. Untrusted data includes requests, files, webhooks, third-party responses, and model output. The sweep is done when every boundary has been traced. A control that may live outside the target, such as a gateway, is a question to raise, not a finding.
+Trace the target, not the whole application. Find each trust boundary the change crosses, then follow untrusted data from its source to its sink. Untrusted data includes requests, files, webhooks, third-party responses, and model output. The sweep is done when every boundary has been traced. Follow a control that lives outside the target, such as a gateway, when you can read it. When you can't, say so in your closing line.
 
 ## Untrusted data reaching a sink
 

@@ -1,6 +1,6 @@
 # Code Review Scoring Rubric
 
-Score the pinned target, not the repository around it, from 0 to 100 in each category. A category the target doesn't touch scores `N/A`. Every score below 90 names the findings that cost it.
+Score the pinned target, not the repository around it, from 0 to 100 in each category. A category the target doesn't touch scores `N/A`: Security when no trust boundary is crossed, Performance when no loop, query, or I/O path changes. Every score below 90 names the findings that cost it.
 
 ## Scoring Categories
 

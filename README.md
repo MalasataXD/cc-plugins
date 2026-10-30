@@ -5,7 +5,7 @@ Personal skills for [Claude Code](https://docs.claude.com/en/docs/claude-code) a
 
 ```shell
 # a new machine: the main tier
-npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review complete-ticket code-smells prove-it ship commit file-pr github-attribution unslop
+npx skills add MalasataXD/cc-plugins -g -s grilling domain-modeling research prototype complexity to-spec to-tickets vet-tickets next-ticket implement tdd diagnosing-bugs simplify handoff review peer-review complete-ticket code-smells prove-it ship commit file-pr github-attribution unslop
 
 # the extras tier, on top
 npx skills add MalasataXD/cc-plugins -g -s health-check retro writing-for-agents wait-what
@@ -79,6 +79,7 @@ Folders follow the stage of work you are in. Skills install with bare names rega
 | `check`: judge the work | |
 | --- | --- |
 | `review` | Two-axis review, scored 0–100 → `<work folder>/reviews/` |
+| `peer-review` | Cold read from the other provider's model; fix what is clear, present the rest |
 | `complete-ticket` | Judge a ticket against its criteria; commit and name the next ticket |
 | `code-smells` | The shared baseline `simplify` fixes and `review` flags |
 | `prove-it` | The certainty ladder `review` reports and `complete-ticket` enforces |

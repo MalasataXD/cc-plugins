@@ -28,6 +28,7 @@
         "./skills/build/simplify",
         "./skills/build/handoff",
         "./skills/check/review",
+        "./skills/check/peer-review",
         "./skills/check/complete-ticket",
         "./skills/check/code-smells",
         "./skills/check/prove-it",

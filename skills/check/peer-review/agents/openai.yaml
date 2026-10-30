@@ -1,0 +1,5 @@
+interface:
+  display_name: "Peer Review"
+  short_description: "Ask a model from the other provider for a cold read, fix what is clear, and present the rest."
+policy:
+  allow_implicit_invocation: false
